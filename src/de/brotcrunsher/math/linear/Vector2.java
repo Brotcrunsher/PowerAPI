@@ -93,6 +93,7 @@ public class Vector2 {
 		return diffX >= -tolerance && diffX <= tolerance && diffY >= -tolerance && diffY <= tolerance;
 	}
 	public boolean isContainingNaN(){
+		//TESTED
 		return Float.isNaN(x) || Float.isNaN(y);
 	}
 	public boolean isContainingAnyInfinity(){
@@ -214,36 +215,44 @@ public class Vector2 {
 	}
 	
 	public void absThis(){
+		//TESTED
 		x = Math.abs(x);
 		y = Math.abs(y);
 	}
 	
 	public Vector2 abs(){
+		//TESTED
 		return new Vector2(Math.abs(x), Math.abs(y));
 	}
 	
 	public float getMax(){
+		//TESTED
 		return Math.max(x, y);
 	}
 	
 	public float getMin(){
+		//TESTED
 		return Math.min(x, y);
 	}
 	
 	public float getAbsMax(){
+		//TESTED
 		return Math.maxAbs(x, y);
 	}
 	
 	public float getAbsMin(){
+		//TESTED
 		return Math.minAbs(x, y);
 	}
 	
 	public void clampComponentsThis(float min, float max){
+		//TESTED
 		x = Math.clamp(x, min, max);
 		y = Math.clamp(y, min, max);
 	}
 	
 	public Vector2 clampComponents(float min, float max){
+		//TESTED
 		return new Vector2(Math.clamp(x, min, max), Math.clamp(y, min, max));
 	}
 	
@@ -267,27 +276,53 @@ public class Vector2 {
 		this.y = other.y;
 	}
 	public float getX(){
+		//TESTED
 		return x;
 	}
 	public float getY(){
+		//TESTED
 		return y;
 	}
 	
 	public void addToThisX(float val){
+		//TESTED
 		this.x += val;
 	}
 	
 	public void addToThisY(float val){
+		//TESTED
 		this.y += val;
 	}
 	
 	public void addToThis(float x, float y){
+		//TESTED
 		this.x += x;
 		this.y += y;
 	}
 	
 	public void addToThis(Vector2 other){
+		//TESTED
 		addToThis(other.getX(), other.getY());
+	}
+	
+	public Vector2 addX(float val){
+		//TESTED
+		return new Vector2(x + val, y);
+	}
+	
+	public Vector2 addY(float val){
+		//TESTED
+		return new Vector2(x, y + val);
+	}
+	
+	public Vector2 add(float x, float y){
+		//TESTED
+		return new Vector2(this.x + x, this.y + y);
+	}
+	
+	public Vector2 add(Vector2 other){
+		//TESTED
+		return add(other.getX(), other.getY());
 	}
 	
 	public void subFromThisX(float val){
@@ -305,6 +340,22 @@ public class Vector2 {
 	
 	public void subFromThis(Vector2 other){
 		subFromThis(other.getX(), other.getY());
+	}
+	
+	public Vector2 subX(float val){
+		return new Vector2(x - val, y);
+	}
+	
+	public Vector2 subY(float val){
+		return new Vector2(x, y - val);
+	}
+	
+	public Vector2 sub(float x, float y){
+		return new Vector2(this.x + x , this.y + y);
+	}
+	
+	public Vector2 sub(Vector2 other){
+		return sub(other.getX(), other.getY());
 	}
 	
 	public void divThisX(float val){

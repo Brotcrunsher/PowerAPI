@@ -101,4 +101,13 @@ public class Math {
 	public static float clamp01(float x){
 		return clamp(x, 0, 1);
 	}
+	
+	public static int mod(int val, int mod){
+		//TESTED
+		if(val >= 0) return val % mod;
+		else{
+			int ret = val % mod + mod;
+			return ret == mod ? 0 : ret;
+		}
+	}
 }

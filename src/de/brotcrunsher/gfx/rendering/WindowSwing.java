@@ -25,16 +25,12 @@ public class WindowSwing extends JFrame implements Window{
 		this.pack();
 		Insets insets = getInsets();
 		this.setSize(screenWidth + insets.left + insets.right, screenHeight + insets.top + insets.bottom);
-		System.out.println(insets.left + " " + insets.right + " " + insets.top + " " + insets.bottom);
 	}
 
 	@Override
 	public void renderScreen(Game game) {
 		this.game = game;
 		screen.repaint();
-
-		Insets insets = getInsets();
-		System.out.println(insets.left + " " + insets.right + " " + insets.top + " " + insets.bottom);
 	}
 	
 	
