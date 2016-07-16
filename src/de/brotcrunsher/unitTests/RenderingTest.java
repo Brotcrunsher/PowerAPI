@@ -30,6 +30,8 @@ public class RenderingTest implements Game{
 	public void draw(Renderer r) {
 		r.setColor(Color.AWT_GREEN);
 		r.clearScreen();
+		r.setColor(Color.AWT_BLUE);
+		r.fillRect(0.1f, 0.1f, 0.1f, 0.1f);
 		r.setColor(Color.AWT_BLACK);
 		r.fillRect(1, 1, getScreenWidth()-2, getScreenHeight()-2);
 		r.setColor(new Color(1, 0, 0, 1));

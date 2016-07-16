@@ -1,5 +1,5 @@
 package de.brotcrunsher.game.core;
 
 public enum HostMode {
-	swing //TODO: javaFX, openGL, vulkan
+	swing, openGL //TODO: javaFX, vulkan
 }

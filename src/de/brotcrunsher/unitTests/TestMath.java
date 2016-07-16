@@ -42,19 +42,24 @@ public class TestMath {
 
 		assertEquals(Math.sqrt(0)    , 0    , 0);
 		assertEquals(Math.sqrt(0.5f) , 0.707, 0.001);
-		assertEquals(Math.sqrt(1)    , 1    , 0);
-		assertEquals(Math.sqrt(1.5f) , 1.225, 0.001);
-		assertEquals(Math.sqrt(2)    , 1.414, 0.001);
-		assertEquals(Math.sqrt(2.5f) , 1.581, 0.001);
-		assertEquals(Math.sqrt(3)    , 1.732, 0.001);
-		assertEquals(Math.sqrt(3.5f) , 1.871, 0.001);
-		assertEquals(Math.sqrt(4)    , 2    , 0);
-		assertEquals(Math.sqrt(4.5f) , 2.121, 0.001);
-		assertEquals(Math.sqrt(5)    , 2.236, 0.001);
-		assertEquals(Math.sqrt(100)  , 10   , 0);
-		assertEquals(Math.sqrt(10000), 100, 0);
-		assertEquals(Math.sqrt(1000000), 1000, 0);
-		assertEquals(Math.sqrt(100000000), 10000, 0);
+		assertEquals(Math.sqrt(1)    , 1    , 0.01);
+		assertEquals(Math.sqrt(1.5f) , 1.225, 0.01);
+		assertEquals(Math.sqrt(2)    , 1.414, 0.01);
+		assertEquals(Math.sqrt(2.5f) , 1.581, 0.01);
+		assertEquals(Math.sqrt(3)    , 1.732, 0.01);
+		assertEquals(Math.sqrt(3.5f) , 1.871, 0.01);
+		assertEquals(Math.sqrt(4)    , 2    , 0.01);
+		assertEquals(Math.sqrt(4.5f) , 2.121, 0.01);
+		assertEquals(Math.sqrt(5)    , 2.236, 0.01);
+		assertEquals(Math.sqrt(100)  , 10   , 0.1);
+		assertEquals(Math.sqrt(10000), 100, 1);
+		assertEquals(Math.sqrt(1000000), 1000, 10);
+		assertEquals(Math.sqrt(100000000), 10000, 100);
+		
+		for(int i = 0; i<64000; i++){
+			float rand = RNG.randomDefault.nextFloat() * 10000;
+			assertEquals(Math.sqrt(rand), java.lang.Math.sqrt(rand), rand * 0.001f + 0.001f);
+		}
 
 		assertEquals(Math.sin(-6.5f), -0.215, 0.001);
 		assertEquals(Math.sin(-6f)  ,  0.279, 0.001);
@@ -134,6 +139,12 @@ public class TestMath {
 		for(int i = 0; i<64000; i++){
 			float randVal = RNG.randomDefault.nextFloat() * 2000 - 1000;
 			assertEquals(Math.cos(randVal), java.lang.Math.cos(randVal), 0.001);
+		}
+		
+		for(int i = 0; i<64000; i++){
+			float rand = RNG.randomDefault.nextFloat() * 4000 - 2000;
+			assertEquals(Math.acos(rand), java.lang.Math.acos(rand), 0.001f);
+			assertEquals(Math.asin(rand), java.lang.Math.asin(rand), 0.001f);
 		}
 		
 		assertEquals(Math.abs(0), 0, 0);

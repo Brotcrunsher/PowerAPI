@@ -16,10 +16,12 @@ public class Math {
 	}
 	
 	
-	public static float sqrt(float val){
+	public static float sqrt(final float val){
 		//TESTED
 		return (float)java.lang.Math.sqrt(val);
 	}
+	
+	
 	
 	public static float sin(float val){
 		//TESTED

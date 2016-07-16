@@ -1,0 +1,10 @@
+keyboard input
+mouse input
+controller input
+sound
+Ring Arrays for other primitives
+
+OpenGL support
+JavaFX support
+Vulkan support
+Doc for everything

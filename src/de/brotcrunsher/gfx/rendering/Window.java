@@ -8,4 +8,7 @@ public interface Window {
 	public default void postRender(){
 		//do nothing on default
 	}
+	public default void cleanup(){
+		//do nothing on default
+	}
 }

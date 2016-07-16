@@ -2,6 +2,7 @@ package de.brotcrunsher.game.core;
 
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
+import de.brotcrunsher.gfx.rendering.WindowOpenGL;
 import de.brotcrunsher.gfx.rendering.WindowSwing;
 
 public class GameStarter {
@@ -12,7 +13,7 @@ public class GameStarter {
 	private static boolean running = false;
 	
 	public static void startGame(Game game){
-		startGame(game, HostMode.swing);
+		startGame(game, HostMode.openGL);
 	}
 	
 	public static void startGame(Game game, HostMode hm){
@@ -20,12 +21,15 @@ public class GameStarter {
 		case swing:
 			startGame(game, new WindowSwing());
 			break;
+		case openGL:
+			startGame(game, new WindowOpenGL());
+			break;
 		default:
 			throw new IllegalArgumentException("The HostMode " + hm + " is not supported!");
 		}
 	}
 	
-	public static void startGame(Game game, Window window){
+	private static void startGame(Game game, Window window){
 		GameStarter.running = true;
 		GameStarter.window = window;
 		game.preInitialize();
@@ -49,6 +53,7 @@ public class GameStarter {
 			}
 		}
 		
+		window.cleanup();
 		game.onGameEnd();
 	}
 	
@@ -57,5 +62,20 @@ public class GameStarter {
 	}
 	public static int getScreenHeight(){
 		return gameScreenHeight;
+	}
+	
+	public static String getWindowName(){
+		return windowName;
+	}
+	
+	public static void setWindowName(String name){
+		windowName = name;
+	}
+	
+	public static void stopGame(){
+		if(!GameStarter.running){
+			throw new IllegalStateException();
+		}
+		GameStarter.running = false;
 	}
 }
