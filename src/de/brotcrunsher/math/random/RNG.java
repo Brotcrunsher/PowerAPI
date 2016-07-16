@@ -17,14 +17,16 @@ public class RNG {
 		}
 	}
 	public static Vector2 randomVector2InsideUnitCircle(){
+		//TESTED
 		return randomVector2InsideUnitCircle(randomDefault);
 	}
 	
-	public static Vector2 randomVectorOnUnitCircle(){
-		return randomVectorOnUnitCircle(randomDefault);
+	public static Vector2 randomVector2OnUnitCircle(){
+		//TESTED
+		return randomVector2OnUnitCircle(randomDefault);
 	}
 	
-	public static Vector2 randomVectorOnUnitCircle(RandomNumberGenerator r){
+	public static Vector2 randomVector2OnUnitCircle(RandomNumberGenerator r){
 		return Vector2.newOnCircle(r.nextFloat() * Math.PI * 2);
 	}
 	
@@ -33,6 +35,7 @@ public class RNG {
 	}
 	
 	public static Vector2 randomVector2InsideUnitSquare(){
+		//TESTED
 		return randomVector2InsideUnitSquare(randomDefault);
 	}
 	
@@ -53,6 +56,7 @@ public class RNG {
 	}
 	
 	public static Vector2 randomVector2OnUnitSquare(){
+		//TESTED
 		return randomVector2OnUnitSquare(randomDefault);
 	}
 	

@@ -25,18 +25,21 @@ public class GameStarter {
 	}
 	
 	public static void startGame(Game game, Window window){
+		GameStarter.running = true;
 		GameStarter.window = window;
 		game.preInitialize();
 		
 		GameStarter.window.create(windowName, gameScreenWidth, gameScreenHeight);
 		
-		GameStarter.running = true;
+		
 		
 		while(GameStarter.running){
 			TimeManager.update();
 			
 			game.update(TimeManager.getTimeSinceLastFrame());
 			window.renderScreen(game);
+			
+			
 			
 			try {
 				Thread.sleep(1);
