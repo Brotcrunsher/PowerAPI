@@ -11,7 +11,8 @@ public class TimeManager {
 	private static long timeSinceLastFrameMillis = 0;
 	private static float timeSinceLastFrame = 0;
 	private static int frameNumber = 0;
-	private static RingArrayLong frameTimesForLast30Frames = new RingArrayLong(30);
+	private static int amountOfFrameTimeRecords = 30;
+	private static RingArrayLong frameTimesForLastFrames = new RingArrayLong(amountOfFrameTimeRecords);
 	
 	static{
 		GameStartTimestamp = System.currentTimeMillis();
@@ -25,7 +26,7 @@ public class TimeManager {
 		thisFrame = System.currentTimeMillis();
 		
 		timeSinceLastFrameMillis = thisFrame - lastFrame;
-		frameTimesForLast30Frames.set(frameNumber, timeSinceLastFrameMillis);
+		frameTimesForLastFrames.set(frameNumber, timeSinceLastFrameMillis);
 		timeSinceLastFrame = timeSinceLastFrameMillis / 1000f;
 	}
 	
@@ -38,6 +39,13 @@ public class TimeManager {
 	}
 	
 	public static float getAverageFrameTime(){
-		return frameTimesForLast30Frames.calculateAvg() / 1000f;
+		if(frameNumber < amountOfFrameTimeRecords){
+			return frameTimesForLastFrames.calculateSum() / frameNumber / 1000f;
+		}
+		return frameTimesForLastFrames.calculateAvg() / 1000f;
+	}
+	
+	public static int getFrameNumber(){
+		return frameNumber;
 	}
 }

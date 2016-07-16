@@ -1,6 +1,7 @@
 package de.brotcrunsher.unitTests;
 
 import de.brotcrunsher.game.core.Game;
+import de.brotcrunsher.game.core.TimeManager;
 import de.brotcrunsher.gfx.basics.Color;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.math.linear.Vector2;
@@ -46,6 +47,7 @@ public class RenderingTest implements Game{
 		r.drawTriangle(500, 20, 550, 50, 170, 10);
 		r.setColor(Color.AWT_WHITE);
 		r.drawRect(800, 20, 100, 200);
+		System.out.println(TimeManager.getFrameNumber() + " : " +  TimeManager.getAverageFrameTime());
 	}
 	
 	
