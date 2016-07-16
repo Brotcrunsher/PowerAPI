@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 import de.brotcrunsher.math.linear.Math;
+import de.brotcrunsher.math.random.RNG;
 
 public class TestMath {
 
@@ -90,6 +91,11 @@ public class TestMath {
 		assertEquals(Math.sin(Math.PI * 1.5f), -1, 0);
 		assertEquals(Math.sin(Math.PI * 2f)  ,  0, 0);
 		
+		for(int i = 0; i<64000; i++){
+			float randVal = RNG.randomDefault.nextFloat() * 2000 - 1000;
+			assertEquals(Math.sin(randVal), java.lang.Math.sin(randVal), 0.001);
+		}
+		
 		assertEquals(Math.cos(-6.5f),  0.977, 0.001);
 		assertEquals(Math.cos(-6f)  ,  0.960, 0.001);
 		assertEquals(Math.cos(-5.5f),  0.709, 0.001);
@@ -124,6 +130,11 @@ public class TestMath {
 		assertEquals(Math.cos(Math.PI)       , -1, 0);
 		assertEquals(Math.cos(Math.PI * 1.5f),  0, 0);
 		assertEquals(Math.cos(Math.PI * 2f)  ,  1, 0);
+		
+		for(int i = 0; i<64000; i++){
+			float randVal = RNG.randomDefault.nextFloat() * 2000 - 1000;
+			assertEquals(Math.cos(randVal), java.lang.Math.cos(randVal), 0.001);
+		}
 		
 		assertEquals(Math.abs(0), 0, 0);
 		assertEquals(Math.abs(1), 1, 0);

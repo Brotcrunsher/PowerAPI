@@ -206,28 +206,51 @@ public class Vector2 {
 	}
 	
 	public void projectThis(Vector2 projector){
-		//TODO
-		throw new UnsupportedOperationException();
+		//TESTED
+		float scalar = projector.dotProduct(this) / projector.lengthSq();
+		this.x = projector.x * scalar;
+		this.y = projector.y * scalar;
 	}
 	
 	public Vector2 project(Vector2 projector){
-		//TODO
-		throw new UnsupportedOperationException();
+		//TESTED
+		float scalar = projector.dotProduct(this) / projector.lengthSq();
+		return new Vector2(projector.x * scalar, projector.y * scalar);
 	}
 	
 	public static float angleRadiansBetween(Vector2 a, Vector2 b){
-		//TODO
-		throw new UnsupportedOperationException();
+		//TESTED
+		return Math.acos(a.dotProduct(b) / a.length() / b.length());
 	}
 	
 	public void rotateThis(float radians){
-		//TODO
-		throw new UnsupportedOperationException();
+		//TESTED
+		float cos = Math.cos(radians);
+		float sin = Math.sin(radians);
+		float tempX = x;
+		x = cos * x     - sin * y;
+		y = sin * tempX + cos * y;
 	}
 	
 	public Vector2 rotate(float radians){
-		//TODO
-		throw new UnsupportedOperationException();
+		//TESTED
+		float cos = Math.cos(radians);
+		float sin = Math.sin(radians);
+		return new Vector2(cos * x - sin * y, sin * x + cos * y);
+	}
+	
+	public void setLengthThis(float length){
+		//TESTED
+		normalizeThis();
+		x *= length;
+		y *= length;
+	}
+	
+	public Vector2 setLength(float length){
+		//TESTED
+		Vector2 norm = normalized();
+		norm.multThis(length);
+		return norm;
 	}
 	
 	public void rotate90ClockwiseThis(){
@@ -297,8 +320,13 @@ public class Vector2 {
 	}
 	
 	public float headingAngle(){
-		//TODO
-		throw new UnsupportedOperationException();
+		//TESTED
+		float angle = Math.acos(x / length());
+		if(y >= 0){
+			return angle;
+		}else{
+			return Math.PI * 2 - angle;
+		}
 	}
 	
 	public void setX(float x){

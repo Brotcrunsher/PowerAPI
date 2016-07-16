@@ -35,58 +35,72 @@ public class Color {
 	
 	
 	public Color(){
+		//TESTED
 		this(0, 0, 0, 1);
 	}
 	
 	public Color(float r){
+		//TESTED
 		this(r, 0, 0, 1);
 	}
 	
 	public Color(float r, float g){
+		//TESTED
 		this(r, g, 0, 1);
 	}
 	
 	public Color(Vector2 rg){
+		//TESTED
 		this(rg.getX(), rg.getY(), 0, 1);
 	}
 	
 	public Color(float r, float g, float b){
+		//TESTED
 		this(r, g, b, 1);
 	}
 	
 	public Color(Vector2 rg, float b){
+		//TESTED
 		this(rg.getX(), rg.getY(), b, 1);
 	}
 	
 	public Color(float r, Vector2 gb){
+		//TESTED
 		this(r, gb.getX(), gb.getY());
 	}
 	
 	public Color(Vector2 rg, float b, float a){
+		//TESTED
 		this(rg.getX(), rg.getY(), b, a);
 	}
 	
 	public Color(float r, Vector2 gb, float a){
+		//TESTED
 		this(r, gb.getX(), gb.getY(), a);
 	}
 	
 	public Color(float r, float g, Vector2 ba){
+		//TESTED
 		this(r, g, ba.getX(), ba.getY());
 	}
 	
 	public Color(Vector2 rg, Vector2 ba){
+		//TESTED
 		this(rg.getX(), rg.getY(), ba.getX(), ba.getY());
 	}
 	
 	public Color(java.awt.Color color){
+		//TESTED
 		this(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, color.getAlpha() / 255f);
 	}
 	
 	public Color(Color other){
+		//TESTED
 		this(other.getR(), other.getG(), other.getB(), other.getA());
 	}
 	
 	public Color(float r, float g, float b, float a){
+		//TESTED
 		this.r = r;
 		this.g = g;
 		this.b = b;
@@ -94,28 +108,36 @@ public class Color {
 	}
 	
 	public float getR(){
+		//TESTED
 		return r;
 	}
 	public float getG(){
+		//TESTED
 		return g;
 	}
 	public float getB(){
+		//TESTED
 		return b;
 	}
 	public float getA(){
+		//TESTED
 		return a;
 	}
 	
 	public void setR(float r){
+		//TESTED
 		this.r = r;
 	}
 	public void setG(float g){
+		//TESTED
 		this.g = g;
 	}
 	public void setB(float b){
+		//TESTED
 		this.b = b;
 	}
 	public void setA(float a){
+		//TESTED
 		this.a = a;
 	}
 	
@@ -127,6 +149,7 @@ public class Color {
 	
 	@Override
 	public boolean equals(Object obj) {
+		//TESTED
 		if(!(obj instanceof Color)){
 			return false;
 		}
@@ -150,6 +173,7 @@ public class Color {
 	
 	@Override
 	public String toString() {
+		//TESTED
 		return "(" + r + ", " + g + ", " + b + ", " + a + ")";
 	}
 }

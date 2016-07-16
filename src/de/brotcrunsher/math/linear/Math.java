@@ -7,6 +7,15 @@ public class Math {
 	public static final float TAU = (float)(java.lang.Math.PI * 2.0);
 	public static final float E   = (float)java.lang.Math.E;
 	
+	private static final float[] sinTable = new float[128];
+	
+	static {
+		for(int i = 0; i<sinTable.length; i++){
+			sinTable[i] = (float)java.lang.Math.sin(i / (float)sinTable.length * PI * 2);
+		}
+	}
+	
+	
 	public static float sqrt(float val){
 		//TESTED
 		return (float)java.lang.Math.sqrt(val);
@@ -19,17 +28,29 @@ public class Math {
 		if(val == PI * 0.5f) return 1;
 		if(val == PI) return 0;
 		if(val == PI * 1.5f) return -1;
-		return (float)java.lang.Math.sin(val);
+		
+		float t = val / PI / 2 * sinTable.length;
+		int index = (int)(t);
+		t -= index;
+		float a = sinTable[index];
+		float b = 0;
+		if(index != sinTable.length - 1){
+			b = sinTable[index + 1];
+		}
+		return Interpolations.linear(a, b, t);
 	}
 	
 	public static float cos(float val){
 		//TESTED
-		val = mod(val, PI * 2);
-		if(val == 0) return 1;
-		if(val == PI * 0.5f) return 0;
-		if(val == PI) return -1;
-		if(val == PI * 1.5f) return 0;
-		return (float)java.lang.Math.cos(val);
+		return sin(val + PI / 2);
+	}
+	
+	public static float asin(float val){
+		return (float)java.lang.Math.asin(val);
+	}
+	
+	public static float acos(float val){
+		return (float)java.lang.Math.acos(val);
 	}
 	
 	public static float abs(float val){

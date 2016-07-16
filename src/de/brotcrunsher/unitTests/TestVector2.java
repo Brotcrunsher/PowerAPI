@@ -3,7 +3,6 @@ package de.brotcrunsher.unitTests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.junit.runners.JUnit4;
 
 import de.brotcrunsher.math.linear.Math;
 import de.brotcrunsher.math.linear.Vector2;
@@ -18,7 +17,6 @@ public class TestVector2 {
 		Vector2 v2 = null;
 		
 		float a = 0;
-		float b = 0;
 		
 		v0 = new Vector2(-100, -200);
 		v1 = v0.abs();
@@ -969,6 +967,139 @@ public class TestVector2 {
 		assertEquals(new Vector2(Float.NaN, 0)        .isContainingNaN(), true);
 		assertEquals(new Vector2(0, Float.NaN)        .isContainingNaN(), true);
 		assertEquals(new Vector2(Float.NaN, Float.NaN).isContainingNaN(), true);
+		
+		
+		v0 = new Vector2(20, 0);
+		v1 = new Vector2(1, 1);
+		v1.projectThis(v0);
+		assertEquals(v0.getX(), 20, 0);
+		assertEquals(v0.getY(), 0, 0);
+		assertEquals(v1.getX(), 1, 0);
+		assertEquals(v1.getY(), 0, 0);
+		v0 = new Vector2(1, 0);
+		v1 = new Vector2(20, 20);
+		v0.projectThis(v1);
+		assertEquals(v0.getX(), 0.5f, 0);
+		assertEquals(v0.getY(), 0.5f, 0);
+		assertEquals(v1.getX(), 20, 0);
+		assertEquals(v1.getY(), 20, 0);
+		
+		v0 = new Vector2(20, 0);
+		v1 = new Vector2(1, 1);
+		v2 = v1.project(v0);
+		assertEquals(v0.getX(), 20, 0);
+		assertEquals(v0.getY(), 0, 0);
+		assertEquals(v1.getX(), 1, 0);
+		assertEquals(v1.getY(), 1, 0);
+		assertEquals(v2.getX(), 1, 0);
+		assertEquals(v2.getY(), 0, 0);
+		v0 = new Vector2(1, 0);
+		v1 = new Vector2(20, 20);
+		v2 = v0.project(v1);
+		assertEquals(v0.getX(), 1, 0);
+		assertEquals(v0.getY(), 0, 0);
+		assertEquals(v1.getX(), 20, 0);
+		assertEquals(v1.getY(), 20, 0);
+		assertEquals(v2.getX(), 0.5f, 0);
+		assertEquals(v2.getY(), 0.5f, 0);
+		
+		v0 = new Vector2(20, 20);
+		v1 = new Vector2(-4, 4);
+		assertEquals(Vector2.angleRadiansBetween(v0, v1), Math.PI / 2, 0.001);
+		assertEquals(v0.getX(), 20, 0);
+		assertEquals(v0.getY(), 20, 0);
+		assertEquals(v1.getX(), -4, 0);
+		assertEquals(v1.getY(),  4, 0);
+		v1 = new Vector2(0, 1000);
+		assertEquals(Vector2.angleRadiansBetween(v0, v1), Math.PI / 4, 0.001);
+		assertEquals(v0.getX(), 20, 0);
+		assertEquals(v0.getY(), 20, 0);
+		assertEquals(v1.getX(), 0, 0);
+		assertEquals(v1.getY(), 1000, 0);
+		
+		v0 = new Vector2(20, 0);
+		v1 = v0.rotate(Math.PI / 2);
+		assertEquals(v0.getX(), 20, 0);
+		assertEquals(v0.getY(), 0, 0);
+		assertEquals(v1.getX(), 0, 0);
+		assertEquals(v1.getY(), 20, 0);
+		v1 = v0.rotate(Math.PI);
+		assertEquals(v0.getX(), 20, 0);
+		assertEquals(v0.getY(), 0, 0);
+		assertEquals(v1.getX(), -20, 0);
+		assertEquals(v1.getY(), 0, 0);
+		v1 = v0.rotate(Math.PI / 4);
+		assertEquals(v0.getX(), 20, 0);
+		assertEquals(v0.getY(), 0, 0);
+		assertEquals(v1.getX(), 14.142, 0.001);
+		assertEquals(v1.getY(), 14.142, 0.001);
+		
+		v0 = new Vector2(20, 0);
+		v0.rotateThis(Math.PI / 2);
+		assertEquals(v0.getX(), 0, 0);
+		assertEquals(v0.getY(), 20, 0);
+		v0 = new Vector2(20, 0);
+		v0.rotateThis(Math.PI);
+		assertEquals(v0.getX(), -20, 0);
+		assertEquals(v0.getY(), 0, 0);
+		v0 = new Vector2(20, 0);
+		v0.rotateThis(Math.PI / 4);
+		assertEquals(v0.getX(), 14.142, 0.001);
+		assertEquals(v0.getY(), 14.142, 0.001);
+		
+		v0 = new Vector2(1, 0);
+		v0.setLengthThis(10);
+		assertEquals(v0.getX(), 10, 0);
+		assertEquals(v0.getY(), 0, 0);
+		v0 = new Vector2(0, 100);
+		v0.setLengthThis(10);
+		assertEquals(v0.getX(), 0, 0);
+		assertEquals(v0.getY(), 10, 0);
+		v0 = new Vector2(1, 1);
+		v0.setLengthThis(5.657f);
+		assertEquals(v0.getX(), 4, 0.001);
+		assertEquals(v0.getY(), 4, 0.001);
+		
+		v0 = new Vector2(1, 0);
+		v1 = v0.setLength(10);
+		assertEquals(v0.getX(), 1, 0);
+		assertEquals(v0.getY(), 0, 0);
+		assertEquals(v1.getX(), 10, 0);
+		assertEquals(v1.getY(), 0, 0);
+		v0 = new Vector2(0, 100);
+		v1 = v0.setLength(10);
+		assertEquals(v0.getX(), 0, 0);
+		assertEquals(v0.getY(), 100, 0);
+		assertEquals(v1.getX(), 0, 0);
+		assertEquals(v1.getY(), 10, 0);
+		v0 = new Vector2(1, 1);
+		v1 = v0.setLength(5.657f);
+		assertEquals(v0.getX(), 1, 1);
+		assertEquals(v0.getY(), 1, 1);
+		assertEquals(v1.getX(), 4, 0.001);
+		assertEquals(v1.getY(), 4, 0.001);
+		
+		
+		v0 = new Vector2(100, 0);
+		assertEquals(v0.headingAngle(), 0, 0);
+		assertEquals(v0.getX(), 100, 0);
+		assertEquals(v0.getY(), 0, 0);
+		v0 = new Vector2(100, 100);
+		assertEquals(v0.headingAngle(), Math.PI / 4, 0);
+		assertEquals(v0.getX(), 100, 0);
+		assertEquals(v0.getY(), 100, 0);
+		v0 = new Vector2(-100, 0);
+		assertEquals(v0.headingAngle(), Math.PI, 0);
+		assertEquals(v0.getX(), -100, 0);
+		assertEquals(v0.getY(),    0, 0);
+		v0 = new Vector2(-100, -100);
+		assertEquals(v0.headingAngle(), Math.PI * 1.25f, 0);
+		assertEquals(v0.getX(), -100, 0);
+		assertEquals(v0.getY(), -100, 0);
+		v0 = new Vector2(100, -100);
+		assertEquals(v0.headingAngle(), Math.PI * 1.75f, 0);
+		assertEquals(v0.getX(),  100, 0);
+		assertEquals(v0.getY(), -100, 0);
 	}
 
 }

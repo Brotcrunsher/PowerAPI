@@ -11,10 +11,10 @@ import javax.swing.JLabel;
 import de.brotcrunsher.game.core.Game;
 
 public class WindowSwing extends JFrame implements Window{
-	private Game game;
 	private BufferStrategy strat;
 	private float top;
 	private float left;
+	private Graphics g;
 	
 	@Override
 	public void create(String name, int screenWidth, int screenHeight) {
@@ -36,10 +36,14 @@ public class WindowSwing extends JFrame implements Window{
 	}
 	
 	@Override
-	public void renderScreen(Game game) {
-		Graphics g = strat.getDrawGraphics();
-		game.draw(new RendererSwing((Graphics2D)g, left, top));
-		g.dispose();
+	public Renderer prepareRendering() {
+		g = strat.getDrawGraphics();
 		strat.show();
+		return new RendererSwing((Graphics2D)g, left, top);
+	}
+
+	@Override
+	public void postRender() {
+		g.dispose();
 	}
 }

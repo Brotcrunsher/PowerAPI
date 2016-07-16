@@ -1,5 +1,6 @@
 package de.brotcrunsher.game.core;
 
+import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.gfx.rendering.WindowSwing;
 
@@ -30,16 +31,16 @@ public class GameStarter {
 		game.preInitialize();
 		
 		GameStarter.window.create(windowName, gameScreenWidth, gameScreenHeight);
-		
+		game.initialize();
 		
 		
 		while(GameStarter.running){
 			TimeManager.update();
 			
 			game.update(TimeManager.getTimeSinceLastFrame());
-			window.renderScreen(game);
-			
-			
+			Renderer renderer = window.prepareRendering();
+			game.draw(renderer);
+			window.postRender();
 			
 			try {
 				Thread.sleep(1);
