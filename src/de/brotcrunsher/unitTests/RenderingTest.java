@@ -1,9 +1,10 @@
 package de.brotcrunsher.unitTests;
 
 import de.brotcrunsher.game.core.Game;
-import de.brotcrunsher.game.core.TimeManager;
 import de.brotcrunsher.gfx.basics.Color;
 import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.input.Key;
+import de.brotcrunsher.input.Keyboard;
 import de.brotcrunsher.math.linear.Vector2;
 
 public class RenderingTest implements Game{
@@ -22,8 +23,9 @@ public class RenderingTest implements Game{
 
 	@Override
 	public void update(float timeSinceLastFrame) {
-		// TODO Auto-generated method stub
-		
+		if(Keyboard.isKeyReleasedThisFrame(Key.w)){
+			System.out.println("jou " + System.currentTimeMillis());
+		}
 	}
 
 	@Override
@@ -49,7 +51,7 @@ public class RenderingTest implements Game{
 		r.drawTriangle(500, 20, 550, 50, 170, 10);
 		r.setColor(Color.AWT_WHITE);
 		r.drawRect(800, 20, 100, 200);
-		System.out.println(TimeManager.getFrameNumber() + " : " +  TimeManager.getAverageFrameTime());
+		//System.out.println(TimeManager.getFrameNumber() + " : " +  TimeManager.getAverageFrameTime());
 	}
 	
 	

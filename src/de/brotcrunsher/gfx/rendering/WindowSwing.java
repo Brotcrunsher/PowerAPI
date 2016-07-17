@@ -3,14 +3,19 @@ package de.brotcrunsher.gfx.rendering;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import de.brotcrunsher.game.core.Game;
+import de.brotcrunsher.input.KeyMapping;
+import de.brotcrunsher.input.KeyMappingSwing;
+import de.brotcrunsher.input.Keyboard;
 
-public class WindowSwing extends JFrame implements Window{
+public class WindowSwing extends JFrame implements Window, KeyListener{
 	private BufferStrategy strat;
 	private float top;
 	private float left;
@@ -28,6 +33,7 @@ public class WindowSwing extends JFrame implements Window{
 		top = insets.top;
 		left = insets.left;
 		makeStrat();
+		addKeyListener(this);
 	}
 
 	private void makeStrat(){
@@ -45,5 +51,25 @@ public class WindowSwing extends JFrame implements Window{
 	@Override
 	public void postRender() {
 		g.dispose();
+	}
+
+	@Override
+	public KeyMapping generateKeyMapping() {
+		return new KeyMappingSwing();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		Keyboard.ZZINTERN_onKeyPress(e.getKeyCode());
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		Keyboard.ZZINTERN_onKeyRelease(e.getKeyCode());
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		//unused
 	}
 }

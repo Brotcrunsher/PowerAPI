@@ -1,0 +1,147 @@
+package de.brotcrunsher.input;
+
+import java.awt.event.KeyEvent;
+
+public class KeyMappingSwing implements KeyMapping{
+
+	@Override
+	public Key rawToKey(int i) {
+		switch(i){
+		case KeyEvent.VK_0:
+			return Key._0;
+		case KeyEvent.VK_1:
+			return Key._1;
+		case KeyEvent.VK_2:
+			return Key._2;
+		case KeyEvent.VK_3:
+			return Key._3;
+		case KeyEvent.VK_4:
+			return Key._4;
+		case KeyEvent.VK_5:
+			return Key._5;
+		case KeyEvent.VK_6:
+			return Key._6;
+		case KeyEvent.VK_7:
+			return Key._7;
+		case KeyEvent.VK_8:
+			return Key._8;
+		case KeyEvent.VK_9:
+			return Key._9;
+		case KeyEvent.VK_A:
+			return Key.a;
+		case KeyEvent.VK_B:
+			return Key.b;
+		case KeyEvent.VK_C:
+			return Key.c;
+		case KeyEvent.VK_D:
+			return Key.d;
+		case KeyEvent.VK_E:
+			return Key.e;
+		case KeyEvent.VK_F:
+			return Key.f;
+		case KeyEvent.VK_G:
+			return Key.g;
+		case KeyEvent.VK_H:
+			return Key.h;
+		case KeyEvent.VK_I:
+			return Key.i;
+		case KeyEvent.VK_J:
+			return Key.j;
+		case KeyEvent.VK_K:
+			return Key.k;
+		case KeyEvent.VK_L:
+			return Key.l;
+		case KeyEvent.VK_M:
+			return Key.m;
+		case KeyEvent.VK_N:
+			return Key.n;
+		case KeyEvent.VK_O:
+			return Key.o;
+		case KeyEvent.VK_P:
+			return Key.p;
+		case KeyEvent.VK_Q:
+			return Key.q;
+		case KeyEvent.VK_R:
+			return Key.r;
+		case KeyEvent.VK_S:
+			return Key.s;
+		case KeyEvent.VK_T:
+			return Key.t;
+		case KeyEvent.VK_U:
+			return Key.u;
+		case KeyEvent.VK_V:
+			return Key.v;
+		case KeyEvent.VK_W:
+			return Key.w;
+		case KeyEvent.VK_X:
+			return Key.x;
+		case KeyEvent.VK_Y:
+			return Key.y;
+		case KeyEvent.VK_Z:
+			return Key.z;
+		case KeyEvent.VK_F1:
+			return Key.f1;
+		case KeyEvent.VK_F2:
+			return Key.f2;
+		case KeyEvent.VK_F3:
+			return Key.f3;
+		case KeyEvent.VK_F4:
+			return Key.f4;
+		case KeyEvent.VK_F5:
+			return Key.f5;
+		case KeyEvent.VK_F6:
+			return Key.f6;
+		case KeyEvent.VK_F7:
+			return Key.f7;
+		case KeyEvent.VK_F8:
+			return Key.f8;
+		case KeyEvent.VK_F9:
+			return Key.f9;
+		case KeyEvent.VK_F10:
+			return Key.f10;
+		case KeyEvent.VK_F11:
+			return Key.f11;
+		case KeyEvent.VK_F12:
+			return Key.f12;
+		case KeyEvent.VK_SHIFT:
+			return Key.shift;
+		case KeyEvent.VK_SPACE:
+			return Key.space;
+		case KeyEvent.VK_CONTROL:
+			return Key.ctrl;
+		case KeyEvent.VK_ALT:
+			return Key.alt;
+		case KeyEvent.VK_ALT_GRAPH:
+			return Key.altGr;
+		case KeyEvent.VK_TAB:
+			return Key.tab;
+		case KeyEvent.VK_ESCAPE:
+			return Key.escape;
+		case KeyEvent.VK_CIRCUMFLEX:
+			return Key.circumflex;
+		case KeyEvent.VK_COMMA:
+			return Key.comma;
+		case KeyEvent.VK_PERIOD:
+			return Key.period;
+		case KeyEvent.VK_MINUS:
+			return Key.minus;
+		case KeyEvent.VK_PLUS:
+			return Key.plus;
+		case KeyEvent.VK_NUMBER_SIGN:
+			return Key.hash;
+		case KeyEvent.VK_UP:
+			return Key.up;
+		case KeyEvent.VK_LEFT:
+			return Key.left;
+		case KeyEvent.VK_DOWN:
+			return Key.down;
+		case KeyEvent.VK_RIGHT:
+			return Key.right;
+		case KeyEvent.VK_DELETE:
+			return Key.delete;
+		default:
+			return Key.unknown;
+		}
+	}
+
+}

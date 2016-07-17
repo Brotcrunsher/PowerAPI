@@ -5,6 +5,8 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 
 import de.brotcrunsher.game.core.GameStarter;
+import de.brotcrunsher.input.KeyMapping;
+import de.brotcrunsher.input.KeyMappingOpenGL;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
@@ -97,6 +99,11 @@ public class WindowOpenGL implements Window{
 		glfwDestroyWindow(window);
 		glfwTerminate();
 		glfwSetErrorCallback(null).free();
+	}
+
+	@Override
+	public KeyMapping generateKeyMapping() {
+		return new KeyMappingOpenGL();
 	}
 
 }
