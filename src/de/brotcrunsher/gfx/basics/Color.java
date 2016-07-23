@@ -141,6 +141,22 @@ public class Color {
 		this.a = a;
 	}
 	
+	public void standardize(){
+		float max = r;
+		if(g > max) max = g;
+		if(b > max) max = b;
+		if(a > max) max = a;
+		
+		if(max == 0){
+			r = g = b = a = 1;
+		}
+		else{
+			r /= max;
+			g /= max;
+			b /= max;
+			a /= max;
+		}
+	}
 	
 	@Override
 	protected Color clone(){

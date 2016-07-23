@@ -2,17 +2,14 @@ package de.brotcrunsher.gfx.rendering;
 
 import de.brotcrunsher.gfx.basics.Color;
 
-import org.lwjgl.*;
-import org.lwjgl.glfw.*;
-import org.lwjgl.opengl.*;
-
-import static org.lwjgl.glfw.Callbacks.*;
-import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.system.MemoryUtil.*;
 
 public class RendererOpenGL implements Renderer{
 	private Color color = Color.AWT_BLACK;
+	
+	public RendererOpenGL() {
+		setLineWidth(1);
+	}
 	
 	@Override
 	public void setColor(float r, float g, float b, float a) {
@@ -22,8 +19,7 @@ public class RendererOpenGL implements Renderer{
 
 	@Override
 	public void setLineWidth(float width) {
-		// TODO Auto-generated method stub
-		
+		glLineWidth(width);
 	}
 
 	@Override
@@ -33,8 +29,10 @@ public class RendererOpenGL implements Renderer{
 
 	@Override
 	public void drawLine(float startX, float startY, float stopX, float stopY) {
-		// TODO Auto-generated method stub
-		
+		glBegin(GL_LINE_STRIP);
+			glVertex2f(startX, startY);
+			glVertex2f(stopX, stopY);
+		glEnd();
 	}
 
 	@Override
@@ -50,11 +48,11 @@ public class RendererOpenGL implements Renderer{
 
 	@Override
 	public void fillRect(float x, float y, float width, float height) {
-		glBegin(GL_TRIANGLE_STRIP);
+		glBegin(GL_QUADS);
 			glVertex2f(x, y);
 			glVertex2f(x, y + height);
-			glVertex2f(x + width, y);
 			glVertex2f(x + width, y + height);
+			glVertex2f(x + width, y);
 		glEnd();
 	}
 
@@ -72,14 +70,26 @@ public class RendererOpenGL implements Renderer{
 
 	@Override
 	public void drawTriangle(float x0, float y0, float x1, float y1, float x2, float y2) {
-		// TODO Auto-generated method stub
-		
+		x0 += 0.5f;
+		x1 += 0.5f;
+		x2 += 0.5f;
+		glBegin(GL_LINE_LOOP);
+			glVertex2f(x0, y0);
+			glVertex2f(x1, y1);
+			glVertex2f(x2, y2);
+		glEnd();
 	}
 
 	@Override
 	public void fillTriangle(float x0, float y0, float x1, float y1, float x2, float y2) {
-		// TODO Auto-generated method stub
-		
+		x0 += 0.5f;
+		x1 += 0.5f;
+		x2 += 0.5f;
+		glBegin(GL_TRIANGLES);
+			glVertex2f(x0, y0);
+			glVertex2f(x1, y1);
+			glVertex2f(x2, y2);
+		glEnd();
 	}
 
 }

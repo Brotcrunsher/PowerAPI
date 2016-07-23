@@ -5,6 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -14,8 +17,11 @@ import de.brotcrunsher.game.core.Game;
 import de.brotcrunsher.input.KeyMapping;
 import de.brotcrunsher.input.KeyMappingSwing;
 import de.brotcrunsher.input.Keyboard;
+import de.brotcrunsher.input.Mouse;
+import de.brotcrunsher.input.MouseMapping;
+import de.brotcrunsher.input.MouseMappingSwing;
 
-public class WindowSwing extends JFrame implements Window, KeyListener{
+public class WindowSwing extends JFrame implements Window, KeyListener, MouseMotionListener, MouseListener{
 	private BufferStrategy strat;
 	private float top;
 	private float left;
@@ -34,6 +40,8 @@ public class WindowSwing extends JFrame implements Window, KeyListener{
 		left = insets.left;
 		makeStrat();
 		addKeyListener(this);
+		addMouseListener(this);
+		addMouseMotionListener(this);
 	}
 
 	private void makeStrat(){
@@ -59,6 +67,11 @@ public class WindowSwing extends JFrame implements Window, KeyListener{
 	}
 
 	@Override
+	public MouseMapping generateMouseMapping() {
+		return new MouseMappingSwing(left, top);
+	}
+
+	@Override
 	public void keyPressed(KeyEvent e) {
 		Keyboard.ZZINTERN_onKeyPress(e.getKeyCode());
 	}
@@ -72,4 +85,42 @@ public class WindowSwing extends JFrame implements Window, KeyListener{
 	public void keyTyped(KeyEvent e) {
 		//unused
 	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		mouseMoved(e);
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		Mouse.ZZINTERN_setX(e.getX());
+		Mouse.ZZINTERN_setY(e.getY());
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		//unused
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		//unused
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		//unused
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		Mouse.ZZINTERN_onButtonPress(e.getButton());
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		Mouse.ZZINTERN_onButtonRelease(e.getButton());
+		
+	}
+
 }

@@ -1,12 +1,12 @@
 package de.brotcrunsher.gfx.rendering;
 
-import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 
 import de.brotcrunsher.game.core.GameStarter;
 import de.brotcrunsher.input.KeyMapping;
 import de.brotcrunsher.input.KeyMappingOpenGL;
+import de.brotcrunsher.input.MouseMapping;
 
 import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
@@ -20,54 +20,28 @@ public class WindowOpenGL implements Window{
 
 	@Override
 	public void create(String name, int screenWidth, int screenHeight) {
-		// Setup an error callback. The default implementation
-		// will print the error message in System.err.
-		GLFWErrorCallback.createPrint(System.err).set();
-
-		// Initialize GLFW. Most GLFW functions will not work before doing this.
-		if ( !glfwInit() )
+		if(!glfwInit()){
 			throw new IllegalStateException("Unable to initialize GLFW");
-
-		// Configure our window
-		glfwDefaultWindowHints(); // optional, the current window hints are already the default
-		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
-		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
-
-		// Create the window
+		}
+		
+		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 		window = glfwCreateWindow(screenWidth, screenHeight, name, NULL, NULL);
-		if ( window == NULL )
+		if(window == NULL){
 			throw new RuntimeException("Failed to create the GLFW window");
-
-		// Setup a key callback. It will be called every time a key is pressed, repeated or released.
-		glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
-		if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
-			glfwSetWindowShouldClose(window, true); // We will detect this in our rendering loop
-		});
-
-		// Get the resolution of the primary monitor
+		}
+		
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+		
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		// Center our window
-		glfwSetWindowPos(
-			window,
-			(vidmode.width() - screenWidth) / 2,
-			(vidmode.height() - screenHeight) / 2
-		);
-
-		// Make the OpenGL context current
+		glfwSetWindowPos(window, 100, 100);
 		glfwMakeContextCurrent(window);
-		// Enable v-sync
-		glfwSwapInterval(1);
-
-		// Make the window visible
 		glfwShowWindow(window);
 		
-		// This line is critical for LWJGL's interoperation with GLFW's
-		// OpenGL context, or any context that is managed externally.
-		// LWJGL detects the context that is current in the current thread,
-		// creates the GLCapabilities instance and makes the OpenGL
-		// bindings available for use.
-		GL.createCapabilities();
 		
+		glfwMakeContextCurrent(window);
+		GL.createCapabilities();
+		System.out.println("Version: " + glGetString(GL_VERSION));
+
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, screenWidth, screenHeight, 0, 1, -1);
@@ -82,7 +56,6 @@ public class WindowOpenGL implements Window{
 		// Run the rendering loop until the user has attempted to close
 		// the window or has pressed the ESCAPE key.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-		glfwSwapBuffers(window); // swap the color buffers
 		// Poll for window events. The key callback above will only be
 		// invoked during this call.
 		glfwPollEvents();
@@ -91,6 +64,11 @@ public class WindowOpenGL implements Window{
 			GameStarter.stopGame();
 		}
 		return new RendererOpenGL();
+	}
+	
+	@Override
+	public void postRender() {
+		glfwSwapBuffers(window); // swap the color buffers
 	}
 	
 	@Override
@@ -104,6 +82,12 @@ public class WindowOpenGL implements Window{
 	@Override
 	public KeyMapping generateKeyMapping() {
 		return new KeyMappingOpenGL();
+	}
+
+	@Override
+	public MouseMapping generateMouseMapping() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

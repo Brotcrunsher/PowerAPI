@@ -11,6 +11,8 @@ public class RandomVector2InsideUnitCircleTest implements Game{
 		new RandomVector2InsideUnitCircleTest().start();
 	}
 	
+	Vector2 result = new Vector2();
+	
 	@Override
 	public void preInitialize() {
 		// TODO Auto-generated method stub
@@ -33,10 +35,9 @@ public class RandomVector2InsideUnitCircleTest implements Game{
 	public void draw(Renderer r) {
 		r.setColor(Color.AWT_ORANGE);
 		r.drawOval(0, 0, 500, 500);
-		Vector2 rand = RNG.randomVector2InsideUnitCircle();
-		rand.addToThis(1, 1);
-		rand.multThis(250);
-		rand.sub(1, 1);
-		r.fillOval(rand, 2, 2);
+		RNG.randomVector2InsideUnitCircle(result);
+		result.addToThis(1, 1);
+		result.multThis(250);
+		r.fillOval(result, 2, 2);
 	}
 }

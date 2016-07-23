@@ -12,14 +12,14 @@ public class TestVector2 {
 	@Test
 	public void test() {
 
-		Vector2 v0 = null;
-		Vector2 v1 = null;
-		Vector2 v2 = null;
+		Vector2 v0 = new Vector2();
+		Vector2 v1 = new Vector2();
+		Vector2 v2 = new Vector2();
 		
 		float a = 0;
 		
 		v0 = new Vector2(-100, -200);
-		v1 = v0.abs();
+		v0.abs(v1);
 		assertEquals(v0.getX(), -100, 0);
 		assertEquals(v0.getY(), -200, 0);
 		assertEquals(v1.getX(), 100, 0);
@@ -52,21 +52,21 @@ public class TestVector2 {
 		assertEquals(v0.getY(), 240, 0);
 		
 		v0 = new Vector2(100, 200);
-		v1 = v0.addX(20);
+		v0.addX(v1, 20);
 		assertEquals(v0.getX(), 100, 0);
 		assertEquals(v0.getY(), 200, 0);
 		assertEquals(v1.getX(), 120, 0);
 		assertEquals(v1.getY(), 200, 0);
 		
 		v0 = new Vector2(100, 200);
-		v1 = v0.addY(20);
+		v0.addY(v1, 20);
 		assertEquals(v0.getX(), 100, 0);
 		assertEquals(v0.getY(), 200, 0);
 		assertEquals(v1.getX(), 100, 0);
 		assertEquals(v1.getY(), 220, 0);
 		
 		v0 = new Vector2(100, 200);
-		v1 = v0.add(20, 40);
+		v0.add(v1, 20, 40);
 		assertEquals(v0.getX(), 100, 0);
 		assertEquals(v0.getY(), 200, 0);
 		assertEquals(v1.getX(), 120, 0);
@@ -74,7 +74,7 @@ public class TestVector2 {
 		
 		v0 = new Vector2(100, 200);
 		v1 = new Vector2(20, 40);
-		v2 = v0.add(v1);
+		v0.add(v2, v1);
 		assertEquals(v0.getX(), 100, 0);
 		assertEquals(v0.getY(), 200, 0);
 		assertEquals(v1.getX(), 20, 0);
@@ -117,17 +117,17 @@ public class TestVector2 {
 		assertEquals(v0.getY(), -200, 0);
 		
 		v0 = new Vector2(100, 200);
-		v1 = v0.clampComponents(10, 120);
+		v0.clampComponents(v1, 10, 120);
 		assertEquals(v0.getX(), 100, 0);
 		assertEquals(v0.getY(), 200, 0);
 		assertEquals(v1.getX(), 100, 0);
 		assertEquals(v1.getY(), 120, 0);
-		v1 = v0.clampComponents(120, 400);
+		v0.clampComponents(v1, 120, 400);
 		assertEquals(v0.getX(), 100, 0);
 		assertEquals(v0.getY(), 200, 0);
 		assertEquals(v1.getX(), 120, 0);
 		assertEquals(v1.getY(), 200, 0);
-		v1 = v0.clampComponents(140, 160);
+		v0.clampComponents(v1, 140, 160);
 		assertEquals(v0.getX(), 100, 0);
 		assertEquals(v0.getY(), 200, 0);
 		assertEquals(v1.getX(), 140, 0);
@@ -146,59 +146,59 @@ public class TestVector2 {
 		assertEquals(v0.getX(), 140, 0);
 		assertEquals(v0.getY(), 160, 0);
 		
-		v0 = Vector2.newOnCircle(0);
+		Vector2.newOnCircle(v0, 0);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 0, 0);
-		v0 = Vector2.newOnCircle(Math.PI / 2);
+		Vector2.newOnCircle(v0, Math.PI / 2);
 		assertEquals(v0.getX(), 0, 0.01);
 		assertEquals(v0.getY(), 1, 0.01);
-		v0 = Vector2.newOnCircle(Math.PI);
+		Vector2.newOnCircle(v0, Math.PI);
 		assertEquals(v0.getX(), -1, 0.01);
 		assertEquals(v0.getY(),  0, 0.01);
-		v0 = Vector2.newOnCircle(Math.PI * 3 / 2);
+		Vector2.newOnCircle(v0, Math.PI * 3 / 2);
 		assertEquals(v0.getX(), 0, 0.01);
 		assertEquals(v0.getY(), -1, 0.01);
-		v0 = Vector2.newOnCircle(Math.PI * 2);
+		Vector2.newOnCircle(v0, Math.PI * 2);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 0, 0);
-		v0 = Vector2.newOnCircle(-Math.PI / 2);
+		Vector2.newOnCircle(v0, -Math.PI / 2);
 		assertEquals(v0.getX(), 0, 0.01);
 		assertEquals(v0.getY(), -1, 0.01);
-		v0 = Vector2.newOnCircle(-Math.PI);
+		Vector2.newOnCircle(v0, -Math.PI);
 		assertEquals(v0.getX(), -1, 0.01);
 		assertEquals(v0.getY(), 0, 0.01);
-		v0 = Vector2.newOnCircle(-Math.PI * 3 / 2);
+		Vector2.newOnCircle(v0, -Math.PI * 3 / 2);
 		assertEquals(v0.getX(), 0, 0.01);
 		assertEquals(v0.getY(), 1, 0.01);
-		v0 = Vector2.newOnCircle(-Math.PI * 2);
+		Vector2.newOnCircle(v0, -Math.PI * 2);
 		assertEquals(v0.getX(), 1, 0.01);
 		assertEquals(v0.getY(), 0, 0.01);
 		
-		v0 = Vector2.newOnCircle(0, 2);
+		Vector2.newOnCircle(v0, 0, 2);
 		assertEquals(v0.getX(), 2, 0);
 		assertEquals(v0.getY(), 0, 0);
-		v0 = Vector2.newOnCircle(Math.PI / 2, 2);
+		Vector2.newOnCircle(v0, Math.PI / 2, 2);
 		assertEquals(v0.getX(), 0, 0.01);
 		assertEquals(v0.getY(), 2, 0.01);
-		v0 = Vector2.newOnCircle(Math.PI, 2);
+		Vector2.newOnCircle(v0, Math.PI, 2);
 		assertEquals(v0.getX(), -2, 0.01);
 		assertEquals(v0.getY(),  0, 0.01);
-		v0 = Vector2.newOnCircle(Math.PI * 3 / 2, 2);
+		Vector2.newOnCircle(v0, Math.PI * 3 / 2, 2);
 		assertEquals(v0.getX(), 0, 0.01);
 		assertEquals(v0.getY(), -2, 0.01);
-		v0 = Vector2.newOnCircle(Math.PI * 2, 2);
+		Vector2.newOnCircle(v0, Math.PI * 2, 2);
 		assertEquals(v0.getX(), 2, 0);
 		assertEquals(v0.getY(), 0, 0);
-		v0 = Vector2.newOnCircle(-Math.PI / 2, 2);
+		Vector2.newOnCircle(v0, -Math.PI / 2, 2);
 		assertEquals(v0.getX(), 0, 0.01);
 		assertEquals(v0.getY(), -2, 0.01);
-		v0 = Vector2.newOnCircle(-Math.PI, 2);
+		Vector2.newOnCircle(v0, -Math.PI, 2);
 		assertEquals(v0.getX(), -2, 0.01);
 		assertEquals(v0.getY(), 0, 0.01);
-		v0 = Vector2.newOnCircle(-Math.PI * 3 / 2, 2);
+		Vector2.newOnCircle(v0, -Math.PI * 3 / 2, 2);
 		assertEquals(v0.getX(), 0, 0.01);
 		assertEquals(v0.getY(), 2, 0.01);
-		v0 = Vector2.newOnCircle(-Math.PI * 2, 2);
+		Vector2.newOnCircle(v0, -Math.PI * 2, 2);
 		assertEquals(v0.getX(), 2, 0.01);
 		assertEquals(v0.getY(), 0, 0.01);
 		
@@ -281,15 +281,15 @@ public class TestVector2 {
 		assertEquals(v1.getX(), -20, 0);
 		assertEquals(v1.getY(), 40, 0);
 		
-		v0 = Vector2.newOnCircle(0);
-		v1 = Vector2.newOnCircle(Math.PI / 3);
+		Vector2.newOnCircle(v0, 0);
+		Vector2.newOnCircle(v1, Math.PI / 3);
 		v2 = new Vector2(v1);
 		assertEquals(v0.isSameDirection(v1), true);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), v2.getX(), 0);
 		assertEquals(v1.getY(), v2.getY(), 0);
-		v1 = Vector2.newOnCircle(Math.PI * 2 / 3);
+		Vector2.newOnCircle(v1, Math.PI * 2 / 3);
 		v2 = new Vector2(v1);
 		assertEquals(v0.isSameDirection(v1), false);
 		assertEquals(v0.getX(), 1, 0);
@@ -297,15 +297,15 @@ public class TestVector2 {
 		assertEquals(v1.getX(), v2.getX(), 0);
 		assertEquals(v1.getY(), v2.getY(), 0);
 		
-		v0 = Vector2.newOnCircle(0);
-		v1 = Vector2.newOnCircle(Math.PI / 3);
+		Vector2.newOnCircle(v0, 0);
+		Vector2.newOnCircle(v1, Math.PI / 3);
 		v2 = new Vector2(v1);
 		assertEquals(v0.isOppositeDirection(v1), false);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), v2.getX(), 0);
 		assertEquals(v1.getY(), v2.getY(), 0);
-		v1 = Vector2.newOnCircle(Math.PI * 2 / 3);
+		Vector2.newOnCircle(v1, Math.PI * 2 / 3);
 		v2 = new Vector2(v1);
 		assertEquals(v0.isOppositeDirection(v1), true);
 		assertEquals(v0.getX(), 1, 0);
@@ -313,15 +313,15 @@ public class TestVector2 {
 		assertEquals(v1.getX(), v2.getX(), 0);
 		assertEquals(v1.getY(), v2.getY(), 0);
 		
-		v0 = Vector2.newOnCircle(0);
-		v1 = Vector2.newOnCircle(Math.PI / 3);
+		Vector2.newOnCircle(v0, 0);
+		Vector2.newOnCircle(v1, Math.PI / 3);
 		v2 = new Vector2(v1);
 		assertEquals(v1.isRightOf(v0), true);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), v2.getX(), 0);
 		assertEquals(v1.getY(), v2.getY(), 0);
-		v1 = Vector2.newOnCircle(-Math.PI / 3);
+		Vector2.newOnCircle(v1, -Math.PI / 3);
 		v2 = new Vector2(v1);
 		assertEquals(v1.isRightOf(v0), false);
 		assertEquals(v0.getX(), 1, 0);
@@ -329,15 +329,15 @@ public class TestVector2 {
 		assertEquals(v1.getX(), v2.getX(), 0);
 		assertEquals(v1.getY(), v2.getY(), 0);
 		
-		v0 = Vector2.newOnCircle(0);
-		v1 = Vector2.newOnCircle(Math.PI / 3);
+		Vector2.newOnCircle(v0, 0);
+		Vector2.newOnCircle(v1, Math.PI / 3);
 		v2 = new Vector2(v1);
 		assertEquals(v1.isLeftOf(v0), false);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), v2.getX(), 0);
 		assertEquals(v1.getY(), v2.getY(), 0);
-		v1 = Vector2.newOnCircle(-Math.PI / 3);
+		Vector2.newOnCircle(v1, -Math.PI / 3);
 		v2 = new Vector2(v1);
 		assertEquals(v1.isLeftOf(v0), true);
 		assertEquals(v0.getX(), 1, 0);
@@ -395,107 +395,107 @@ public class TestVector2 {
 		assertEquals(v0.getX(), Float.NEGATIVE_INFINITY, 0);
 		assertEquals(v0.getY(), Float.NEGATIVE_INFINITY, 0);
 		
-		v0 = Vector2.newOnCircle(0);
+		Vector2.newOnCircle(v0, 0);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), true);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(1);
+		Vector2.newOnCircle(v0, 1);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), true);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(2);
+		Vector2.newOnCircle(v0, 2);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), true);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(3);
+		Vector2.newOnCircle(v0, 3);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), true);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(4);
+		Vector2.newOnCircle(v0, 4);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), true);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(5);
+		Vector2.newOnCircle(v0, 5);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), true);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(6);
+		Vector2.newOnCircle(v0, 6);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), true);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(0, 2);
+		Vector2.newOnCircle(v0, 0, 2);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(1, 2);
+		Vector2.newOnCircle(v0, 1, 2);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(2, 2);
+		Vector2.newOnCircle(v0, 2, 2);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(3, 2);
+		Vector2.newOnCircle(v0, 3, 2);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(4, 2);
+		Vector2.newOnCircle(v0, 4, 2);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(5, 2);
+		Vector2.newOnCircle(v0, 5, 2);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(6, 2);
+		Vector2.newOnCircle(v0, 6, 2);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(0, .5f);
+		Vector2.newOnCircle(v0, 0, .5f);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(1, .5f);
+		Vector2.newOnCircle(v0, 1, .5f);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(2, .5f);
+		Vector2.newOnCircle(v0, 2, .5f);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(3, .5f);
+		Vector2.newOnCircle(v0, 3, .5f);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(4, .5f);
+		Vector2.newOnCircle(v0, 4, .5f);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(5, .5f);
+		Vector2.newOnCircle(v0, 5, .5f);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
 		assertEquals(v0.getY(), v1.getY(), 0);
-		v0 = Vector2.newOnCircle(6, .5f);
+		Vector2.newOnCircle(v0, 6, .5f);
 		v1 = new Vector2(v0);
 		assertEquals(v0.isUnit(), false);
 		assertEquals(v0.getX(), v1.getX(), 0);
@@ -573,7 +573,7 @@ public class TestVector2 {
 		
 		v0 = new Vector2(1, 1);
 		v1 = new Vector2(1, 0);
-		v2 = v0.mirrorByVector(v1);
+		v0.mirrorByVector(v2, v1);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 1, 0);
 		assertEquals(v1.getX(), 1, 0);
@@ -582,7 +582,7 @@ public class TestVector2 {
 		assertEquals(v2.getY(), -1, 0);
 		v0 = new Vector2(1, 1);
 		v1 = new Vector2(20, 0);
-		v2 = v0.mirrorByVector(v1);
+		v0.mirrorByVector(v2, v1);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 1, 0);
 		assertEquals(v1.getX(), 20, 0);
@@ -591,7 +591,7 @@ public class TestVector2 {
 		assertEquals(v2.getY(), -1, 0);
 		v0 = new Vector2(1, 1);
 		v1 = new Vector2(20, 0);
-		v2 = v1.mirrorByVector(v0);
+		v1.mirrorByVector(v2, v0);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 1, 0);
 		assertEquals(v1.getX(), 20, 0);
@@ -600,7 +600,7 @@ public class TestVector2 {
 		assertEquals(v2.getY(), 20, 0);
 		v0 = new Vector2(100, 100);
 		v1 = new Vector2(20, 0);
-		v2 = v1.mirrorByVector(v0);
+		v1.mirrorByVector(v2, v0);
 		assertEquals(v0.getX(), 100, 0);
 		assertEquals(v0.getY(), 100, 0);
 		assertEquals(v1.getX(), 20, 0);
@@ -638,19 +638,19 @@ public class TestVector2 {
 		assertEquals(v1.getY(), 20, 0);
 		
 		v0 = new Vector2(1, 0);
-		v1 = v0.normalized();
+		v0.normalized(v1);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), 1, 0);
 		assertEquals(v1.getY(), 0, 0);
 		v0 = new Vector2(10, 0);
-		v1 = v0.normalized();
+		v0.normalized(v1);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), 1, 0);
 		assertEquals(v1.getY(), 0, 0);
 		v0 = new Vector2(1, 1);
-		v1 = v0.normalized();
+		v0.normalized(v1);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 1, 0);
 		assertEquals(v1.getX(), 1/Math.sqrt(2), 0.0001);
@@ -692,7 +692,7 @@ public class TestVector2 {
 		assertEquals(v0.getY(), 10, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.flip();
+		v0.flip(v1);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 20, 0);
@@ -709,14 +709,14 @@ public class TestVector2 {
 		assertEquals(v0.getY(), -1, 0);
 		
 		v0 = new Vector2(1, 1);
-		v1 = v0.rotate90Clockwise();
+		v0.rotate90Clockwise(v1);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 1, 0);
 		assertEquals(v1.getX(), -1, 0);
 		assertEquals(v1.getY(), 1, 0);
 		
 		v0 = new Vector2(1, 1);
-		v1 = v0.rotate90Counterclockwise();
+		v0.rotate90Counterclockwise(v1);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 1, 0);
 		assertEquals(v1.getX(), 1, 0);
@@ -770,21 +770,21 @@ public class TestVector2 {
 		assertEquals(v1.getY(), 3, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.subX(2);
+		v0.subX(v1, 2);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 8, 0);
 		assertEquals(v1.getY(), 20, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.subY(2);
+		v0.subY(v1, 2);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 10, 0);
 		assertEquals(v1.getY(), 18, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.sub(2, 3);
+		v0.sub(v1, 2, 3);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 8, 0);
@@ -792,7 +792,7 @@ public class TestVector2 {
 		
 		v0 = new Vector2(10, 20);
 		v1 = new Vector2(2, 3);
-		v2 = v0.sub(v1);
+		v0.sub(v2, v1);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 2, 0);
@@ -829,28 +829,28 @@ public class TestVector2 {
 		assertEquals(v1.getY(), 5, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.divX(2);
+		v0.divX(v1, 2);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 5, 0);
 		assertEquals(v1.getY(), 20, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.divY(5);
+		v0.divY(v1, 5);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 10, 0);
 		assertEquals(v1.getY(), 4, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.div(2);
+		v0.div(v1, 2);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 5, 0);
 		assertEquals(v1.getY(), 10, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.divComponents(2, 5);
+		v0.divComponents(v1, 2, 5);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 5, 0);
@@ -858,7 +858,7 @@ public class TestVector2 {
 		
 		v0 = new Vector2(10, 20);
 		v1 = new Vector2(2, 5);
-		v2 = v0.divComponents(v1);
+		v0.divComponents(v2, v1);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 2, 0);
@@ -895,28 +895,28 @@ public class TestVector2 {
 		assertEquals(v1.getY(), 4, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.mult(2);
+		v0.mult(v1, 2);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 20, 0);
 		assertEquals(v1.getY(), 40, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.multX(3);
+		v0.multX(v1, 3);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 30, 0);
 		assertEquals(v1.getY(), 20, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.multY(2);
+		v0.multY(v1, 2);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 10, 0);
 		assertEquals(v1.getY(), 40, 0);
 		
 		v0 = new Vector2(10, 20);
-		v1 = v0.multComponents(2, 3);
+		v0.multComponents(v1, 2, 3);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 20, 0);
@@ -924,7 +924,7 @@ public class TestVector2 {
 		
 		v0 = new Vector2(10, 20);
 		v1 = new Vector2(2, 3);
-		v2 = v0.multComponents(v1);
+		v0.multComponents(v2, v1);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 20, 0);
 		assertEquals(v1.getX(), 2, 0);
@@ -986,7 +986,7 @@ public class TestVector2 {
 		
 		v0 = new Vector2(20, 0);
 		v1 = new Vector2(1, 1);
-		v2 = v1.project(v0);
+		v1.project(v2, v0);
 		assertEquals(v0.getX(), 20, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), 1, 0);
@@ -995,7 +995,7 @@ public class TestVector2 {
 		assertEquals(v2.getY(), 0, 0);
 		v0 = new Vector2(1, 0);
 		v1 = new Vector2(20, 20);
-		v2 = v0.project(v1);
+		v0.project(v2, v1);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), 20, 0);
@@ -1018,17 +1018,17 @@ public class TestVector2 {
 		assertEquals(v1.getY(), 1000, 0);
 		
 		v0 = new Vector2(20, 0);
-		v1 = v0.rotate(Math.PI / 2);
+		v0.rotate(v1, Math.PI / 2);
 		assertEquals(v0.getX(), 20, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), 0, 0);
 		assertEquals(v1.getY(), 20, 0);
-		v1 = v0.rotate(Math.PI);
+		v0.rotate(v1, Math.PI);
 		assertEquals(v0.getX(), 20, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), -20, 0);
 		assertEquals(v1.getY(), 0, 0);
-		v1 = v0.rotate(Math.PI / 4);
+		v0.rotate(v1, Math.PI / 4);
 		assertEquals(v0.getX(), 20, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), 14.142, 0.001);
@@ -1061,19 +1061,19 @@ public class TestVector2 {
 		assertEquals(v0.getY(), 4, 0.001);
 		
 		v0 = new Vector2(1, 0);
-		v1 = v0.setLength(10);
+		v0.setLength(v1, 10);
 		assertEquals(v0.getX(), 1, 0);
 		assertEquals(v0.getY(), 0, 0);
 		assertEquals(v1.getX(), 10, 0);
 		assertEquals(v1.getY(), 0, 0);
 		v0 = new Vector2(0, 100);
-		v1 = v0.setLength(10);
+		v0.setLength(v1, 10);
 		assertEquals(v0.getX(), 0, 0);
 		assertEquals(v0.getY(), 100, 0);
 		assertEquals(v1.getX(), 0, 0);
 		assertEquals(v1.getY(), 10, 0);
 		v0 = new Vector2(1, 1);
-		v1 = v0.setLength(5.657f);
+		v0.setLength(v1, 5.657f);
 		assertEquals(v0.getX(), 1, 1);
 		assertEquals(v0.getY(), 1, 1);
 		assertEquals(v1.getX(), 4, 0.001);

@@ -5,6 +5,7 @@ import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.gfx.rendering.WindowOpenGL;
 import de.brotcrunsher.gfx.rendering.WindowSwing;
 import de.brotcrunsher.input.Keyboard;
+import de.brotcrunsher.input.Mouse;
 
 public class GameStarter {
 	private static int gameScreenWidth = 1024;
@@ -14,7 +15,7 @@ public class GameStarter {
 	private static boolean running = false;
 	
 	public static void startGame(Game game){
-		startGame(game, HostMode.swing);
+		startGame(game, HostMode.openGL);
 	}
 	
 	public static void startGame(Game game, HostMode hm){
@@ -39,6 +40,7 @@ public class GameStarter {
 		game.initialize();
 		
 		Keyboard.ZZINTERN_setKeyMapping(window.generateKeyMapping());
+		Mouse.ZZINTERN_setMouseMapping(window.generateMouseMapping());
 		
 		while(GameStarter.running){
 			TimeManager.update();
@@ -49,6 +51,9 @@ public class GameStarter {
 			window.postRender();
 			
 			Keyboard.ZZINTERN_onFrameEnd();
+			Mouse.ZZINTERN_onFrameEnd();
+			
+			//System.gc();
 			
 			try {
 				Thread.sleep(1);

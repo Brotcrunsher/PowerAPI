@@ -1,20 +1,36 @@
 package de.brotcrunsher.math.linear;
 
 public class Vector2 {
+	private static final Vector2 zero = new Vector2();
+	
+	private static final ThreadLocal<Vector2> workingVector = new ThreadLocal<Vector2>(){
+		protected Vector2 initialValue() {
+			return new Vector2();
+		};
+	};
+	
+	private static Vector2 initializeIfNull(Vector2 result){
+		if(result == null){
+			return new Vector2();
+		}
+		return result;
+	}
+	
 	private float x;
 	private float y;
 	
-	public static Vector2 newOnCircle(float angleRadians){
+	public static Vector2 newOnCircle(Vector2 result, float angleRadians){
 		//TESTED
-		return newOnCircle(angleRadians, 1);
+		return newOnCircle(result, angleRadians, 1);
 	}
 	
-	public static Vector2 newOnCircle(float angleRadians, float radius){
+	public static Vector2 newOnCircle(Vector2 result, float angleRadians, float radius){
 		//TESTED
+		result = initializeIfNull(result);
 		angleRadians = Math.mod(angleRadians, Math.PI * 2);
-		float x = radius * Math.cos(angleRadians);
-		float y = radius * Math.sin(angleRadians);
-		return new Vector2(x, y);
+		result.x = radius * Math.cos(angleRadians);
+		result.y = radius * Math.sin(angleRadians);
+		return result;
 	}
 	
 	public Vector2(){
@@ -50,7 +66,7 @@ public class Vector2 {
 	public boolean isShorterThan(Vector2 other){
 		//TESTED
 		if(other == null){
-			other = new Vector2();
+			other = zero;
 		}
 		
 		return this.lengthSq() < other.lengthSq();
@@ -58,7 +74,7 @@ public class Vector2 {
 	public boolean isLongerThan(Vector2 other){
 		//TESTED
 		if(other == null){
-			other = new Vector2();
+			other = zero;
 		}
 		
 		return this.lengthSq() > other.lengthSq();
@@ -66,7 +82,7 @@ public class Vector2 {
 	public boolean isSameLength(Vector2 other){
 		//TESTED
 		if(other == null){
-			other = new Vector2();
+			other = zero;
 		}
 		
 		return this.lengthSq() == other.lengthSq();
@@ -148,22 +164,30 @@ public class Vector2 {
 		return diffX * diffX + diffY * diffY;
 	}
 	
-	public void mirrorByVectorThis(Vector2 mirror){
+	public Vector2 mirrorByVectorThis(Vector2 mirror){
 		//TESTED
-		mirror = mirror.normalized();
-		float scalar = 2 * (this.x * mirror.x + this.y * mirror.y);
-		x = - x + scalar * mirror.x;
-		y = - y + scalar * mirror.y;
+		Vector2 working = workingVector.get();
+		mirror.normalized(working);
 		
+		float scalar = 2 * (this.x * working.x + this.y * working.y);
+		x = - x + scalar * working.x;
+		y = - y + scalar * working.y;
+		
+		return this;
 	}
 	
-	public Vector2 mirrorByVector(Vector2 mirror){
+	public Vector2 mirrorByVector(Vector2 result, Vector2 mirror){
 		//TESTED
-		mirror = mirror.normalized();
-		float scalar = 2 * (this.x * mirror.x + this.y * mirror.y);
-		float x = this.x - scalar * mirror.x;
-		float y = this.y - scalar * mirror.y;
-		return new Vector2(-x, -y);
+		result = initializeIfNull(result);
+		Vector2 working = workingVector.get();
+		mirror.normalized(working);
+		float scalar = 2 * (this.x * working.x + this.y * working.y);
+		float x = this.x - scalar * working.x;
+		float y = this.y - scalar * working.y;
+		result.x = -x;
+		result.y = -y;
+		
+		return result;
 	}
 	
 	
@@ -172,7 +196,7 @@ public class Vector2 {
 		return x == 0 && y == 0;
 	}
 	
-	public void normalizeThis(){
+	public Vector2 normalizeThis(){
 		//TESTED
 		float length = this.length();
 		if(length == 0){
@@ -182,40 +206,54 @@ public class Vector2 {
 			x /= length;
 			y /= length;
 		}
+		return this;
 	}
 	
-	public Vector2 normalized(){
+	public Vector2 normalized(Vector2 result){
 		//TESTED
+		result = initializeIfNull(result);
 		float length = this.length();
 		if(length == 0){
-			return new Vector2(1, 0);
+			result.x = 1;
+			result.y = 0;
+			return result;
 		}
-		return new Vector2(x / length, y / length);
+		result.x = x / length;
+		result.y = y / length;
+		return result;
 	}
 	
-	public void flipThis(){
+	public Vector2 flipThis(){
 		//TESTED
 		float temp = x;
 		x = y;
 		y = temp;
+		return this;
 	}
 	
-	public Vector2 flip(){
+	public Vector2 flip(Vector2 result){
 		//TESTED
-		return new Vector2(y, x);
+		result = initializeIfNull(result);
+		result.x = y;
+		result.y = x;
+		return result;
 	}
 	
-	public void projectThis(Vector2 projector){
+	public Vector2 projectThis(Vector2 projector){
 		//TESTED
 		float scalar = projector.dotProduct(this) / projector.lengthSq();
 		this.x = projector.x * scalar;
 		this.y = projector.y * scalar;
+		return this;
 	}
 	
-	public Vector2 project(Vector2 projector){
+	public Vector2 project(Vector2 result, Vector2 projector){
 		//TESTED
+		result = initializeIfNull(result);
 		float scalar = projector.dotProduct(this) / projector.lengthSq();
-		return new Vector2(projector.x * scalar, projector.y * scalar);
+		result.x = projector.x * scalar;
+		result.y = projector.y * scalar;
+		return result;
 	}
 	
 	public static float angleRadiansBetween(Vector2 a, Vector2 b){
@@ -223,69 +261,98 @@ public class Vector2 {
 		return Math.acos(a.dotProduct(b) / a.length() / b.length());
 	}
 	
-	public void rotateThis(float radians){
+	public Vector2 rotateThis(float radians){
 		//TESTED
 		float cos = Math.cos(radians);
 		float sin = Math.sin(radians);
 		float tempX = x;
 		x = cos * x     - sin * y;
 		y = sin * tempX + cos * y;
+		return this;
 	}
 	
-	public Vector2 rotate(float radians){
+	public Vector2 rotate(Vector2 result, float radians){
 		//TESTED
+		result = initializeIfNull(result);
 		float cos = Math.cos(radians);
 		float sin = Math.sin(radians);
-		return new Vector2(cos * x - sin * y, sin * x + cos * y);
+		result.x = cos * x - sin * y;
+		result.y = sin * x + cos * y;
+		return result;
 	}
 	
-	public void setLengthThis(float length){
+	public Vector2 setLengthThis(float length){
 		//TESTED
 		normalizeThis();
 		x *= length;
 		y *= length;
+		return this;
 	}
 	
-	public Vector2 setLength(float length){
+	public Vector2 setLength(Vector2 result, float length){
 		//TESTED
-		Vector2 norm = normalized();
-		norm.multThis(length);
-		return norm;
+		result = initializeIfNull(result);
+		normalized(result);
+		result.multThis(length);
+		return result;
 	}
 	
-	public void rotate90ClockwiseThis(){
+	public Vector2 rotate90ClockwiseThis(){
 		//TESTED
 		float temp = x;
 		x = -y;
 		y = temp;
+		return this;
 	}
 	
-	public void rotate90CounterclockwiseThis(){
+	public Vector2 rotate90CounterclockwiseThis(){
 		//TESTED
 		float temp = x;
 		x = y;
 		y = -temp;
+		return this;
 	}
 	
-	public Vector2 rotate90Clockwise(){
+	public Vector2 rotate90Clockwise(Vector2 result){
 		//TESTED
-		return new Vector2(-y, x);
+		result = initializeIfNull(result);
+		result.x = -y;
+		result.y = x;
+		return result;
 	}
 	
-	public Vector2 rotate90Counterclockwise(){
+	public Vector2 rotate90Counterclockwise(Vector2 result){
 		//TESTED
-		return new Vector2(y, -x);
+		result = initializeIfNull(result);
+		result.x = y;
+		result.y = -x;
+		return result;
 	}
 	
-	public void absThis(){
+	public Vector2 absThis(){
 		//TESTED
 		x = Math.abs(x);
 		y = Math.abs(y);
+		return this;
 	}
 	
-	public Vector2 abs(){
+	public Vector2 rotateAroundThis(Vector2 rotationCenter, float radians){
+		//TODO
+		return this;
+	}
+	
+	public Vector2 rotateAround(Vector2 result, Vector2 rotationCenter, float radians){
+		//TODO
+		result = initializeIfNull(result);
+		throw new UnsupportedOperationException();
+	}
+	
+	public Vector2 abs(Vector2 result){
 		//TESTED
-		return new Vector2(Math.abs(x), Math.abs(y));
+		result = initializeIfNull(result);
+		result.x = Math.abs(x);
+		result.y = Math.abs(y);
+		return result;
 	}
 	
 	public float getMax(){
@@ -308,15 +375,19 @@ public class Vector2 {
 		return Math.minAbs(x, y);
 	}
 	
-	public void clampComponentsThis(float min, float max){
+	public Vector2 clampComponentsThis(float min, float max){
 		//TESTED
 		x = Math.clamp(x, min, max);
 		y = Math.clamp(y, min, max);
+		return this;
 	}
 	
-	public Vector2 clampComponents(float min, float max){
+	public Vector2 clampComponents(Vector2 result, float min, float max){
 		//TESTED
-		return new Vector2(Math.clamp(x, min, max), Math.clamp(y, min, max));
+		result = initializeIfNull(result);
+		result.x = Math.clamp(x, min, max);
+		result.y = Math.clamp(y, min, max);
+		return result;
 	}
 	
 	public float headingAngle(){
@@ -329,23 +400,27 @@ public class Vector2 {
 		}
 	}
 	
-	public void setX(float x){
+	public Vector2 setX(float x){
 		//TESTED
 		this.x = x;
+		return this;
 	}
-	public void setY(float y){
+	public Vector2 setY(float y){
 		//TESTED
 		this.y = y;
+		return this;
 	}
-	public void set(float x, float y){
+	public Vector2 set(float x, float y){
 		//TESTED
 		this.x = x;
 		this.y = y;
+		return this;
 	}
-	public void set(Vector2 other){
+	public Vector2 set(Vector2 other){
 		//TESTED
 		this.x = other.x;
 		this.y = other.y;
+		return this;
 	}
 	public float getX(){
 		//TESTED
@@ -356,190 +431,260 @@ public class Vector2 {
 		return y;
 	}
 	
-	public void addToThisX(float val){
+	public Vector2 addToThisX(float val){
 		//TESTED
 		this.x += val;
+		return this;
 	}
 	
-	public void addToThisY(float val){
+	public Vector2 addToThisY(float val){
 		//TESTED
 		this.y += val;
+		return this;
 	}
 	
-	public void addToThis(float x, float y){
+	public Vector2 addToThis(float x, float y){
 		//TESTED
 		this.x += x;
 		this.y += y;
+		return this;
 	}
 	
-	public void addToThis(Vector2 other){
+	public Vector2 addToThis(Vector2 other){
 		//TESTED
 		addToThis(other.getX(), other.getY());
+		return this;
 	}
 	
-	public Vector2 addX(float val){
+	public Vector2 addX(Vector2 result, float val){
 		//TESTED
-		return new Vector2(x + val, y);
+		result = initializeIfNull(result);
+		result.x = x + val;
+		result.y = y;
+		return result;
 	}
 	
-	public Vector2 addY(float val){
+	public Vector2 addY(Vector2 result, float val){
 		//TESTED
-		return new Vector2(x, y + val);
+		result = initializeIfNull(result);
+		result.x = x;
+		result.y = y + val;
+		return result;
 	}
 	
-	public Vector2 add(float x, float y){
+	public Vector2 add(Vector2 result, float x, float y){
 		//TESTED
-		return new Vector2(this.x + x, this.y + y);
+		result = initializeIfNull(result);
+		result.x = this.x + x;
+		result.y = this.y + y;
+		return result;
 	}
 	
-	public Vector2 add(Vector2 other){
+	public Vector2 add(Vector2 result, Vector2 other){
 		//TESTED
-		return add(other.getX(), other.getY());
+		result = initializeIfNull(result);
+		add(result, other.getX(), other.getY());
+		return result;
 	}
 	
-	public void subFromThisX(float val){
+	public Vector2 subFromThisX(float val){
 		//TESTED
 		this.x -= val;
+		return this;
 	}
 	
-	public void subFromThisY(float val){
+	public Vector2 subFromThisY(float val){
 		//TESTED
 		this.y -= val;
+		return this;
 	}
 	
-	public void subFromThis(float x, float y){
+	public Vector2 subFromThis(float x, float y){
 		//TESTED
 		this.x -= x;
 		this.y -= y;
+		return this;
 	}
 	
-	public void subFromThis(Vector2 other){
+	public Vector2 subFromThis(Vector2 other){
 		//TESTED
 		subFromThis(other.getX(), other.getY());
+		return this;
 	}
 	
-	public Vector2 subX(float val){
+	public Vector2 subX(Vector2 result, float val){
 		//TESTED
-		return new Vector2(x - val, y);
+		result = initializeIfNull(result);
+		result.x = x - val;
+		result.y = y;
+		return result;
 	}
 	
-	public Vector2 subY(float val){
+	public Vector2 subY(Vector2 result, float val){
 		//TESTED
-		return new Vector2(x, y - val);
+		result = initializeIfNull(result);
+		result.x = x;
+		result.y = y - val;
+		return result;
 	}
 	
-	public Vector2 sub(float x, float y){
+	public Vector2 sub(Vector2 result, float x, float y){
 		//TESTED
-		return new Vector2(this.x - x , this.y - y);
+		result = initializeIfNull(result);
+		result.x = this.x - x;
+		result.y = this.y - y;
+		return result;
 	}
 	
-	public Vector2 sub(Vector2 other){
+	public Vector2 sub(Vector2 result, Vector2 other){
 		//TESTED
-		return sub(other.getX(), other.getY());
+		result = initializeIfNull(result);
+		sub(result, other.getX(), other.getY());
+		return result;
 	}
 	
-	public void divThisX(float val){
-		//TESTED
-		x /= val;
-	}
-	
-	public Vector2 divX(float val){
-		//TESTED
-		return new Vector2(x / val, y);
-	}
-	
-	public void divThisY(float val){
-		//TESTED
-		y /= val;
-	}
-	
-	public Vector2 divY(float val){
-		//TESTED
-		return new Vector2(x, y / val);
-	}
-	
-	public void divThis(float val){
+	public Vector2 divThisX(float val){
 		//TESTED
 		x /= val;
-		y /= val;
+		return this;
 	}
 	
-	public Vector2 div(float val){
+	public Vector2 divX(Vector2 result, float val){
 		//TESTED
-		return new Vector2(x / val, y / val);
+		result = initializeIfNull(result);
+		result.x = x / val;
+		result.y = y;
+		return result;
 	}
 	
-	public void divComponentsThis(float x, float y){
+	public Vector2 divThisY(float val){
+		//TESTED
+		y /= val;
+		return this;
+	}
+	
+	public Vector2 divY(Vector2 result, float val){
+		//TESTED
+		result = initializeIfNull(result);
+		result.x = x;
+		result.y = y / val;
+		return result;
+	}
+	
+	public Vector2 divThis(float val){
+		//TESTED
+		x /= val;
+		y /= val;
+		return this;
+	}
+	
+	public Vector2 div(Vector2 result, float val){
+		//TESTED
+		result = initializeIfNull(result);
+		result.x = x / val;
+		result.y = y / val;
+		return result;
+	}
+	
+	public Vector2 divComponentsThis(float x, float y){
 		//TESTED
 		this.x /= x;
 		this.y /= y;
+		return this;
 	}
 	
-	public Vector2 divComponents(float x, float y){
+	public Vector2 divComponents(Vector2 result, float x, float y){
 		//TESTED
-		return new Vector2(this.getX() / x, this.getY() / y);
+		result = initializeIfNull(result);
+		result.x = this.getX() / x;
+		result.y = this.getY() / y;
+		return result;
 	}
 	
-	public Vector2 divComponents(Vector2 other){
+	public Vector2 divComponents(Vector2 result, Vector2 other){
 		//TESTED
-		return new Vector2(this.getX() / other.getX(), this.getY() / other.getY());
+		result = initializeIfNull(result);
+		result.x = this.getX() / other.getX();
+		result.y = this.getY() / other.getY();
+		return result;
 	}
 	
-	public void divComponentsThis(Vector2 other){
+	public Vector2 divComponentsThis(Vector2 other){
 		//TESTED
 		divComponentsThis(other.getX(), other.getY());
+		return this;
 	}
 	
-	public Vector2 multX(float val){
+	public Vector2 multX(Vector2 result, float val){
 		//TESTED
-		return new Vector2(this.getX() * val, this.getY());
+		result = initializeIfNull(result);
+		result.x = this.getX() * val;
+		result.y = this.getY();
+		return result;
 	}
 	
-	public void multThisX(float val){
-		//TESTED
-		this.x *= val;
-	}
-	
-	public Vector2 multY(float val){
-		//TESTED
-		return new Vector2(this.getX(), this.getY() * val);
-	}
-	
-	public void multThisY(float val){
-		//TESTED
-		this.y *= val;
-	}
-	
-	public Vector2 mult(float val){
-		//TESTED
-		return new Vector2(this.getX() * val, this.getY() * val);
-	}
-	
-	public void multThis(float val){
+	public Vector2 multThisX(float val){
 		//TESTED
 		this.x *= val;
-		this.y *= val;
+		return this;
 	}
 	
-	public Vector2 multComponents(float x, float y){
+	public Vector2 multY(Vector2 result, float val){
 		//TESTED
-		return new Vector2(this.getX() * x, this.getY() * y);
+		result = initializeIfNull(result);
+		result.x = this.getX();
+		result.y = this.getY() * val;
+		return result;
 	}
 	
-	public void multComponentsThis(float x, float y){
+	public Vector2 multThisY(float val){
+		//TESTED
+		this.y *= val;
+		return this;
+	}
+	
+	public Vector2 mult(Vector2 result, float val){
+		//TESTED
+		result = initializeIfNull(result);
+		result.x = this.getX() * val;
+		result.y = this.getY() * val;
+		return result;
+	}
+	
+	public Vector2 multThis(float val){
+		//TESTED
+		this.x *= val;
+		this.y *= val;
+		return this;
+	}
+	
+	public Vector2 multComponents(Vector2 result, float x, float y){
+		//TESTED
+		result = initializeIfNull(result);
+		result.x = this.getX() * x;
+		result.y = this.getY() * y;
+		return result;
+	}
+	
+	public Vector2 multComponentsThis(float x, float y){
 		//TESTED
 		this.x *= x;
 		this.y *= y;
+		return this;
 	}
 	
-	public Vector2 multComponents(Vector2 other){
+	public Vector2 multComponents(Vector2 result, Vector2 other){
 		//TESTED
-		return new Vector2(this.getX() * other.getX(), this.getY() * other.getY());
+		result = initializeIfNull(result);
+		result.x = this.getX() * other.getX();
+		result.y = this.getY() * other.getY();
+		return result;
 	}
 	
-	public void multComponentsThis(Vector2 other){
+	public Vector2 multComponentsThis(Vector2 other){
 		//TESTED
 		multComponentsThis(other.getX(), other.getY());
+		return this;
 	}
 	
 	public float dotProduct(Vector2 other){

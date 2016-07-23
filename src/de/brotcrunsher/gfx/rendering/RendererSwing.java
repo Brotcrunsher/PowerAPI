@@ -66,12 +66,6 @@ public class RendererSwing implements Renderer{
 
 	@Override
 	public void drawTriangle(float x0, float y0, float x1, float y1, float x2, float y2) {
-		x0 += addX;
-		x1 += addX;
-		x2 += addX;
-		y0 += addY;
-		y1 += addY;
-		y2 += addY;
 		drawLine(x0, y0, x1, y1);
 		drawLine(x1, y1, x2, y2);
 		drawLine(x2, y2, x0, y0);
@@ -84,6 +78,7 @@ public class RendererSwing implements Renderer{
 		x2 += addX;
 		y0 += addY;
 		y1 += addY;
+		y2 += addY;
 		int xpoints[] = {(int)x0, (int)x1, (int)x2};
 		int ypoints[] = {(int)y0, (int)y1, (int)y2};
 		Polygon p = new Polygon(xpoints, ypoints, 3);

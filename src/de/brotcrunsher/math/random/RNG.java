@@ -7,27 +7,29 @@ import de.brotcrunsher.math.linear.Vector2;
 public class RNG {
 	public static RandomNumberGenerator randomDefault = new RandomNumberGeneratorJavaDefault();
 	
-	public static Vector2 randomVector2InsideUnitCircle(RandomNumberGenerator r){
+	public static void randomVector2InsideUnitCircle(Vector2 result, RandomNumberGenerator r){
 		while(true){
 			float x = r.nextFloat() * 2 - 1;
 			float y = r.nextFloat() * 2 - 1;
 			if(x * x + y * y <= 1){
-				return new Vector2(x, y);
+				result.setX(x);
+				result.setY(y);
+				return;
 			}
 		}
 	}
-	public static Vector2 randomVector2InsideUnitCircle(){
+	public static void randomVector2InsideUnitCircle(Vector2 result){
 		//TESTED
-		return randomVector2InsideUnitCircle(randomDefault);
+		randomVector2InsideUnitCircle(result, randomDefault);
 	}
 	
-	public static Vector2 randomVector2OnUnitCircle(){
+	public static void randomVector2OnUnitCircle(Vector2 result){
 		//TESTED
-		return randomVector2OnUnitCircle(randomDefault);
+		randomVector2OnUnitCircle(result, randomDefault);
 	}
 	
-	public static Vector2 randomVector2OnUnitCircle(RandomNumberGenerator r){
-		return Vector2.newOnCircle(r.nextFloat() * Math.PI * 2);
+	public static void randomVector2OnUnitCircle(Vector2 result, RandomNumberGenerator r){
+		Vector2.newOnCircle(result, r.nextFloat() * Math.PI * 2);
 	}
 	
 	public static Vector2 randomVector2InsideUnitSquare(RandomNumberGenerator r){
