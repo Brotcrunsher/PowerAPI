@@ -1,4 +1,4 @@
-package de.brotcrunsher.gfx.rendering;
+package de.brotcrunsher.gfx.rendering.swing;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import de.brotcrunsher.game.core.Game;
+import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.KeyMapping;
 import de.brotcrunsher.input.KeyMappingSwing;
 import de.brotcrunsher.input.Keyboard;

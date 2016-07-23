@@ -2,7 +2,7 @@ package de.brotcrunsher.math.linear;
 
 import java.util.Arrays;
 
-public class Math {
+public class FMath {
 	public static final float PI  = (float)java.lang.Math.PI;
 	public static final float TAU = (float)(java.lang.Math.PI * 2.0);
 	public static final float E   = (float)java.lang.Math.E;
@@ -53,6 +53,46 @@ public class Math {
 	
 	public static float acos(float val){
 		return (float)java.lang.Math.acos(val);
+	}
+	
+	public static float repeat(float t, float border){
+		if(border == 0){
+			return 0;
+		}else{
+			return (float) (t - java.lang.Math.floor (t / border) * border);
+		}
+	}
+	
+	public static boolean isInRange(float val, float min, float max){
+		if(val < min) return false;
+		if(val > max) return false;
+		return true;
+	}
+	
+	public static boolean isInRangeStrict(float val, float min, float max){
+		if(val <= min) return false;
+		if(val >= max) return false;
+		return true;
+	}
+	
+	public static boolean isInRange01(float val){
+		if(val < 0) return false;
+		if(val > 1) return false;
+		return true;
+	}
+	
+	public static boolean isInRangeStrict01(float val){
+		if(val <= 0) return false;
+		if(val >= 1) return false;
+		return true;
+	}
+	
+	public static boolean isOdd(int i){
+		return (i & 1) == 1;
+	}
+	
+	public static boolean isEven(int i){
+		return (i & 1) == 0;
 	}
 	
 	public static float abs(float val){
@@ -170,6 +210,16 @@ public class Math {
 		else{
 			float ret = val % mod + mod;
 			return ret == mod ? 0 : ret;
+		}
+	}
+	
+	public static float pingpong (float t, float border){
+		t = repeat (t, border * 2f);
+		
+		if (border > 0){
+			return border - Math.abs (t - border);
+		}else{
+			return border + Math.abs (t - border);
 		}
 	}
 }

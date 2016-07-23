@@ -1,6 +1,6 @@
 package de.brotcrunsher.math.linear;
 
-public class BezierCurve2 extends Interpolations2D{
+public class BezierCurve2 extends Interpolation2D{
 	protected Vector2[] controls;
 	
 	public BezierCurve2(Vector2 start, Vector2 stop, Vector2 control){
@@ -27,7 +27,8 @@ public class BezierCurve2 extends Interpolations2D{
 	
 	
 	@Override
-	public void eval(Vector2 result, float t) {
+	public Vector2 eval(Vector2 result, float t) {
+		if(result == null) result = new Vector2();
 		if(controls.length == 1){
 			Interpolations.bezier(result, start, stop, t, controls[0]);
 		}else if(controls.length == 2){
@@ -35,6 +36,7 @@ public class BezierCurve2 extends Interpolations2D{
 		}else{
 			Interpolations.bezier(result, start, stop, t, controls);
 		}
+		return result;
 	}
 
 }

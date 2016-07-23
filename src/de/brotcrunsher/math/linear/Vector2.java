@@ -27,9 +27,9 @@ public class Vector2 {
 	public static Vector2 newOnCircle(Vector2 result, float angleRadians, float radius){
 		//TESTED
 		result = initializeIfNull(result);
-		angleRadians = Math.mod(angleRadians, Math.PI * 2);
-		result.x = radius * Math.cos(angleRadians);
-		result.y = radius * Math.sin(angleRadians);
+		angleRadians = FMath.mod(angleRadians, FMath.PI * 2);
+		result.x = radius * FMath.cos(angleRadians);
+		result.y = radius * FMath.sin(angleRadians);
 		return result;
 	}
 	
@@ -60,7 +60,7 @@ public class Vector2 {
 	}
 	public float length(){
 		//TESTED
-		return Math.sqrt(lengthSq());
+		return FMath.sqrt(lengthSq());
 	}
 	
 	public boolean isShorterThan(Vector2 other){
@@ -95,7 +95,7 @@ public class Vector2 {
 			otherLength = other.length();
 		}
 		
-		float lengthDiff = Math.abs(thisLength - otherLength);
+		float lengthDiff = FMath.abs(thisLength - otherLength);
 		
 		return lengthDiff <= epsilon;
 	}
@@ -153,7 +153,7 @@ public class Vector2 {
 	public static float distanceBetween(Vector2 a, Vector2 b){
 		//TESTED
 		float distSq = distanceBetweenSq(a, b);
-		return Math.sqrt(distSq);
+		return FMath.sqrt(distSq);
 	}
 	
 	public static float distanceBetweenSq(Vector2 a, Vector2 b){
@@ -258,13 +258,13 @@ public class Vector2 {
 	
 	public static float angleRadiansBetween(Vector2 a, Vector2 b){
 		//TESTED
-		return Math.acos(a.dotProduct(b) / a.length() / b.length());
+		return FMath.acos(a.dotProduct(b) / a.length() / b.length());
 	}
 	
 	public Vector2 rotateThis(float radians){
 		//TESTED
-		float cos = Math.cos(radians);
-		float sin = Math.sin(radians);
+		float cos = FMath.cos(radians);
+		float sin = FMath.sin(radians);
 		float tempX = x;
 		x = cos * x     - sin * y;
 		y = sin * tempX + cos * y;
@@ -274,8 +274,8 @@ public class Vector2 {
 	public Vector2 rotate(Vector2 result, float radians){
 		//TESTED
 		result = initializeIfNull(result);
-		float cos = Math.cos(radians);
-		float sin = Math.sin(radians);
+		float cos = FMath.cos(radians);
+		float sin = FMath.sin(radians);
 		result.x = cos * x - sin * y;
 		result.y = sin * x + cos * y;
 		return result;
@@ -331,8 +331,8 @@ public class Vector2 {
 	
 	public Vector2 absThis(){
 		//TESTED
-		x = Math.abs(x);
-		y = Math.abs(y);
+		x = FMath.abs(x);
+		y = FMath.abs(y);
 		return this;
 	}
 	
@@ -350,53 +350,53 @@ public class Vector2 {
 	public Vector2 abs(Vector2 result){
 		//TESTED
 		result = initializeIfNull(result);
-		result.x = Math.abs(x);
-		result.y = Math.abs(y);
+		result.x = FMath.abs(x);
+		result.y = FMath.abs(y);
 		return result;
 	}
 	
 	public float getMax(){
 		//TESTED
-		return Math.max(x, y);
+		return FMath.max(x, y);
 	}
 	
 	public float getMin(){
 		//TESTED
-		return Math.min(x, y);
+		return FMath.min(x, y);
 	}
 	
 	public float getAbsMax(){
 		//TESTED
-		return Math.maxAbs(x, y);
+		return FMath.maxAbs(x, y);
 	}
 	
 	public float getAbsMin(){
 		//TESTED
-		return Math.minAbs(x, y);
+		return FMath.minAbs(x, y);
 	}
 	
 	public Vector2 clampComponentsThis(float min, float max){
 		//TESTED
-		x = Math.clamp(x, min, max);
-		y = Math.clamp(y, min, max);
+		x = FMath.clamp(x, min, max);
+		y = FMath.clamp(y, min, max);
 		return this;
 	}
 	
 	public Vector2 clampComponents(Vector2 result, float min, float max){
 		//TESTED
 		result = initializeIfNull(result);
-		result.x = Math.clamp(x, min, max);
-		result.y = Math.clamp(y, min, max);
+		result.x = FMath.clamp(x, min, max);
+		result.y = FMath.clamp(y, min, max);
 		return result;
 	}
 	
 	public float headingAngle(){
 		//TESTED
-		float angle = Math.acos(x / length());
+		float angle = FMath.acos(x / length());
 		if(y >= 0){
 			return angle;
 		}else{
-			return Math.PI * 2 - angle;
+			return FMath.PI * 2 - angle;
 		}
 	}
 	

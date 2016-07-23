@@ -2,7 +2,7 @@ package de.brotcrunsher.datastructures;
 
 import java.util.Arrays;
 
-import de.brotcrunsher.math.linear.Math;
+import de.brotcrunsher.math.linear.FMath;
 
 public class RingArrayLong{
 	private long[] data;
@@ -19,13 +19,13 @@ public class RingArrayLong{
 	
 	public long get(int index){
 		//TESTED
-		index = Math.mod(index, data.length);
+		index = FMath.mod(index, data.length);
 		return data[index];
 	}
 	
 	public void set(int index, long data){
 		//TESTED
-		index = Math.mod(index, this.data.length);
+		index = FMath.mod(index, this.data.length);
 		this.data[index] = data;
 	}
 	

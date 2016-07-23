@@ -1,6 +1,8 @@
-package de.brotcrunsher.gfx.rendering;
+package de.brotcrunsher.gfx.rendering.openGL;
 
 import de.brotcrunsher.gfx.basics.Color;
+import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.math.linear.FMath;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -64,8 +66,41 @@ public class RendererOpenGL implements Renderer{
 
 	@Override
 	public void fillOval(float x, float y, float width, float height) {
-		// TODO Auto-generated method stub
+		float firstX = 0, firstY = 0;//to fix missing pixel line
+		float radiusX = width / 2;
+		float radiusY = height / 2;
+		x += radiusX;
+		y += radiusY;
 		
+		glBegin(GL_TRIANGLE_FAN);
+		glVertex2f(x, y);//center
+		for (int i = 0; i <= 360; i++) {//TODO: use less vertexpoints
+			float alpha = i * FMath.PI / 180;
+			
+			float cos = (float) Math.cos(alpha);
+			float sin = (float) Math.sin(alpha);
+			
+			float posX = cos * radiusX + x;
+			float posY = sin * radiusY + y;
+			
+			//The following lets the oval behave more like the java version
+			if(FMath.isInRange(i, 0, 90) || FMath.isInRange(i, 270, 360)){
+				posX++;
+			}
+			
+			if(FMath.isInRange(i, 0, 180)){
+				posY++;
+			}
+			
+			if(i == 0){
+				firstX = posX;
+				firstY = posY;
+			}
+			
+			glVertex2f(posX, posY);
+		}
+		glVertex2f(firstX, firstY);
+		glEnd();
 	}
 
 	@Override

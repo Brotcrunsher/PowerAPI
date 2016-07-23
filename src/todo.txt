@@ -1,8 +1,8 @@
-mouse input
 controller input
 sound
 Ring Arrays for other primitives
-Interpolations
+Shapes
+Pics
 
 OpenGL support
 JavaFX support

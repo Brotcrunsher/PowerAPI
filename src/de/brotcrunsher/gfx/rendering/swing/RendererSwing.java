@@ -1,9 +1,11 @@
-package de.brotcrunsher.gfx.rendering;
+package de.brotcrunsher.gfx.rendering.swing;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+
+import de.brotcrunsher.gfx.rendering.Renderer;
 
 public class RendererSwing implements Renderer{
 	private Graphics2D g;

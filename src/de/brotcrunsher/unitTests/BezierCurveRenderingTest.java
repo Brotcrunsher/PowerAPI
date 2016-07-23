@@ -82,7 +82,7 @@ public class BezierCurveRenderingTest implements Game{
 		r.setColor(Color.AWT_BLACK);
 		r.setLineWidth(3);
 		
-		bc2.eval(result, 0);
+		/*bc2.eval(result, 0);
 		for(float i = 0; i<= 1; i += 0.01f){
 			bc2.eval(result2, i);
 			r.drawLine(result, result2);
@@ -93,7 +93,9 @@ public class BezierCurveRenderingTest implements Game{
 			r.drawLine(result, resultDirection);
 			
 			result.set(result2);
-		}
+		}*/
+		
+		bc2.draw(r);
 		
 		r.setColor(Color.AWT_RED);
 		r.fillRect(start.sub(null, 5, 5), 10, 10);

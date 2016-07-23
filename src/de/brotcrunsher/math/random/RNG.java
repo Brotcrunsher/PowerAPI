@@ -1,7 +1,7 @@
 package de.brotcrunsher.math.random;
 
 import de.brotcrunsher.gfx.basics.Color;
-import de.brotcrunsher.math.linear.Math;
+import de.brotcrunsher.math.linear.FMath;
 import de.brotcrunsher.math.linear.Vector2;
 
 public class RNG {
@@ -29,7 +29,7 @@ public class RNG {
 	}
 	
 	public static void randomVector2OnUnitCircle(Vector2 result, RandomNumberGenerator r){
-		Vector2.newOnCircle(result, r.nextFloat() * Math.PI * 2);
+		Vector2.newOnCircle(result, r.nextFloat() * FMath.PI * 2);
 	}
 	
 	public static Vector2 randomVector2InsideUnitSquare(RandomNumberGenerator r){

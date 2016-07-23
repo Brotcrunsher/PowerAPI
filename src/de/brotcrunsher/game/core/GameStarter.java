@@ -2,8 +2,8 @@ package de.brotcrunsher.game.core;
 
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
-import de.brotcrunsher.gfx.rendering.WindowOpenGL;
-import de.brotcrunsher.gfx.rendering.WindowSwing;
+import de.brotcrunsher.gfx.rendering.openGL.WindowOpenGL;
+import de.brotcrunsher.gfx.rendering.swing.WindowSwing;
 import de.brotcrunsher.input.Keyboard;
 import de.brotcrunsher.input.Mouse;
 
@@ -15,7 +15,7 @@ public class GameStarter {
 	private static boolean running = false;
 	
 	public static void startGame(Game game){
-		startGame(game, HostMode.openGL);
+		startGame(game, HostMode.swing);
 	}
 	
 	public static void startGame(Game game, HostMode hm){

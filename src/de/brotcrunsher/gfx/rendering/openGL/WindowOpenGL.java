@@ -1,9 +1,11 @@
-package de.brotcrunsher.gfx.rendering;
+package de.brotcrunsher.gfx.rendering.openGL;
 
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 
 import de.brotcrunsher.game.core.GameStarter;
+import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.KeyMapping;
 import de.brotcrunsher.input.KeyMappingOpenGL;
 import de.brotcrunsher.input.MouseMapping;
