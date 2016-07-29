@@ -5,20 +5,21 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 
+import de.brotcrunsher.gfx.rendering.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 
 public class RendererSwing extends Renderer{
 	private Graphics2D g;
 	private float addX = 0;
 	private float addY = 0;
-	
+
 	public RendererSwing(Graphics2D g, float addX, float addY){
 		this.g = g;
 		this.addX = addX;
 		this.addY = addY;
 	}
-	
-	
+
+
 	@Override
 	public void setColor(float r, float g, float b, float a) {
 		this.g.setColor(new Color((int)(r * 255), (int)(g * 255), (int)(b * 255), (int)(a * 255)));
@@ -56,14 +57,14 @@ public class RendererSwing extends Renderer{
 	public void drawOvalScreenSpace(float x, float y, float width, float height) {
 		x += addX;
 		y += addY;
-		g.drawOval((int)x, (int)y, (int)width, (int)height);
+		g.drawOval((int)(x - width/2), (int)(y - height/2), (int)width, (int)height);
 	}
 
 	@Override
 	public void fillOvalScreenSpace(float x, float y, float width, float height) {
 		x += addX;
 		y += addY;
-		g.fillOval((int)x, (int)y, (int)width, (int)height);
+		g.fillOval((int)(x - width/2), (int)(y - height/2), (int)width, (int)height);
 	}
 
 	@Override
@@ -91,6 +92,14 @@ public class RendererSwing extends Renderer{
 	@Override
 	public void clearScreen() {
 		fillRectScreenSpace(0,  0, 8000, 8000);
+	}
+
+
+	@Override
+	public void drawImageScreenSpace(Image img, float x, float y, float pivotX, float pivotY) {
+		x += addX;
+		y += addY;
+		g.drawImage(((ImageSwing)img).img, (int)(x - pivotX), (int)(y - pivotY), null);
 	}
 
 }

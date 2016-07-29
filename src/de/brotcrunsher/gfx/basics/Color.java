@@ -192,4 +192,8 @@ public class Color {
 		//TESTED
 		return "(" + r + ", " + g + ", " + b + ", " + a + ")";
 	}
+
+	public java.awt.Color awtColor() {
+		return new java.awt.Color((int)(r * 255), (int)(g * 255), (int)(b * 255), (int)(a * 255));
+	}
 }

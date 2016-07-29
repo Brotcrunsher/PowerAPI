@@ -1,8 +1,9 @@
-package de.brotcrunsher.unitTests;
+package de.brotcrunsher.tests.renderingTests;
 
 import de.brotcrunsher.game.core.Game;
 import de.brotcrunsher.gfx.basics.Color;
 import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.Mouse;
 import de.brotcrunsher.input.MouseButton;
 import de.brotcrunsher.math.linear.Interpolations;
@@ -24,7 +25,7 @@ public class MouseTest implements Game{
 	}
 
 	@Override
-	public void initialize() {
+	public void initialize(Window w) {
 		// TODO Auto-generated method stub
 		
 	}

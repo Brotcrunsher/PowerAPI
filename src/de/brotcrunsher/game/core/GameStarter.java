@@ -37,10 +37,12 @@ public class GameStarter {
 		game.preInitialize();
 		
 		GameStarter.window.create(windowName, gameScreenWidth, gameScreenHeight);
-		game.initialize();
+		
 		
 		Keyboard.ZZINTERN_setKeyMapping(window.generateKeyMapping());
 		Mouse.ZZINTERN_setMouseMapping(window.generateMouseMapping());
+		
+		game.initialize(window);
 		
 		while(GameStarter.running){
 			TimeManager.update();

@@ -1,17 +1,17 @@
-package de.brotcrunsher.unitTests;
+package de.brotcrunsher.tests.renderingTests;
 
 import de.brotcrunsher.game.core.Game;
 import de.brotcrunsher.gfx.basics.Color;
 import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.math.linear.Vector2;
 import de.brotcrunsher.math.random.RNG;
 
-public class RandomVectorOnUnitCircleTest implements Game{
-	public static void main(String[] args) {
-		new RandomVectorOnUnitCircleTest().start();
-	}
+public class RandomVector2OnUnitSquareTest implements Game{
 	
-	Vector2 result = new Vector2();
+	public static void main(String[] args) {
+		new RandomVector2OnUnitSquareTest().start();
+	}
 	
 	@Override
 	public void preInitialize() {
@@ -20,7 +20,7 @@ public class RandomVectorOnUnitCircleTest implements Game{
 	}
 
 	@Override
-	public void initialize() {
+	public void initialize(Window w) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -33,12 +33,13 @@ public class RandomVectorOnUnitCircleTest implements Game{
 
 	@Override
 	public void draw(Renderer r) {
-		r.setColor(Color.AWT_ORANGE);
-		r.drawOval(0, 0, 500, 500);
 		r.setColor(Color.AWT_GREEN);
-		RNG.randomVector2OnUnitCircle(result);
-		result.addToThis(1, 1);
-		result.multThis(250);
-		r.fillOval(result, 2, 2);
+		//r.drawRect(100, 100, 500, 500);
+		r.setColor(Color.AWT_BLACK);
+		Vector2 rand = RNG.randomVector2OnUnitSquare();
+		rand.multThis(500);
+		rand.addToThis(100, 100);
+		r.fillRect(rand, 1, 1);
 	}
+
 }

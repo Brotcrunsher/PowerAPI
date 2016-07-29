@@ -4,6 +4,7 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 
 import de.brotcrunsher.game.core.GameStarter;
+import de.brotcrunsher.gfx.rendering.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.KeyMapping;
@@ -14,6 +15,8 @@ import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
+
+import java.io.IOException;
 
 
 public class WindowOpenGL implements Window{
@@ -88,6 +91,12 @@ public class WindowOpenGL implements Window{
 
 	@Override
 	public MouseMapping generateMouseMapping() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Image getImage(String path) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

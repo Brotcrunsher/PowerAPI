@@ -1,8 +1,9 @@
-package de.brotcrunsher.unitTests;
+package de.brotcrunsher.tests.renderingTests;
 
 import de.brotcrunsher.game.core.Game;
 import de.brotcrunsher.gfx.basics.Color;
 import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.Key;
 import de.brotcrunsher.input.Keyboard;
 import de.brotcrunsher.math.linear.Vector2;
@@ -18,7 +19,7 @@ public class RenderingTest implements Game{
 	}
 
 	@Override
-	public void initialize() {
+	public void initialize(Window w) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -49,13 +50,13 @@ public class RenderingTest implements Game{
 		r.setColor(Color.AWT_BLACK);
 		r.fillRect(1, 1, getScreenWidth()-2, getScreenHeight()-2);
 		r.setColor(new Color(1, 0, 0, 1));
-		r.fillOval(0, 0, 100, 100);
+		r.fillOval(50, 50, 100, 100);
 		r.setColor(new Color(0, 1, 0, 1));
-		r.fillOval(new Vector2(getScreenWidth() - 100, 0), 100, 100);
+		r.fillOval(new Vector2(getScreenWidth() - 50, 50), 100, 100);
 		r.setColor(new Color(0, 0, 1, 1));
-		r.fillOval(0, getScreenHeight() - 100, new Vector2(100, 100));
+		r.fillOval(50, getScreenHeight() - 50, new Vector2(100, 100));
 		r.setColor(new Color(1, 1, 0, 1));
-		r.fillOval(new Vector2(getScreenWidth() - 100, getScreenHeight() - 100), new Vector2(100, 100));
+		r.fillOval(new Vector2(getScreenWidth() - 50, getScreenHeight() - 50), new Vector2(100, 100));
 		r.setColor(Color.AWT_MAGENTA);
 		r.fillOval(300,  300, 200, 100);
 		r.setColor(Color.AWT_DARK_GRAY);

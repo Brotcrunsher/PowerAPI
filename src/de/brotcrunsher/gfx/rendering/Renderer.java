@@ -21,10 +21,31 @@ public abstract class Renderer {
 		this.cameraY = cameraY;
 	}
 	
+	public abstract void drawImageScreenSpace(Image img, float x, float y, float pivotX, float pivotY);
+	
+	public void drawImage(Image img, float x, float y, float pivotX, float pivotY){
+		drawImageScreenSpace(img, x - cameraX, y - cameraY, pivotX, pivotY);
+	}
+	public void drawImage(Image img, Vector2 pos, Vector2 pivot){
+		drawImage(img, pos.getX(), pos.getY(), pivot.getX(), pivot.getY());
+	}
+	public void drawImage(Image img, Vector2 pos, float pivotX, float pivotY){
+		drawImage(img, pos.getX(), pos.getY(), pivotX, pivotY);
+	}
+	public void drawImage(Image img, float x, float y, Vector2 pivot){
+		drawImage(img, x, y, pivot.getX(), pivot.getY());
+	}
+	public void drawImage(Image img, float x, float y){
+		drawImage(img, x, y, img.getPivot().getX(), img.getPivot().getY());
+	}
+	public void drawImage(Image img, Vector2 pos){
+		drawImage(img, pos.getX(), pos.getY());
+	}
+
 	public void setCamera(Vector2 camera){
 		setCamera(camera.getX(), camera.getY());
 	}
-	
+
 	public float getCameraX(){
 		return cameraX;
 	}
@@ -219,4 +240,20 @@ public abstract class Renderer {
 		fillTriangle(v0.getX(), v0.getY(), v1.getX(), v1.getY(), v2.getX(), v2.getY());
 	}
 
+	public void drawPixelScreenSpace(float x, float y){
+		fillRect(x, y, 1, 1);
+	}
+	public void drawPixel(float x, float y){
+		drawPixelScreenSpace(x - cameraX, y - cameraY);
+	}
+	public void drawPixel(Vector2 pos){
+		drawPixel(pos.getX(), pos.getY());
+	}
+	public void drawPixels(Vector2[] pixels){
+		for(int i = 0; i<pixels.length; i++){
+			if(pixels[i] != null){
+				drawPixel(pixels[i].getX(), pixels[i].getY());
+			}
+		}
+	}
 }

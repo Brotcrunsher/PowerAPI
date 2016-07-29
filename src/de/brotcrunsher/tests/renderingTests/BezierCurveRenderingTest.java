@@ -1,8 +1,9 @@
-package de.brotcrunsher.unitTests;
+package de.brotcrunsher.tests.renderingTests;
 
 import de.brotcrunsher.game.core.Game;
 import de.brotcrunsher.gfx.basics.Color;
 import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.Key;
 import de.brotcrunsher.input.Keyboard;
 import de.brotcrunsher.input.Mouse;
@@ -14,16 +15,16 @@ public class BezierCurveRenderingTest implements Game{
 	public static void main(String[] args) {
 		new BezierCurveRenderingTest().start();
 	}
-	
+
 	private Vector2 start = new Vector2();
 	private Vector2 stop  = new Vector2();
-	private Vector2[] control = new Vector2[8];
+	private Vector2[] control = new Vector2[1];
 	private BezierCurve2 bc2 = new BezierCurve2(start, stop, control);
-	
+
 	private Vector2 result = new Vector2();
 	private Vector2 result2 = new Vector2();
 	private Vector2 resultDirection = new Vector2();
-	
+
 	@Override
 	public void preInitialize() {
 		for(int i = 0; i<control.length; i++){
@@ -32,9 +33,9 @@ public class BezierCurveRenderingTest implements Game{
 	}
 
 	@Override
-	public void initialize() {
+	public void initialize(Window w) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -77,11 +78,11 @@ public class BezierCurveRenderingTest implements Game{
 	public void draw(Renderer r) {
 		r.setColor(Color.AWT_WHITE);
 		r.clearScreen();
-		
-		
+
+
 		r.setColor(Color.AWT_BLACK);
 		r.setLineWidth(3);
-		
+
 		/*bc2.eval(result, 0);
 		for(float i = 0; i<= 1; i += 0.01f){
 			bc2.eval(result2, i);
@@ -91,12 +92,12 @@ public class BezierCurveRenderingTest implements Game{
 			resultDirection.multThis(30);
 			resultDirection.addToThis(result);
 			r.drawLine(result, resultDirection);
-			
+
 			result.set(result2);
 		}*/
-		
+
 		bc2.draw(r);
-		
+
 		r.setColor(Color.AWT_RED);
 		r.fillRect(start.sub(null, 5, 5), 10, 10);
 		r.setColor(Color.AWT_GREEN);
