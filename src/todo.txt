@@ -1,8 +1,15 @@
 controller input
 sound
 Ring Arrays for other primitives
-Shapes
+Shape - Oval
+Shape - Rotated Rect
+Shape - Rotated Oval
+Shape - Polygon
+Rendering - draw Text
+Rendering - draw Image
 Pics
+Test everything
+Add tests for nullable results
 
 OpenGL support
 JavaFX support

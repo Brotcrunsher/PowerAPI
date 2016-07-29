@@ -1,4 +1,4 @@
-package de.brotcrunsher.unitTests;
+package de.brotcrunsher.tests.unitTests;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

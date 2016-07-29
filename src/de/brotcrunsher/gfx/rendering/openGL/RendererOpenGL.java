@@ -1,6 +1,7 @@
 package de.brotcrunsher.gfx.rendering.openGL;
 
 import de.brotcrunsher.gfx.basics.Color;
+import de.brotcrunsher.gfx.rendering.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.math.linear.FMath;
 
@@ -69,8 +70,6 @@ public class RendererOpenGL implements Renderer{
 		float firstX = 0, firstY = 0;//to fix missing pixel line
 		float radiusX = width / 2;
 		float radiusY = height / 2;
-		x += radiusX;
-		y += radiusY;
 		
 		glBegin(GL_TRIANGLE_FAN);
 		glVertex2f(x, y);//center
@@ -125,6 +124,12 @@ public class RendererOpenGL implements Renderer{
 			glVertex2f(x1, y1);
 			glVertex2f(x2, y2);
 		glEnd();
+	}
+
+	@Override
+	public void drawImage(Image img, float x, float y, float pivotX, float pivotY) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

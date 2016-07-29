@@ -1,4 +1,4 @@
-package de.brotcrunsher.unitTests;
+package de.brotcrunsher.tests.unitTests;
 
 import static org.junit.Assert.*;
 

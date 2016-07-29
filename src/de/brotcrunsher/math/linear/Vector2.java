@@ -158,8 +158,20 @@ public class Vector2 {
 	
 	public static float distanceBetweenSq(Vector2 a, Vector2 b){
 		//TESTED
-		float diffX = a.x - b.x;
-		float diffY = a.y - b.y;
+		return distanceBetweenSq(a.getX(), a.getY(), b.getX(), b.getY());
+	}
+	
+	public static float distanceBetweenSq(Vector2 v, float x, float y){
+		return distanceBetweenSq(v.getX(), v.getY(), x, y);
+	}
+	
+	public static float distanceBetweenSq(float x, float y, Vector2 v){
+		return distanceBetweenSq(x, y, v.getX(), v.getY());
+	}
+	
+	public static float distanceBetweenSq(float x0, float y0, float x1, float y1){
+		float diffX = x0 - x1;
+		float diffY = y0 - y1;
 		
 		return diffX * diffX + diffY * diffY;
 	}

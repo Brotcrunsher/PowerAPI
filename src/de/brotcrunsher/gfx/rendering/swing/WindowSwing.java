@@ -9,11 +9,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import de.brotcrunsher.game.core.Game;
+import de.brotcrunsher.gfx.rendering.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.KeyMapping;
@@ -28,7 +30,7 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 	private float top;
 	private float left;
 	private Graphics g;
-	
+
 	@Override
 	public void create(String name, int screenWidth, int screenHeight) {
 		this.setTitle(name);
@@ -50,7 +52,7 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 		createBufferStrategy(2);
 		strat = getBufferStrategy();
 	}
-	
+
 	@Override
 	public Renderer prepareRendering() {
 		g = strat.getDrawGraphics();
@@ -122,7 +124,12 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		Mouse.ZZINTERN_onButtonRelease(e.getButton());
-		
+
+	}
+
+	@Override
+	public Image getImage(String path) throws IOException {
+		return new ImageSwing(path);
 	}
 
 }
