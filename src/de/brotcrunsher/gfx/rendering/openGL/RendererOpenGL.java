@@ -6,7 +6,7 @@ import de.brotcrunsher.math.linear.FMath;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class RendererOpenGL implements Renderer{
+public class RendererOpenGL extends Renderer{
 	private Color color = Color.AWT_BLACK;
 	
 	public RendererOpenGL() {
@@ -30,7 +30,7 @@ public class RendererOpenGL implements Renderer{
 	}
 
 	@Override
-	public void drawLine(float startX, float startY, float stopX, float stopY) {
+	public void drawLineScreenSpace(float startX, float startY, float stopX, float stopY) {
 		glBegin(GL_LINE_STRIP);
 			glVertex2f(startX, startY);
 			glVertex2f(stopX, stopY);
@@ -38,7 +38,7 @@ public class RendererOpenGL implements Renderer{
 	}
 
 	@Override
-	public void drawRect(float x, float y, float width, float height) {
+	public void drawRectScreenSpace(float x, float y, float width, float height) {
 		x += 0.5f;
 		glBegin(GL_LINE_LOOP);
 			glVertex2f(x, y + 0.5f);
@@ -49,7 +49,7 @@ public class RendererOpenGL implements Renderer{
 	}
 
 	@Override
-	public void fillRect(float x, float y, float width, float height) {
+	public void fillRectScreenSpace(float x, float y, float width, float height) {
 		glBegin(GL_QUADS);
 			glVertex2f(x, y);
 			glVertex2f(x, y + height);
@@ -59,13 +59,13 @@ public class RendererOpenGL implements Renderer{
 	}
 
 	@Override
-	public void drawOval(float x, float y, float width, float height) {
+	public void drawOvalScreenSpace(float x, float y, float width, float height) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void fillOval(float x, float y, float width, float height) {
+	public void fillOvalScreenSpace(float x, float y, float width, float height) {
 		float firstX = 0, firstY = 0;//to fix missing pixel line
 		float radiusX = width / 2;
 		float radiusY = height / 2;
@@ -104,7 +104,7 @@ public class RendererOpenGL implements Renderer{
 	}
 
 	@Override
-	public void drawTriangle(float x0, float y0, float x1, float y1, float x2, float y2) {
+	public void drawTriangleScreenSpace(float x0, float y0, float x1, float y1, float x2, float y2) {
 		x0 += 0.5f;
 		x1 += 0.5f;
 		x2 += 0.5f;
@@ -116,7 +116,7 @@ public class RendererOpenGL implements Renderer{
 	}
 
 	@Override
-	public void fillTriangle(float x0, float y0, float x1, float y1, float x2, float y2) {
+	public void fillTriangleScreenSpace(float x0, float y0, float x1, float y1, float x2, float y2) {
 		x0 += 0.5f;
 		x1 += 0.5f;
 		x2 += 0.5f;

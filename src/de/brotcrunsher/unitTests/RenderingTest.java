@@ -8,7 +8,9 @@ import de.brotcrunsher.input.Keyboard;
 import de.brotcrunsher.math.linear.Vector2;
 
 public class RenderingTest implements Game{
-
+	
+	public Vector2 camera = new Vector2();
+	
 	@Override
 	public void preInitialize() {
 		// TODO Auto-generated method stub
@@ -23,13 +25,23 @@ public class RenderingTest implements Game{
 
 	@Override
 	public void update(float timeSinceLastFrame) {
-		if(Keyboard.isKeyReleasedThisFrame(Key.w)){
-			System.out.println("jou " + System.currentTimeMillis());
+		if(Keyboard.isKeyDown(Key.w)){
+			camera.addToThisY(-timeSinceLastFrame * 100);
+		}
+		if(Keyboard.isKeyDown(Key.s)){
+			camera.addToThisY(timeSinceLastFrame * 100);
+		}
+		if(Keyboard.isKeyDown(Key.a)){
+			camera.addToThisX(-timeSinceLastFrame * 100);
+		}
+		if(Keyboard.isKeyDown(Key.d)){
+			camera.addToThisX(timeSinceLastFrame * 100);
 		}
 	}
 
 	@Override
 	public void draw(Renderer r) {
+		r.setCamera(camera);
 		r.setColor(Color.AWT_GREEN);
 		r.clearScreen();
 		//r.setColor(Color.AWT_BLUE);
