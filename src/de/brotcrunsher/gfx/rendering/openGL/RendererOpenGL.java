@@ -12,12 +12,14 @@ public class RendererOpenGL extends Renderer{
 	private Color color = Color.AWT_BLACK;
 	
 	public RendererOpenGL() {
-		setLineWidth(1);
 	}
 	
 	@Override
 	public void setColor(float r, float g, float b, float a) {
-		color = new Color(r, g, b, a);
+		color.setR(r);
+		color.setG(g);
+		color.setB(b);
+		color.setA(a);
 		glColor4f(r, g, b, a);
 	}
 

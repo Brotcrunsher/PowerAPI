@@ -16,6 +16,12 @@ public class RendererSwing extends Renderer{
 	private float addY = 0;
 
 	public RendererSwing(Graphics2D g, float addX, float addY){
+		initialize(g, addX, addY);
+	}
+	
+	public RendererSwing(){};
+	
+	public void initialize(Graphics2D g, float addX, float addY){
 		this.g = g;
 		this.addX = addX;
 		this.addY = addY;

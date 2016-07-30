@@ -70,4 +70,6 @@ public class RNG {
 	public static Color randomColor(){
 		return randomColor(randomDefault);
 	}
+	
+	//TODO Add random getters for primitives - static!
 }

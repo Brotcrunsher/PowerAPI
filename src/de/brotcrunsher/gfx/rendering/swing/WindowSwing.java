@@ -31,7 +31,9 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 	private float top;
 	private float left;
 	private Graphics g;
-
+	
+	private RendererSwing renderer;
+	
 	@Override
 	public void create(String name, int screenWidth, int screenHeight) {
 		this.setTitle(name);
@@ -47,10 +49,11 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(this);
+		renderer = new RendererSwing();
 	}
 
 	private void makeStrat(){
-		createBufferStrategy(2);
+		createBufferStrategy(3);
 		strat = getBufferStrategy();
 	}
 
@@ -58,7 +61,8 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 	public Renderer prepareRendering() {
 		g = strat.getDrawGraphics();
 		strat.show();
-		return new RendererSwing((Graphics2D)g, left, top);
+		renderer.initialize((Graphics2D)g, left, top);
+		return renderer;
 	}
 
 	@Override

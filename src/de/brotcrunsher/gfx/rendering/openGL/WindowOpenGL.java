@@ -23,7 +23,9 @@ import java.io.IOException;
 public class WindowOpenGL implements Window{
 
 	private long window;
-
+	private RendererOpenGL renderer = new RendererOpenGL();
+	
+	
 	@Override
 	public void create(String name, int screenWidth, int screenHeight) {
 		if(!glfwInit()){
@@ -69,7 +71,7 @@ public class WindowOpenGL implements Window{
 		if(glfwWindowShouldClose(window)){
 			GameStarter.stopGame();
 		}
-		return new RendererOpenGL();
+		return renderer;
 	}
 	
 	@Override
