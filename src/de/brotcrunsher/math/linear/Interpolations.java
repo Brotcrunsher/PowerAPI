@@ -4,6 +4,7 @@ import de.brotcrunsher.gfx.basics.Color;
 
 public class Interpolations {
 	public static float linear(float a, float b, float t){
+		if(a == b) return a;
 		return a * (1-t) + b * t;
 	}
 
@@ -24,6 +25,7 @@ public class Interpolations {
 	}
 
 	public static float cosine(float a, float b, float t){
+		if(a == b) return a;
 		return linear(a, b, (1-FMath.cos(t * FMath.PI))/2);
 	}
 
@@ -44,6 +46,7 @@ public class Interpolations {
 	}
 
 	public static float cubic(float preA, float a, float b, float postB, float t){
+		if(a == preA && a == b && a == postB) return a;
 		float t2 = t * t;
 		float w0 = postB - b - preA + a;
 		float w1 = preA - a - w0;
@@ -70,6 +73,7 @@ public class Interpolations {
 	}
 
 	public static float bezier(float a, float b, float t, float control){
+		if(a == b && a == control) return a;
 		float t2 = t * t;
 		return b*t2 + 2 * control * t - 2*control*t2 + a - 2*a*t + a*t2;
 		/*float w0 = linear(a, control, t);
@@ -85,6 +89,8 @@ public class Interpolations {
 	}
 
 	public static float bezier(float a, float b, float t, float control1, float control2){
+		if(a == b && a == control1 && a == control2) return a;
+		
 		float w0 = linear(a, control1, t);
 		float w1 = linear(control1, control2, t);
 		float w2 = linear(control2, b, t);
