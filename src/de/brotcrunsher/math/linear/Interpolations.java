@@ -7,11 +7,23 @@ public class Interpolations {
 		if(a == b) return a;
 		return a * (1-t) + b * t;
 	}
+	
+	public static float bool(float a, float b, float t){
+		if(t >= 0.5) return b;
+		else return a;
+	}
 
 	public static Vector2 linear(Vector2 result, Vector2 a, Vector2 b, float t){
 		if(result == null) result = new Vector2();
 		result.setX(linear(a.getX(), b.getX(), t));
 		result.setY(linear(a.getY(), b.getY(), t));
+		return result;
+	}
+	
+	public static Vector2 bool(Vector2 result, Vector2 a, Vector2 b, float t){
+		if(result == null) result = new Vector2();
+		result.setX(bool(a.getX(), b.getX(), t));
+		result.setY(bool(a.getY(), b.getY(), t));
 		return result;
 	}
 
