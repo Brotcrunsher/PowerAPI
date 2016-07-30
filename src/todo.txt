@@ -1,9 +1,9 @@
 controller input
 sound
 Ring Arrays for other primitives
-Shape - Oval
+Shape - Ellipsoid
 Shape - Rotated Rect
-Shape - Rotated Oval
+Shape - Rotated Ellipsoid
 Shape - Polygon
 Rendering - draw Text
 Rendering - draw Image
