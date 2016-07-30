@@ -5,7 +5,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 
-import de.brotcrunsher.gfx.rendering.Image;
+import de.brotcrunsher.game.core.GameStarter;
+import de.brotcrunsher.gfx.basics.Font;
+import de.brotcrunsher.gfx.basics.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 
 public class RendererSwing extends Renderer{
@@ -91,7 +93,7 @@ public class RendererSwing extends Renderer{
 
 	@Override
 	public void clearScreen() {
-		fillRectScreenSpace(0,  0, 8000, 8000);
+		fillRectScreenSpace(0,  0, GameStarter.getScreenWidth(), GameStarter.getScreenHeight());
 	}
 
 
@@ -100,6 +102,20 @@ public class RendererSwing extends Renderer{
 		x += addX;
 		y += addY;
 		g.drawImage(((ImageSwing)img).img, (int)(x - pivotX), (int)(y - pivotY), null);
+	}
+
+
+	@Override
+	public void fillTextScreenSpace(String txt, float x, float y) {
+		x += addX;
+		y += addY;
+		g.drawString(txt, (int)x, (int)y);
+	}
+
+
+	@Override
+	public void setFont(Font font) {
+		g.setFont(((FontSwing)font).font);
 	}
 
 }

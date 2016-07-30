@@ -2,6 +2,8 @@ package de.brotcrunsher.gfx.rendering;
 
 import de.brotcrunsher.game.core.GameStarter;
 import de.brotcrunsher.gfx.basics.Color;
+import de.brotcrunsher.gfx.basics.Font;
+import de.brotcrunsher.gfx.basics.Image;
 import de.brotcrunsher.math.linear.Vector2;
 
 public abstract class Renderer {
@@ -16,6 +18,8 @@ public abstract class Renderer {
 	public void setColor(Color color){
 		setColor(color.getR(), color.getG(), color.getB(), color.getA());
 	}
+	
+	public abstract void setFont(Font font);
 	
 	public void setCamera(float cameraX, float cameraY){
 		this.cameraX = cameraX;
@@ -95,6 +99,19 @@ public abstract class Renderer {
 		assert stop != null : "stop was null!";
 		drawLine(start.getX(), start.getY(), stop.getX(), stop.getY());
 	}
+	
+	public abstract void fillTextScreenSpace(String txt, float x, float y);
+	public void fillTextScreenSpace(String txt, Vector2 pos){
+		fillTextScreenSpace(txt, pos.getX(), pos.getY());
+	}
+	
+	public void fillText(String txt, float x, float y){
+		fillTextScreenSpace(txt, x - cameraX, y - cameraY);
+	}
+	public void fillText(String txt, Vector2 pos){
+		fillTextScreenSpace(txt, pos.getX() - cameraX, pos.getY() - cameraY);
+	}
+	
 	
 	public abstract void drawRectScreenSpace(float x, float y, float width, float height);
 

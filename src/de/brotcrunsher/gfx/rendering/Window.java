@@ -2,6 +2,8 @@ package de.brotcrunsher.gfx.rendering;
 
 import java.io.IOException;
 
+import de.brotcrunsher.gfx.basics.Font;
+import de.brotcrunsher.gfx.basics.Image;
 import de.brotcrunsher.input.KeyMapping;
 import de.brotcrunsher.input.MouseMapping;
 
@@ -11,6 +13,8 @@ public interface Window {
 	public KeyMapping generateKeyMapping();
 	public MouseMapping generateMouseMapping();
 	public Image getImage(String path) throws IOException;
+	public Font getFont(float size);
+	public Font getFont(float size, String path);
 	public default void postRender(){
 		//do nothing on default
 	}

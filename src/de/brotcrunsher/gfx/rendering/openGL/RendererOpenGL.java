@@ -1,7 +1,8 @@
 package de.brotcrunsher.gfx.rendering.openGL;
 
 import de.brotcrunsher.gfx.basics.Color;
-import de.brotcrunsher.gfx.rendering.Image;
+import de.brotcrunsher.gfx.basics.Font;
+import de.brotcrunsher.gfx.basics.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.math.linear.FMath;
 
@@ -128,6 +129,18 @@ public class RendererOpenGL extends Renderer{
 
 	@Override
 	public void drawImageScreenSpace(Image img, float x, float y, float pivotX, float pivotY) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void fillTextScreenSpace(String txt, float x, float y) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setFont(Font font) {
 		// TODO Auto-generated method stub
 		
 	}

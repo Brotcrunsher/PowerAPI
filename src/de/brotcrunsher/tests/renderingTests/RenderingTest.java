@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import de.brotcrunsher.game.core.Game;
 import de.brotcrunsher.gfx.basics.Color;
-import de.brotcrunsher.gfx.rendering.Image;
+import de.brotcrunsher.gfx.basics.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.Key;

@@ -1,4 +1,4 @@
-package de.brotcrunsher.gfx.rendering;
+package de.brotcrunsher.gfx.basics;
 
 import de.brotcrunsher.math.linear.Vector2;
 

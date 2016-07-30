@@ -4,7 +4,8 @@ import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
 
 import de.brotcrunsher.game.core.GameStarter;
-import de.brotcrunsher.gfx.rendering.Image;
+import de.brotcrunsher.gfx.basics.Font;
+import de.brotcrunsher.gfx.basics.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.KeyMapping;
@@ -97,6 +98,18 @@ public class WindowOpenGL implements Window{
 
 	@Override
 	public Image getImage(String path) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Font getFont(float size) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Font getFont(float size, String path) {
 		// TODO Auto-generated method stub
 		return null;
 	}

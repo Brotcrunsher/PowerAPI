@@ -15,7 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import de.brotcrunsher.game.core.Game;
-import de.brotcrunsher.gfx.rendering.Image;
+import de.brotcrunsher.gfx.basics.Font;
+import de.brotcrunsher.gfx.basics.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.KeyMapping;
@@ -130,6 +131,16 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 	@Override
 	public Image getImage(String path) throws IOException {
 		return new ImageSwing(path);
+	}
+
+	@Override
+	public Font getFont(float size) {
+		return new FontSwing(size);
+	}
+
+	@Override
+	public Font getFont(float size, String path) {
+		return new FontSwing(size, path);
 	}
 
 }

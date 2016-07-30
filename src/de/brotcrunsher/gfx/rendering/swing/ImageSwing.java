@@ -7,7 +7,7 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import de.brotcrunsher.gfx.rendering.Image;
+import de.brotcrunsher.gfx.basics.Image;
 
 public class ImageSwing extends Image{
 	/*pp*/ BufferedImage img;
