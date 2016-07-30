@@ -10,8 +10,10 @@ Rendering - draw Image
 Pics
 Test everything
 Add tests for nullable results
+GameStates
 
 OpenGL support
 JavaFX support
 Vulkan support
+Multithreading support
 Doc for everything
