@@ -1,5 +1,6 @@
 package de.brotcrunsher.gfx.rendering;
 
+import de.brotcrunsher.game.core.GameStarter;
 import de.brotcrunsher.gfx.basics.Color;
 import de.brotcrunsher.math.linear.Vector2;
 
@@ -19,6 +20,15 @@ public abstract class Renderer {
 	public void setCamera(float cameraX, float cameraY){
 		this.cameraX = cameraX;
 		this.cameraY = cameraY;
+	}
+	
+	public void setCameraCenter(float cameraX, float cameraY){
+		this.cameraX = cameraX - GameStarter.getScreenWidth() / 2;
+		this.cameraY = cameraY - GameStarter.getScreenHeight() / 2;
+	}
+	
+	public void setCameraCenter(Vector2 camera){
+		setCameraCenter(camera.getX(), camera.getY());
 	}
 	
 	public abstract void drawImageScreenSpace(Image img, float x, float y, float pivotX, float pivotY);
@@ -255,5 +265,66 @@ public abstract class Renderer {
 				drawPixel(pixels[i].getX(), pixels[i].getY());
 			}
 		}
+	}
+	
+	public void drawGridScreenSpace(float x, float y, float cellwidth, float cellheight){
+		float screenWidth = GameStarter.getScreenWidth();
+		float screenHeight = GameStarter.getScreenHeight();
+		
+		if(cellwidth < 1){
+			cellwidth = 1;
+		}
+		if(cellheight < 1){
+			cellheight = 1;
+		}
+		float posX = x;
+		while(posX < screenWidth){
+			drawLineScreenSpace(posX, 0, posX, screenHeight);
+			posX += cellwidth;
+		}
+		posX = x - cellwidth;
+		while(posX >= 0){
+			drawLineScreenSpace(posX, 0, posX, screenHeight);
+			posX -= cellwidth;
+		}
+		
+		float posY = y;
+		while(posY < screenHeight){
+			drawLineScreenSpace(0, posY, screenWidth, posY);
+			posY += cellheight;
+		}
+		posY = y - cellheight;
+		while(posY >= 0){
+			drawLineScreenSpace(0, posY, screenWidth, posY);
+			posY -= cellheight;
+		}
+	}
+	
+	public void drawGridScreenSpace(Vector2 pos, float cellwidth, float cellheight){
+		drawGridScreenSpace(pos.getX(), pos.getY(), cellwidth, cellheight);
+	}
+	
+	public void drawGridScreenSpace(float x, float y, Vector2 cellDimensions){
+		drawGridScreenSpace(x, y, cellDimensions.getX(), cellDimensions.getY());
+	}
+	
+	public void drawGridScreenSpace(Vector2 pos, Vector2 cellDimensions){
+		drawGridScreenSpace(pos.getX(), pos.getY(), cellDimensions.getX(), cellDimensions.getY());
+	}
+	
+	public void drawGrid(float x, float y, float cellwidth, float cellheight){
+		drawGridScreenSpace(x - cameraX, y - cameraY, cellwidth, cellheight);
+	}
+	
+	public void drawGrid(Vector2 pos, float cellwidth, float cellheight){
+		drawGrid(pos.getX(), pos.getY(), cellwidth, cellheight);
+	}
+	
+	public void drawGrid(float x, float y, Vector2 cellDimensions){
+		drawGrid(x, y, cellDimensions.getX(), cellDimensions.getY());
+	}
+	
+	public void drawGrid(Vector2 pos, Vector2 cellDimensions){
+		drawGrid(pos.getX(), pos.getY(), cellDimensions.getX(), cellDimensions.getY());
 	}
 }

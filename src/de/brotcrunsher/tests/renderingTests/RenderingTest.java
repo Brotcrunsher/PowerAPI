@@ -1,16 +1,24 @@
 package de.brotcrunsher.tests.renderingTests;
 
+import java.io.IOException;
+
 import de.brotcrunsher.game.core.Game;
 import de.brotcrunsher.gfx.basics.Color;
+import de.brotcrunsher.gfx.rendering.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
 import de.brotcrunsher.input.Key;
 import de.brotcrunsher.input.Keyboard;
+import de.brotcrunsher.input.Mouse;
 import de.brotcrunsher.math.linear.Vector2;
 
 public class RenderingTest implements Game{
 	
 	public Vector2 camera = new Vector2();
+	
+	public Vector2 mousePos = new Vector2();
+
+	Image img = null;
 	
 	@Override
 	public void preInitialize() {
@@ -20,8 +28,12 @@ public class RenderingTest implements Game{
 
 	@Override
 	public void initialize(Window w) {
-		// TODO Auto-generated method stub
-		
+		try {
+			img = w.getImage("/gfx/TestImage.png");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -38,6 +50,8 @@ public class RenderingTest implements Game{
 		if(Keyboard.isKeyDown(Key.d)){
 			camera.addToThisX(timeSinceLastFrame * 100);
 		}
+		
+		Mouse.getPos(mousePos);
 	}
 
 	@Override
@@ -69,6 +83,14 @@ public class RenderingTest implements Game{
 		r.setLineWidth(10);
 		r.drawLine(450, 550, 350, 250);
 		//System.out.println(TimeManager.getFrameNumber() + " : " +  TimeManager.getAverageFrameTime());
+		r.drawImage(img, 700, 300);
+		
+		r.setColor(Color.AWT_RED);
+		r.setLineWidth(1);
+		r.drawGridScreenSpace(mousePos, 64, 64);
+		
+		r.setColor(Color.AWT_BLUE);
+		r.drawGrid(0, 0, 64, 64);
 	}
 	
 	

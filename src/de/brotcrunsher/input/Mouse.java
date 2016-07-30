@@ -77,10 +77,12 @@ public class Mouse {
 	}
 	
 	public static void ZZINTERN_setX(float x){
+		if(mouseMapping == null) return;
 		preX = Mouse.x;
 		Mouse.x = mouseMapping.transformXPos(x);
 	}
 	public static void ZZINTERN_setY(float y){
+		if(mouseMapping == null) return;
 		preY = Mouse.y;
 		Mouse.y = mouseMapping.transformYPos(y);
 	}
