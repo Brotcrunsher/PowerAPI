@@ -3,11 +3,8 @@ package de.brotcrunsher.game.core;
 import de.brotcrunsher.gfx.rendering.Renderer;
 import de.brotcrunsher.gfx.rendering.Window;
 
-public interface Game {
+public interface Game extends GameState{
 	public void preInitialize();
-	public void initialize(Window window);
-	public void update(float timeSinceLastFrame);
-	public void draw(Renderer r);
 
 	public default void onGameEnd(){
 		//Do nothing on default

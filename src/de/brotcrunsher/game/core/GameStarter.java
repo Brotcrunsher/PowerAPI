@@ -13,6 +13,8 @@ public class GameStarter {
 	private static Window window;
 	private static String windowName = "Test";
 	private static boolean running = false;
+	private static boolean changeGameStateRequested = false;
+	private static GameState gameStateToChangeTo = null;
 	
 	public static void startGame(Game game){
 		startGame(game, HostMode.swing);
@@ -31,10 +33,18 @@ public class GameStarter {
 		}
 	}
 	
+	public static void changeGameState(GameState state){
+		if(state == null) throw new NullPointerException();
+		
+		changeGameStateRequested = true;
+		gameStateToChangeTo = state;
+	}
+	
 	private static void startGame(Game game, Window window){
 		GameStarter.running = true;
 		GameStarter.window = window;
 		game.preInitialize();
+		GameState state = (GameState)game;
 		
 		GameStarter.window.create(windowName, gameScreenWidth, gameScreenHeight);
 		
@@ -47,15 +57,21 @@ public class GameStarter {
 		while(GameStarter.running){
 			TimeManager.update();
 			
-			game.update(TimeManager.getTimeSinceLastFrame());
+			state.update(TimeManager.getTimeSinceLastFrame());
 			Renderer renderer = window.prepareRendering();
-			game.draw(renderer);
+			state.draw(renderer);
 			window.postRender();
 			
 			Keyboard.ZZINTERN_onFrameEnd();
 			Mouse.ZZINTERN_onFrameEnd();
 			
-			//System.gc();
+			if(changeGameStateRequested){
+				changeGameStateRequested = false;
+				state.onGameStateLeave();
+				state = gameStateToChangeTo;
+				gameStateToChangeTo = null;
+				state.initialize(window);
+			}
 			
 			try {
 				Thread.sleep(1);
@@ -65,6 +81,7 @@ public class GameStarter {
 		}
 		
 		window.cleanup();
+		state.onGameStateLeave();
 		game.onGameEnd();
 	}
 	
