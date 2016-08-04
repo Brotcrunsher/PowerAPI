@@ -45,6 +45,10 @@ public class TimeManager {
 		return frameTimesForLastFrames.calculateAvg() / 1000f;
 	}
 	
+	public static float getTimeSinceStartup(){
+		return (thisFrame - GameStartTimestamp) / 1000f;
+	}
+	
 	public static int getFrameNumber(){
 		return frameNumber;
 	}

@@ -8,6 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
@@ -15,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import de.brotcrunsher.game.core.Game;
+import de.brotcrunsher.game.core.GameStarter;
 import de.brotcrunsher.gfx.basics.Font;
 import de.brotcrunsher.gfx.basics.Image;
 import de.brotcrunsher.gfx.rendering.Renderer;
@@ -26,14 +29,14 @@ import de.brotcrunsher.input.Mouse;
 import de.brotcrunsher.input.MouseMapping;
 import de.brotcrunsher.input.MouseMappingSwing;
 
-public class WindowSwing extends JFrame implements Window, KeyListener, MouseMotionListener, MouseListener{
+public class WindowSwing extends JFrame implements Window, KeyListener, MouseMotionListener, MouseListener, WindowListener{
 	private BufferStrategy strat;
 	private float top;
 	private float left;
 	private Graphics g;
-	
+
 	private RendererSwing renderer;
-	
+
 	@Override
 	public void create(String name, int screenWidth, int screenHeight) {
 		this.setTitle(name);
@@ -49,6 +52,7 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(this);
+		addWindowListener(this);
 		renderer = new RendererSwing();
 	}
 
@@ -145,6 +149,47 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 	@Override
 	public Font getFont(float size, String path) {
 		return new FontSwing(size, path);
+	}
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		GameStarter.stopGame();
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

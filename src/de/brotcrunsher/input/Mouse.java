@@ -37,8 +37,12 @@ public class Mouse {
 		return y;
 	}
 	
-	public static void getPos(Vector2 result){
+	public static Vector2 getPos(Vector2 result){
+		if(result == null){
+			result = new Vector2();
+		}
 		result.set(getX(), getY());
+		return result;
 	}
 	
 	public static float getDX(){
@@ -49,8 +53,12 @@ public class Mouse {
 		return y - preY;
 	}
 	
-	public static void getDelta(Vector2 result){
+	public static Vector2 getDelta(Vector2 result){
+		if(result == null){
+			result = new Vector2();
+		}
 		result.set(getDX(), getDY());
+		return result;
 	}
 	
 	public static void ZZINTERN_onButtonPress(int raw){

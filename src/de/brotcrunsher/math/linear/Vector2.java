@@ -2,28 +2,28 @@ package de.brotcrunsher.math.linear;
 
 public class Vector2 {
 	private static final Vector2 zero = new Vector2();
-	
+
 	private static final ThreadLocal<Vector2> workingVector = new ThreadLocal<Vector2>(){
 		protected Vector2 initialValue() {
 			return new Vector2();
 		};
 	};
-	
+
 	private static Vector2 initializeIfNull(Vector2 result){
 		if(result == null){
 			return new Vector2();
 		}
 		return result;
 	}
-	
+
 	private float x;
 	private float y;
-	
+
 	public static Vector2 newOnCircle(Vector2 result, float angleRadians){
 		//TESTED
 		return newOnCircle(result, angleRadians, 1);
 	}
-	
+
 	public static Vector2 newOnCircle(Vector2 result, float angleRadians, float radius){
 		//TESTED
 		result = initializeIfNull(result);
@@ -32,28 +32,28 @@ public class Vector2 {
 		result.y = radius * FMath.sin(angleRadians);
 		return result;
 	}
-	
+
 	public Vector2(){
 		//TESTED
 		this(0, 0);
 	}
-	
+
 	public Vector2(float x){
 		//TESTED
 		this(x, 0);
 	}
-	
+
 	public Vector2(Vector2 other){
 		//TESTED
 		this(other.getX(), other.getY());
 	}
-	
+
 	public Vector2(float x, float y){
 		//TESTED
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	public float lengthSq(){
 		//TESTED
 		return x*x + y*y;
@@ -62,13 +62,13 @@ public class Vector2 {
 		//TESTED
 		return FMath.sqrt(lengthSq());
 	}
-	
+
 	public boolean isShorterThan(Vector2 other){
 		//TESTED
 		if(other == null){
 			other = zero;
 		}
-		
+
 		return this.lengthSq() < other.lengthSq();
 	}
 	public boolean isLongerThan(Vector2 other){
@@ -76,7 +76,7 @@ public class Vector2 {
 		if(other == null){
 			other = zero;
 		}
-		
+
 		return this.lengthSq() > other.lengthSq();
 	}
 	public boolean isSameLength(Vector2 other){
@@ -84,7 +84,7 @@ public class Vector2 {
 		if(other == null){
 			other = zero;
 		}
-		
+
 		return this.lengthSq() == other.lengthSq();
 	}
 	public boolean isSameLength(Vector2 other, float epsilon){
@@ -94,9 +94,9 @@ public class Vector2 {
 		if(other != null){
 			otherLength = other.length();
 		}
-		
+
 		float lengthDiff = FMath.abs(thisLength - otherLength);
-		
+
 		return lengthDiff <= epsilon;
 	}
 	public boolean isSameDirection(Vector2 other){
@@ -144,50 +144,50 @@ public class Vector2 {
 		float maxDistSq = maxDist * maxDist;
 		return distSq <= maxDistSq;
 	}
-	
+
 	public float distanceTo(Vector2 other){
 		//TESTED
 		return distanceBetween(this, other);
 	}
-	
+
 	public static float distanceBetween(Vector2 a, Vector2 b){
 		//TESTED
 		float distSq = distanceBetweenSq(a, b);
 		return FMath.sqrt(distSq);
 	}
-	
+
 	public static float distanceBetweenSq(Vector2 a, Vector2 b){
 		//TESTED
 		return distanceBetweenSq(a.getX(), a.getY(), b.getX(), b.getY());
 	}
-	
+
 	public static float distanceBetweenSq(Vector2 v, float x, float y){
 		return distanceBetweenSq(v.getX(), v.getY(), x, y);
 	}
-	
+
 	public static float distanceBetweenSq(float x, float y, Vector2 v){
 		return distanceBetweenSq(x, y, v.getX(), v.getY());
 	}
-	
+
 	public static float distanceBetweenSq(float x0, float y0, float x1, float y1){
 		float diffX = x0 - x1;
 		float diffY = y0 - y1;
-		
+
 		return diffX * diffX + diffY * diffY;
 	}
-	
+
 	public Vector2 mirrorByVectorThis(Vector2 mirror){
 		//TESTED
 		Vector2 working = workingVector.get();
 		mirror.normalized(working);
-		
+
 		float scalar = 2 * (this.x * working.x + this.y * working.y);
 		x = - x + scalar * working.x;
 		y = - y + scalar * working.y;
-		
+
 		return this;
 	}
-	
+
 	public Vector2 mirrorByVector(Vector2 result, Vector2 mirror){
 		//TESTED
 		result = initializeIfNull(result);
@@ -198,16 +198,16 @@ public class Vector2 {
 		float y = this.y - scalar * working.y;
 		result.x = -x;
 		result.y = -y;
-		
+
 		return result;
 	}
-	
-	
+
+
 	public boolean isZero(){
 		//TESTED
 		return x == 0 && y == 0;
 	}
-	
+
 	public Vector2 normalizeThis(){
 		//TESTED
 		float length = this.length();
@@ -220,7 +220,7 @@ public class Vector2 {
 		}
 		return this;
 	}
-	
+
 	public Vector2 normalized(Vector2 result){
 		//TESTED
 		result = initializeIfNull(result);
@@ -234,7 +234,7 @@ public class Vector2 {
 		result.y = y / length;
 		return result;
 	}
-	
+
 	public Vector2 flipThis(){
 		//TESTED
 		float temp = x;
@@ -242,7 +242,7 @@ public class Vector2 {
 		y = temp;
 		return this;
 	}
-	
+
 	public Vector2 flip(Vector2 result){
 		//TESTED
 		result = initializeIfNull(result);
@@ -250,7 +250,7 @@ public class Vector2 {
 		result.y = x;
 		return result;
 	}
-	
+
 	public Vector2 projectThis(Vector2 projector){
 		//TESTED
 		float scalar = projector.dotProduct(this) / projector.lengthSq();
@@ -258,7 +258,7 @@ public class Vector2 {
 		this.y = projector.y * scalar;
 		return this;
 	}
-	
+
 	public Vector2 project(Vector2 result, Vector2 projector){
 		//TESTED
 		result = initializeIfNull(result);
@@ -267,12 +267,12 @@ public class Vector2 {
 		result.y = projector.y * scalar;
 		return result;
 	}
-	
+
 	public static float angleRadiansBetween(Vector2 a, Vector2 b){
 		//TESTED
 		return FMath.acos(a.dotProduct(b) / a.length() / b.length());
 	}
-	
+
 	public Vector2 rotateThis(float radians){
 		//TESTED
 		float cos = FMath.cos(radians);
@@ -282,7 +282,7 @@ public class Vector2 {
 		y = sin * tempX + cos * y;
 		return this;
 	}
-	
+
 	public Vector2 rotate(Vector2 result, float radians){
 		//TESTED
 		result = initializeIfNull(result);
@@ -292,7 +292,7 @@ public class Vector2 {
 		result.y = sin * x + cos * y;
 		return result;
 	}
-	
+
 	public Vector2 setLengthThis(float length){
 		//TESTED
 		normalizeThis();
@@ -300,7 +300,7 @@ public class Vector2 {
 		y *= length;
 		return this;
 	}
-	
+
 	public Vector2 setLength(Vector2 result, float length){
 		//TESTED
 		result = initializeIfNull(result);
@@ -308,7 +308,7 @@ public class Vector2 {
 		result.multThis(length);
 		return result;
 	}
-	
+
 	public Vector2 rotate90ClockwiseThis(){
 		//TESTED
 		float temp = x;
@@ -316,7 +316,7 @@ public class Vector2 {
 		y = temp;
 		return this;
 	}
-	
+
 	public Vector2 rotate90CounterclockwiseThis(){
 		//TESTED
 		float temp = x;
@@ -324,7 +324,7 @@ public class Vector2 {
 		y = -temp;
 		return this;
 	}
-	
+
 	public Vector2 rotate90Clockwise(Vector2 result){
 		//TESTED
 		result = initializeIfNull(result);
@@ -332,7 +332,7 @@ public class Vector2 {
 		result.y = x;
 		return result;
 	}
-	
+
 	public Vector2 rotate90Counterclockwise(Vector2 result){
 		//TESTED
 		result = initializeIfNull(result);
@@ -340,25 +340,25 @@ public class Vector2 {
 		result.y = -x;
 		return result;
 	}
-	
+
 	public Vector2 absThis(){
 		//TESTED
 		x = FMath.abs(x);
 		y = FMath.abs(y);
 		return this;
 	}
-	
+
 	public Vector2 rotateAroundThis(Vector2 rotationCenter, float radians){
 		//TODO
 		return this;
 	}
-	
+
 	public Vector2 rotateAround(Vector2 result, Vector2 rotationCenter, float radians){
 		//TODO
 		result = initializeIfNull(result);
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public Vector2 abs(Vector2 result){
 		//TESTED
 		result = initializeIfNull(result);
@@ -366,34 +366,34 @@ public class Vector2 {
 		result.y = FMath.abs(y);
 		return result;
 	}
-	
+
 	public float getMax(){
 		//TESTED
 		return FMath.max(x, y);
 	}
-	
+
 	public float getMin(){
 		//TESTED
 		return FMath.min(x, y);
 	}
-	
+
 	public float getAbsMax(){
 		//TESTED
 		return FMath.maxAbs(x, y);
 	}
-	
+
 	public float getAbsMin(){
 		//TESTED
 		return FMath.minAbs(x, y);
 	}
-	
+
 	public Vector2 clampComponentsThis(float min, float max){
 		//TESTED
 		x = FMath.clamp(x, min, max);
 		y = FMath.clamp(y, min, max);
 		return this;
 	}
-	
+
 	public Vector2 clampComponents(Vector2 result, float min, float max){
 		//TESTED
 		result = initializeIfNull(result);
@@ -401,7 +401,7 @@ public class Vector2 {
 		result.y = FMath.clamp(y, min, max);
 		return result;
 	}
-	
+
 	public float headingAngle(){
 		//TESTED
 		float angle = FMath.acos(x / length());
@@ -411,7 +411,7 @@ public class Vector2 {
 			return FMath.PI * 2 - angle;
 		}
 	}
-	
+
 	public Vector2 setX(float x){
 		//TESTED
 		this.x = x;
@@ -442,32 +442,32 @@ public class Vector2 {
 		//TESTED
 		return y;
 	}
-	
+
 	public Vector2 addToThisX(float val){
 		//TESTED
 		this.x += val;
 		return this;
 	}
-	
+
 	public Vector2 addToThisY(float val){
 		//TESTED
 		this.y += val;
 		return this;
 	}
-	
+
 	public Vector2 addToThis(float x, float y){
 		//TESTED
 		this.x += x;
 		this.y += y;
 		return this;
 	}
-	
+
 	public Vector2 addToThis(Vector2 other){
 		//TESTED
 		addToThis(other.getX(), other.getY());
 		return this;
 	}
-	
+
 	public Vector2 addX(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -475,7 +475,7 @@ public class Vector2 {
 		result.y = y;
 		return result;
 	}
-	
+
 	public Vector2 addY(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -483,7 +483,7 @@ public class Vector2 {
 		result.y = y + val;
 		return result;
 	}
-	
+
 	public Vector2 add(Vector2 result, float x, float y){
 		//TESTED
 		result = initializeIfNull(result);
@@ -491,39 +491,39 @@ public class Vector2 {
 		result.y = this.y + y;
 		return result;
 	}
-	
+
 	public Vector2 add(Vector2 result, Vector2 other){
 		//TESTED
 		result = initializeIfNull(result);
 		add(result, other.getX(), other.getY());
 		return result;
 	}
-	
+
 	public Vector2 subFromThisX(float val){
 		//TESTED
 		this.x -= val;
 		return this;
 	}
-	
+
 	public Vector2 subFromThisY(float val){
 		//TESTED
 		this.y -= val;
 		return this;
 	}
-	
+
 	public Vector2 subFromThis(float x, float y){
 		//TESTED
 		this.x -= x;
 		this.y -= y;
 		return this;
 	}
-	
+
 	public Vector2 subFromThis(Vector2 other){
 		//TESTED
 		subFromThis(other.getX(), other.getY());
 		return this;
 	}
-	
+
 	public Vector2 subX(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -531,7 +531,7 @@ public class Vector2 {
 		result.y = y;
 		return result;
 	}
-	
+
 	public Vector2 subY(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -539,7 +539,7 @@ public class Vector2 {
 		result.y = y - val;
 		return result;
 	}
-	
+
 	public Vector2 sub(Vector2 result, float x, float y){
 		//TESTED
 		result = initializeIfNull(result);
@@ -547,20 +547,20 @@ public class Vector2 {
 		result.y = this.y - y;
 		return result;
 	}
-	
+
 	public Vector2 sub(Vector2 result, Vector2 other){
 		//TESTED
 		result = initializeIfNull(result);
 		sub(result, other.getX(), other.getY());
 		return result;
 	}
-	
+
 	public Vector2 divThisX(float val){
 		//TESTED
 		x /= val;
 		return this;
 	}
-	
+
 	public Vector2 divX(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -568,13 +568,13 @@ public class Vector2 {
 		result.y = y;
 		return result;
 	}
-	
+
 	public Vector2 divThisY(float val){
 		//TESTED
 		y /= val;
 		return this;
 	}
-	
+
 	public Vector2 divY(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -582,14 +582,14 @@ public class Vector2 {
 		result.y = y / val;
 		return result;
 	}
-	
+
 	public Vector2 divThis(float val){
 		//TESTED
 		x /= val;
 		y /= val;
 		return this;
 	}
-	
+
 	public Vector2 div(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -597,14 +597,14 @@ public class Vector2 {
 		result.y = y / val;
 		return result;
 	}
-	
+
 	public Vector2 divComponentsThis(float x, float y){
 		//TESTED
 		this.x /= x;
 		this.y /= y;
 		return this;
 	}
-	
+
 	public Vector2 divComponents(Vector2 result, float x, float y){
 		//TESTED
 		result = initializeIfNull(result);
@@ -612,7 +612,7 @@ public class Vector2 {
 		result.y = this.getY() / y;
 		return result;
 	}
-	
+
 	public Vector2 divComponents(Vector2 result, Vector2 other){
 		//TESTED
 		result = initializeIfNull(result);
@@ -620,13 +620,13 @@ public class Vector2 {
 		result.y = this.getY() / other.getY();
 		return result;
 	}
-	
+
 	public Vector2 divComponentsThis(Vector2 other){
 		//TESTED
 		divComponentsThis(other.getX(), other.getY());
 		return this;
 	}
-	
+
 	public Vector2 multX(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -634,13 +634,13 @@ public class Vector2 {
 		result.y = this.getY();
 		return result;
 	}
-	
+
 	public Vector2 multThisX(float val){
 		//TESTED
 		this.x *= val;
 		return this;
 	}
-	
+
 	public Vector2 multY(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -648,13 +648,13 @@ public class Vector2 {
 		result.y = this.getY() * val;
 		return result;
 	}
-	
+
 	public Vector2 multThisY(float val){
 		//TESTED
 		this.y *= val;
 		return this;
 	}
-	
+
 	public Vector2 mult(Vector2 result, float val){
 		//TESTED
 		result = initializeIfNull(result);
@@ -662,14 +662,14 @@ public class Vector2 {
 		result.y = this.getY() * val;
 		return result;
 	}
-	
+
 	public Vector2 multThis(float val){
 		//TESTED
 		this.x *= val;
 		this.y *= val;
 		return this;
 	}
-	
+
 	public Vector2 multComponents(Vector2 result, float x, float y){
 		//TESTED
 		result = initializeIfNull(result);
@@ -677,14 +677,14 @@ public class Vector2 {
 		result.y = this.getY() * y;
 		return result;
 	}
-	
+
 	public Vector2 multComponentsThis(float x, float y){
 		//TESTED
 		this.x *= x;
 		this.y *= y;
 		return this;
 	}
-	
+
 	public Vector2 multComponents(Vector2 result, Vector2 other){
 		//TESTED
 		result = initializeIfNull(result);
@@ -692,43 +692,43 @@ public class Vector2 {
 		result.y = this.getY() * other.getY();
 		return result;
 	}
-	
+
 	public Vector2 multComponentsThis(Vector2 other){
 		//TESTED
 		multComponentsThis(other.getX(), other.getY());
 		return this;
 	}
-	
+
 	public float dotProduct(Vector2 other){
 		//TESTED
 		return this.getX() * other.getX() + this.getY() * other.getY();
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	@Override
 	protected Vector2 clone() {
 		return new Vector2(x, y);
 	}
-	
+
 	@Override
 	public String toString() {
 		//TESTED
 		return "(" + x + ", " + y + ")";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return (int)(x * 7001 + y * 1009);
 	}
-	
+
 	@Override
 	protected final void finalize() throws Throwable {
 		super.finalize();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		//TESTED

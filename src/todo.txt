@@ -1,5 +1,4 @@
 controller input
-sound
 Ring Arrays for other primitives
 Shape - Ellipsoid
 Shape - Rotated Rect
