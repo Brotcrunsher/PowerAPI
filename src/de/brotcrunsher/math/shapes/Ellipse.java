@@ -85,8 +85,20 @@ public class Ellipse extends Shape{
 
 	@Override
 	public boolean contains(Rect r) {
-		//TODO
-		return false;
+		//TODO test
+		if(!contains(r.pos.getX(), r.pos.getY())){
+			return false;
+		}
+		if(!contains(r.pos.getX() + r.dimensions.getX(), r.pos.getY())){
+			return false;
+		}
+		if(!contains(r.pos.getX(), r.pos.getY() + r.dimensions.getY())){
+			return false;
+		}
+		if(!contains(r.pos.getX() + r.dimensions.getX(), r.pos.getY() + r.dimensions.getY())){
+			return false;
+		}
+		return true;
 	}
 
 	@Override

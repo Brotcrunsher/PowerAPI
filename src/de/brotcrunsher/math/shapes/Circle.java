@@ -1,6 +1,7 @@
 package de.brotcrunsher.math.shapes;
 
 import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.math.linear.FMath;
 import de.brotcrunsher.math.linear.Vector2;
 
 public class Circle extends Shape{
@@ -23,7 +24,7 @@ public class Circle extends Shape{
 	}
 	public float getRadius(){
 		//TESTED
-		return radius;
+		return FMath.abs(radius);
 	}
 
 	@Override
