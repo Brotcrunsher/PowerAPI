@@ -3,12 +3,9 @@ package de.brotcrunsher.math.linear;
 public class Vector2 {
 	private static final Vector2 zero = new Vector2();
 
-	private static final ThreadLocal<Vector2> workingVector = new ThreadLocal<Vector2>(){
-		protected Vector2 initialValue() {
-			return new Vector2();
-		};
-	};
-
+	private static final ThreadLocalVector2 workingVector = new ThreadLocalVector2();
+	
+	
 	private static Vector2 initializeIfNull(Vector2 result){
 		if(result == null){
 			return new Vector2();
@@ -61,6 +58,16 @@ public class Vector2 {
 	public float length(){
 		//TESTED
 		return FMath.sqrt(lengthSq());
+	}
+	
+	public static float lengthSq(float x, float y){
+		//TODO TEST
+		return x * x + y * y;
+	}
+	
+	public static float length(float x, float y){
+		//TODO TEST
+		return FMath.sqrt(lengthSq(x, y));
 	}
 
 	public boolean isShorterThan(Vector2 other){
@@ -152,8 +159,25 @@ public class Vector2 {
 
 	public static float distanceBetween(Vector2 a, Vector2 b){
 		//TESTED
-		float distSq = distanceBetweenSq(a, b);
-		return FMath.sqrt(distSq);
+		return distanceBetween(a.getX(), a.getY(), b.getX(), b.getY());
+	}
+	
+	public static float distanceBetween(Vector2 a, float x1, float y1){
+		//TODO TEST
+		return distanceBetween(a.getX(), a.getY(), x1, y1);
+	}
+	
+	public static float distanceBetween(float x0, float y0, Vector2 b){
+		//TODO TEST
+		return distanceBetween(x0, y0, b.getX(), b.getY());
+	}
+	
+	public static float distanceBetween(float x0, float y0, float x1, float y1){
+		//TODO TEST
+		float diffX = x0 - x1;
+		float diffY = y0 - y1;
+		
+		return FMath.sqrt(diffX * diffX + diffY * diffY);
 	}
 
 	public static float distanceBetweenSq(Vector2 a, Vector2 b){
@@ -162,14 +186,17 @@ public class Vector2 {
 	}
 
 	public static float distanceBetweenSq(Vector2 v, float x, float y){
+		//TODO TEST
 		return distanceBetweenSq(v.getX(), v.getY(), x, y);
 	}
 
 	public static float distanceBetweenSq(float x, float y, Vector2 v){
+		//TODO TEST
 		return distanceBetweenSq(x, y, v.getX(), v.getY());
 	}
 
 	public static float distanceBetweenSq(float x0, float y0, float x1, float y1){
+		//TODO TEST
 		float diffX = x0 - x1;
 		float diffY = y0 - y1;
 
@@ -349,14 +376,30 @@ public class Vector2 {
 	}
 
 	public Vector2 rotateAroundThis(Vector2 rotationCenter, float radians){
-		//TODO
+		//TODO Test
+		float diffX = rotationCenter.x - this.x;
+		float diffY = rotationCenter.y - this.y;
+
+		float cos = FMath.cos(radians);
+		float sin = FMath.sin(radians);
+		
+		float xx = cos * diffX - sin * diffY + this.x;
+		float yy = sin * diffX + cos * diffY + this.y;
+		
+		this.x = xx;
+		this.y = yy;
+		
 		return this;
 	}
 
 	public Vector2 rotateAround(Vector2 result, Vector2 rotationCenter, float radians){
-		//TODO
+		//TODO Test
 		result = initializeIfNull(result);
-		throw new UnsupportedOperationException();
+		
+		result.set(x, y);
+		
+		result.rotateAroundThis(rotationCenter, radians);
+		return result;
 	}
 
 	public Vector2 abs(Vector2 result){
@@ -721,6 +764,7 @@ public class Vector2 {
 
 	@Override
 	public int hashCode() {
+		//TODO TEST
 		return (int)(x * 7001 + y * 1009);
 	}
 

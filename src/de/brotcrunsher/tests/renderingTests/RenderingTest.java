@@ -22,7 +22,6 @@ public class RenderingTest implements Game{
 	
 	@Override
 	public void preInitialize() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -31,7 +30,6 @@ public class RenderingTest implements Game{
 		try {
 			img = w.getImage("/gfx/TestImage.png");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -1,42 +1,52 @@
 package de.brotcrunsher.math.shapes;
 
 import de.brotcrunsher.gfx.rendering.Renderer;
+import de.brotcrunsher.math.linear.FMath;
 import de.brotcrunsher.math.linear.Vector2;
 
 public class Rect extends Shape{
 	protected Vector2 dimensions;
 	
 	public Rect(Vector2 pos, Vector2 dimensions){
+		//TODO TEST
 		this.pos = pos;
 		this.dimensions = dimensions;
 	}
 	
 	public Rect(float x, float y, float width, float height){
+		//TODO TEST
 		this(new Vector2(x, y), new Vector2(width, height));
 	}
 	public Rect(float x, float y, Vector2 dimensions){
+		//TODO TEST
 		this(new Vector2(x, y), dimensions);
 	}
 	public Rect(Vector2 pos, float width, float height){
+		//TODO TEST
 		this(pos, new Vector2(width, height));
 	}
 	
 	public void setWidth(float width){
+		//TODO TEST
 		dimensions.setX(width);
 	}
 	public void setHeight(float height){
+		//TODO TEST
 		dimensions.setY(height);
 	}
 	public void setDimensions(float width, float height){
+		//TODO TEST
 		setWidth(width);
 		setHeight(height);
 	}
 	public void setDimensions(Vector2 dimensions){
+		//TODO TEST
 		this.dimensions = dimensions;
 	}
 	
 	@Override
 	public boolean contains(float x, float y) {
+		//TODO TEST
 		return  x >= pos.getX()                     && 
 				y >= pos.getY()                     && 
 				x <= pos.getX() + dimensions.getX() && 
@@ -45,6 +55,7 @@ public class Rect extends Shape{
 
 	@Override
 	public boolean contains(Circle c) {
+		//TODO TEST
 		//t == this      o == other
 		//W == Width     H == Height     R == Radius
 		float tX = this.pos.getX();
@@ -65,6 +76,7 @@ public class Rect extends Shape{
 
 	@Override
 	public boolean contains(Rect r) {
+		//TODO TEST
 		if(r == this) return true;
 		
 		//t == this      o == other
@@ -88,6 +100,7 @@ public class Rect extends Shape{
 
 	@Override
 	public boolean intersects(Circle c) {
+		//TODO TEST
 		//t == this      o == other
 		//W == Width     H == Height     R == Radius
 		float tX = this.pos.getX();
@@ -127,6 +140,7 @@ public class Rect extends Shape{
 
 	@Override
 	public boolean intersects(Rect r) {
+		//TODO TEST
 		if(r == this) return true;
 		
 		//t == this      o == other
@@ -150,37 +164,52 @@ public class Rect extends Shape{
 
 	@Override
 	public Shape draw(Renderer r) {
+		//TODO TEST
 		r.fillRect(pos, dimensions);
 		return this;
 	}
 
 	@Override
 	public float getCenterX() {
+		//TODO TEST
 		return pos.getX() + dimensions.getX() / 2;
 	}
 
 	@Override
 	public float getCenterY() {
+		//TODO TEST
 		return pos.getY() + dimensions.getY() / 2;
 	}
 
 	@Override
 	public float getTop() {
+		//TODO TEST
 		return pos.getY();
 	}
 
 	@Override
 	public float getBottom() {
+		//TODO TEST
 		return pos.getY() + dimensions.getY();
 	}
 
 	@Override
 	public float getLeft() {
+		//TODO TEST
 		return pos.getX();
 	}
 
 	@Override
 	public float getRight() {
+		//TODO TEST
 		return pos.getX() + dimensions.getX();
+	}
+
+	@Override
+	protected Vector2 getClosestPointTo_(Vector2 result, float x, float y) {
+		x = FMath.clamp(x, this.pos.getX(), this.pos.getX() + this.dimensions.getX());
+		y = FMath.clamp(y, this.pos.getY(), this.pos.getY() + this.dimensions.getY());
+		result.set(x, y);
+		return result;
 	}
 }

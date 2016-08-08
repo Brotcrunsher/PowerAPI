@@ -4,6 +4,7 @@ public class BezierCurve2 extends Interpolation2D{
 	protected Vector2[] controls;
 	
 	public BezierCurve2(Vector2 start, Vector2 stop, Vector2 control){
+		//TODO TEST
 		this.start = start;
 		this.stop = stop;
 		controls = new Vector2[1];
@@ -11,6 +12,7 @@ public class BezierCurve2 extends Interpolation2D{
 	}
 	
 	public BezierCurve2(Vector2 start, Vector2 stop, Vector2 control1, Vector2 control2){
+		//TODO TEST
 		this.start = start;
 		this.stop = stop;
 		controls = new Vector2[2];
@@ -19,6 +21,7 @@ public class BezierCurve2 extends Interpolation2D{
 	}
 	
 	public BezierCurve2(Vector2 start, Vector2 stop, Vector2... controls){
+		//TODO TEST
 		this.start = start;
 		this.stop = stop;
 		this.controls = controls;
@@ -28,6 +31,7 @@ public class BezierCurve2 extends Interpolation2D{
 	
 	@Override
 	public Vector2 eval(Vector2 result, float t) {
+		//TODO TEST
 		if(result == null) result = new Vector2();
 		if(controls.length == 1){
 			Interpolations.bezier(result, start, stop, t, controls[0]);

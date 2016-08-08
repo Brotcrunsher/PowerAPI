@@ -94,25 +94,25 @@ public class WindowOpenGL implements Window{
 
 	@Override
 	public MouseMapping generateMouseMapping() {
-		// TODO Auto-generated method stub
+		// TODO
 		return null;
 	}
 
 	@Override
 	public Image getImage(String path) throws IOException {
-		// TODO Auto-generated method stub
+		// TODO
 		return null;
 	}
 
 	@Override
 	public Font getFont(float size) {
-		// TODO Auto-generated method stub
+		// TODO
 		return null;
 	}
 
 	@Override
 	public Font getFont(float size, String path) {
-		// TODO Auto-generated method stub
+		// TODO
 		return null;
 	}
 

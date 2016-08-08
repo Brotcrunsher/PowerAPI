@@ -31,14 +31,17 @@ public class TimeManager {
 	}
 	
 	public static long getTimeSinceLastFrameMillis(){
+		//TODO TEST
 		return timeSinceLastFrameMillis;
 	}
 	
 	public static float getTimeSinceLastFrame(){
+		//TODO TEST
 		return timeSinceLastFrame;
 	}
 	
 	public static float getAverageFrameTime(){
+		//TODO TEST
 		if(frameNumber < amountOfFrameTimeRecords){
 			return frameTimesForLastFrames.calculateSum() / frameNumber / 1000f;
 		}
@@ -46,10 +49,12 @@ public class TimeManager {
 	}
 	
 	public static float getTimeSinceStartup(){
+		//TODO TEST
 		return (thisFrame - GameStartTimestamp) / 1000f;
 	}
 	
 	public static int getFrameNumber(){
+		//TODO TEST
 		return frameNumber;
 	}
 }

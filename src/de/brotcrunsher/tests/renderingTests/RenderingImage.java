@@ -18,7 +18,6 @@ public class RenderingImage implements Game{
 	
 	@Override
 	public void preInitialize() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -27,14 +26,12 @@ public class RenderingImage implements Game{
 		try {
 			img = window.getImage("/gfx/TestImage.png");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void update(float timeSinceLastFrame) {
-		// TODO Auto-generated method stub
 		
 	}
 

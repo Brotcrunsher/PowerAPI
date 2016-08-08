@@ -34,7 +34,6 @@ public class BezierCurveRenderingTest implements Game{
 
 	@Override
 	public void initialize(Window w) {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -8,12 +8,14 @@ public class Grid {
 	private final boolean[][] isBlocked;
 	
 	public Grid(int width, int height){
+		//TODO TEST
 		WIDTH = width;
 		HEIGHT = height;
 		isBlocked = new boolean[width][height];
 	}
 	
 	public boolean isInRange(int x, int y){
+		//TODO TEST
 		if(x < 0) return false;
 		if(y < 0) return false;
 		if(x >= WIDTH) return false;
@@ -23,6 +25,7 @@ public class Grid {
 	}
 	
 	public boolean isBlocked(int x, int y){
+		//TODO TEST
 		if(!isInRange(x, y)){
 			return true;
 		}
@@ -30,15 +33,18 @@ public class Grid {
 	}
 	
 	public void setBlocked(int x, int y){
+		//TODO TEST
 		setBlocked(x, y, true);
 	}
 	
 	public void setBlocked(int x, int y, boolean value){
+		//TODO TEST
 		isBlocked[x][y] = value;
 	}
 	
 	
 	public void draw(Renderer r, float cellwidth, float cellheight){
+		//TODO TEST
 		for(int i = -1; i<=WIDTH; i++){
 			for(int k = -1; k<=HEIGHT; k++){
 				if(isBlocked(i, k)){

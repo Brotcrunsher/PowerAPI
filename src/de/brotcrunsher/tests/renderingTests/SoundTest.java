@@ -74,7 +74,7 @@ public class SoundTest implements Game{
 		soundPlayer.setPosition(sourcePos);
 		soundPlayer.play();
 		
-		SoundListener.setDopplerFactor(10);
+		SoundListener.setDopplerFactor(5);
 	}
 
 }

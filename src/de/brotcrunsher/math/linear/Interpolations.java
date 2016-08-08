@@ -4,16 +4,19 @@ import de.brotcrunsher.gfx.basics.Color;
 
 public class Interpolations {
 	public static float linear(float a, float b, float t){
+		//TODO TEST
 		if(a == b) return a;
 		return a * (1-t) + b * t;
 	}
 	
 	public static float bool(float a, float b, float t){
+		//TODO TEST
 		if(t >= 0.5) return b;
 		else return a;
 	}
 
 	public static Vector2 linear(Vector2 result, Vector2 a, Vector2 b, float t){
+		//TODO TEST
 		if(result == null) result = new Vector2();
 		result.setX(linear(a.getX(), b.getX(), t));
 		result.setY(linear(a.getY(), b.getY(), t));
@@ -21,6 +24,7 @@ public class Interpolations {
 	}
 	
 	public static Vector2 bool(Vector2 result, Vector2 a, Vector2 b, float t){
+		//TODO TEST
 		if(result == null) result = new Vector2();
 		result.setX(bool(a.getX(), b.getX(), t));
 		result.setY(bool(a.getY(), b.getY(), t));
@@ -28,6 +32,7 @@ public class Interpolations {
 	}
 
 	public static Color linear(Color result, Color a, Color b, float t){
+		//TODO TEST
 		if(result == null) result = new Color();
 		result.setR(linear(a.getR(), b.getR(), t));
 		result.setG(linear(a.getG(), b.getG(), t));
@@ -37,11 +42,13 @@ public class Interpolations {
 	}
 
 	public static float cosine(float a, float b, float t){
+		//TODO TEST
 		if(a == b) return a;
 		return linear(a, b, (1-FMath.cos(t * FMath.PI))/2);
 	}
 
 	public static Vector2 cosine(Vector2 result, Vector2 a, Vector2 b, float t){
+		//TODO TEST
 		if(result == null) result = new Vector2();
 		result.setX(cosine(a.getX(), b.getX(), t));
 		result.setY(cosine(a.getY(), b.getY(), t));
@@ -49,6 +56,7 @@ public class Interpolations {
 	}
 
 	public static Color cosine(Color result, Color a, Color b, float t){
+		//TODO TEST
 		if(result == null) result = new Color();
 		result.setR(cosine(a.getR(), b.getR(), t));
 		result.setG(cosine(a.getG(), b.getG(), t));
@@ -58,6 +66,7 @@ public class Interpolations {
 	}
 
 	public static float cubic(float preA, float a, float b, float postB, float t){
+		//TODO TEST
 		if(a == preA && a == b && a == postB) return a;
 		float t2 = t * t;
 		float w0 = postB - b - preA + a;
@@ -69,6 +78,7 @@ public class Interpolations {
 	}
 
 	public static Vector2 cubic(Vector2 result, Vector2 preA, Vector2 a, Vector2 b, Vector2 postB, float t){
+		//TODO TEST
 		if(result == null) result = new Vector2();
 		result.setX(cubic(preA.getX(), a.getX(), b.getX(), postB.getX(), t));
 		result.setY(cubic(preA.getY(), a.getY(), b.getY(), postB.getY(), t));
@@ -76,6 +86,7 @@ public class Interpolations {
 	}
 
 	public static Color cubic(Color result, Color preA, Color a, Color b, Color postB, float t){
+		//TODO TEST
 		if(result == null) result = new Color();
 		result.setR(cubic(preA.getR(), a.getR(), b.getR(), postB.getR(), t));
 		result.setG(cubic(preA.getG(), a.getG(), b.getG(), postB.getG(),t));
@@ -85,6 +96,7 @@ public class Interpolations {
 	}
 
 	public static float bezier(float a, float b, float t, float control){
+		//TODO TEST
 		if(a == b && a == control) return a;
 		float t2 = t * t;
 		return b*t2 + 2 * control * t - 2*control*t2 + a - 2*a*t + a*t2;
@@ -94,6 +106,7 @@ public class Interpolations {
 	}
 
 	public static Vector2 bezier(Vector2 result, Vector2 a, Vector2 b, float t, Vector2 control){
+		//TODO TEST
 		if(result == null) result = new Vector2();
 		result.setX(bezier(a.getX(), b.getX(), t, control.getX()));
 		result.setY(bezier(a.getY(), b.getY(), t, control.getY()));
@@ -101,6 +114,7 @@ public class Interpolations {
 	}
 
 	public static float bezier(float a, float b, float t, float control1, float control2){
+		//TODO TEST
 		if(a == b && a == control1 && a == control2) return a;
 		
 		float w0 = linear(a, control1, t);
@@ -114,6 +128,7 @@ public class Interpolations {
 	}
 
 	public static Vector2 bezier(Vector2 result, Vector2 a, Vector2 b, float t, Vector2 control1, Vector2 control2){
+		//TODO TEST
 		if(result == null) result = new Vector2();
 		result.setX(bezier(a.getX(), b.getX(), t, control1.getX(), control2.getX()));
 		result.setY(bezier(a.getY(), b.getY(), t, control1.getY(), control2.getY()));
@@ -121,6 +136,7 @@ public class Interpolations {
 	}
 
 	public static float bezier(float a, float b, float t, float... controls){
+		//TODO TEST
 		if(controls.length == 0){
 			return linear(a, b, t);
 		}
@@ -135,6 +151,7 @@ public class Interpolations {
 	}
 
 	private static float _bezier(float a, float b, float t, float[] workingArray, int size){
+		//TODO TEST
 		if(size == 2){
 			return bezier(a, b, t, workingArray[0], workingArray[1]);
 		}
@@ -148,6 +165,7 @@ public class Interpolations {
 	}
 
 	public static Vector2 bezier(Vector2 result, Vector2 a, Vector2 b, float t, Vector2... controls){
+		//TODO TEST
 		if(result == null) result = new Vector2();
 		float[] xs = new float[controls.length];
 		float[] ys = new float[controls.length];

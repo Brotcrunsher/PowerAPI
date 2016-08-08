@@ -3,14 +3,15 @@ package de.brotcrunsher.gfx.basics;
 import de.brotcrunsher.math.linear.Vector2;
 
 public class Color {
-	public static final Color WHITE  = new Color(1, 1, 1, 1);
-	public static final Color BLACK  = new Color(0, 0, 0, 1);
-	public static final Color RED    = new Color(1, 0, 0, 1);
-	public static final Color GREEN  = new Color(0, 1, 0, 1);
-	public static final Color BLUE   = new Color(0, 0, 1, 1);
-	public static final Color YELLOW = new Color(1, 1, 0, 1);
-	public static final Color PINK   = new Color(1, 0, 1, 1);
-	public static final Color CYAN   = new Color(0, 1, 1, 1);
+	public static final Color WHITE     = new Color(1   , 1   , 1, 1);
+	public static final Color BLACK     = new Color(0   , 0   , 0, 1);
+	public static final Color RED       = new Color(1   , 0   , 0, 1);
+	public static final Color GREEN     = new Color(0   , 1   , 0, 1);
+	public static final Color BLUE      = new Color(0   , 0   , 1, 1);
+	public static final Color LIGHTBLUE = new Color(0.5f, 0.5f, 1, 1);
+	public static final Color YELLOW    = new Color(1   , 1   , 0, 1);
+	public static final Color PINK      = new Color(1   , 0   , 1, 1);
+	public static final Color CYAN      = new Color(0   , 1   , 1, 1);
 	
 	public static final Color AWT_BLACK      = new Color(java.awt.Color.BLACK     );
 	public static final Color AWT_BLUE       = new Color(java.awt.Color.BLUE      );
@@ -142,6 +143,7 @@ public class Color {
 	}
 	
 	public void standardize(){
+		//TODO TEST
 		float max = r;
 		if(g > max) max = g;
 		if(b > max) max = b;
@@ -184,6 +186,7 @@ public class Color {
 	
 	@Override
 	public int hashCode() {
+		//TODO TEST
 		return (int)(r * 1009 + g * 2591 + b * 4397 + a * 6619);
 	}
 	
@@ -194,6 +197,7 @@ public class Color {
 	}
 
 	public java.awt.Color awtColor() {
+		//TODO TEST
 		return new java.awt.Color((int)(r * 255), (int)(g * 255), (int)(b * 255), (int)(a * 255));
 	}
 }

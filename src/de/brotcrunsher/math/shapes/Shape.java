@@ -23,6 +23,22 @@ public abstract class Shape {
 		}
 	}
 	
+	protected abstract Vector2 getClosestPointTo_(Vector2 result, float x, float y);
+	public Vector2 getClosestPointTo(Vector2 result, float x, float y){
+		if(result == null){
+			result = new Vector2();
+		}
+		if(this.contains(x, y)){
+			result.set(x, y);
+			return result;
+		}
+		
+		return getClosestPointTo_(result, x, y);
+	}
+	public Vector2 getClosestPointTo(Vector2 result, Vector2 pos){
+		return getClosestPointTo(result, pos.getX(), pos.getY());
+	}
+	
 	public boolean intersects(Vector2 point){
 		//TESTED
 		return contains(point);

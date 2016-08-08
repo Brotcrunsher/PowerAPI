@@ -153,13 +153,13 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
+		// TODO
 
 	}
 
 	@Override
 	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
+		// TODO
 
 	}
 
@@ -170,25 +170,25 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
+		// TODO
 
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
+		// TODO
 
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
+		// TODO
 
 	}
 
 	@Override
 	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
+		// TODO
 
 	}
 

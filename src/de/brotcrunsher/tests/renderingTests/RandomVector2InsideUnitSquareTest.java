@@ -15,19 +15,16 @@ public class RandomVector2InsideUnitSquareTest implements Game{
 	
 	@Override
 	public void preInitialize() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void initialize(Window w) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void update(float timeSinceLastFrame) {
-		// TODO Auto-generated method stub
 		
 	}
 

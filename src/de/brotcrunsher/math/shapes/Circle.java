@@ -35,6 +35,7 @@ public class Circle extends Shape{
 
 	@Override
 	public boolean contains(Circle c) {
+		//TODO TEST
 		float distSq = Vector2.distanceBetweenSq(pos, c.pos);
 		float localRadius = this.radius - c.radius;
 		return distSq <= localRadius * localRadius;
@@ -42,6 +43,7 @@ public class Circle extends Shape{
 
 	@Override
 	public boolean contains(Rect r) {
+		//TODO TEST
 		if(!contains(r.getLeft() , r.getTop())   ) return false;
 		if(!contains(r.getLeft() , r.getBottom())) return false;
 		if(!contains(r.getRight(), r.getTop())   ) return false;
@@ -52,16 +54,19 @@ public class Circle extends Shape{
 
 	@Override
 	public boolean intersects(Circle c) {
+		//TODO TEST
 		return pos.isCloseTo(c.pos, this.radius + c.radius);
 	}
 
 	@Override
 	public boolean intersects(Rect r) {
+		//TODO TEST
 		return r.intersects(this);
 	}
 
 	@Override
 	public Shape draw(Renderer r) {
+		//TODO TEST
 		r.fillOval(pos, radius * 2, radius * 2);
 		return this;
 	}
@@ -100,5 +105,17 @@ public class Circle extends Shape{
 	public float getRight() {
 		//TESTED
 		return pos.getX() + radius;
+	}
+
+	@Override
+	protected Vector2 getClosestPointTo_(Vector2 result, float x, float y) {
+		float diffX = x - this.pos.getX();
+		float diffY = y - this.pos.getY();
+		
+		float length = Vector2.length(diffX, diffY);
+
+		result.setX(diffX / length * this.getRadius() + this.pos.getX());
+		result.setY(diffY / length * this.getRadius() + this.pos.getY());
+		return result;
 	}
 }

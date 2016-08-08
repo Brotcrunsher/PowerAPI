@@ -11,34 +11,41 @@ public class RingArray<T> {
 	
 	@SuppressWarnings("unchecked")
 	public RingArray(int length){
+		//TODO TEST
 		data = (T[])new Object[length];
 	}
 	
 	public RingArray(T... data){
+		//TODO TEST
 		this.data = Arrays.copyOf(data, data.length);
 	}
 	
 	public T get(int index){
+		//TODO TEST
 		index = FMath.mod(index, data.length);
 		return data[index];
 	}
 	
 	public void set(int index, T data){
+		//TODO TEST
 		index = FMath.mod(index, this.data.length);
 		this.data[index] = data;
 	}
 	
 	public int getLength(){
+		//TODO TEST
 		return data.length;
 	}
 	
 	@Override
 	public RingArray<T> clone(){
+		//TODO TEST
 		return new RingArray<T>(data);
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
+		//TODO TEST
 		if(!(obj instanceof RingArray<?>)){
 			return false;
 		}
@@ -64,6 +71,7 @@ public class RingArray<T> {
 	
 	@Override
 	public int hashCode() {
+		//TODO TEST
 		int hash = 0;
 		for(int i = 0; i<data.length; i++){
 			hash += data[i].hashCode();
@@ -73,6 +81,7 @@ public class RingArray<T> {
 	
 	@Override
 	public String toString() {
+		//TODO TEST
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		for(int i = 0; i<data.length; i++){

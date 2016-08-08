@@ -64,7 +64,7 @@ public class RendererOpenGL extends Renderer{
 
 	@Override
 	public void drawOvalScreenSpace(float x, float y, float width, float height) {
-		// TODO Auto-generated method stub
+		// TODO
 		
 	}
 
@@ -131,19 +131,19 @@ public class RendererOpenGL extends Renderer{
 
 	@Override
 	public void drawImageScreenSpace(Image img, float x, float y, float pivotX, float pivotY) {
-		// TODO Auto-generated method stub
+		// TODO
 		
 	}
 
 	@Override
 	public void fillTextScreenSpace(String txt, float x, float y) {
-		// TODO Auto-generated method stub
+		// TODO
 		
 	}
 
 	@Override
 	public void setFont(Font font) {
-		// TODO Auto-generated method stub
+		// TODO
 		
 	}
 
