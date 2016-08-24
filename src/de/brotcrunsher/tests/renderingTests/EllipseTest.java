@@ -48,16 +48,6 @@ public class EllipseTest implements Game{
 		r.drawPixel(pixel);
 		r.fillOval(closestToPixel, 5, 5);
 		c.draw(r);
-		
-		/*r.setColor(new Color(1f, 0, 0, 0.5f));
-		for(int i = 0; i<getScreenWidth(); i++){
-			for(int k = 0; k<getScreenHeight(); k++){
-				e.setXY(i, k);
-				if(e.intersects(c)){
-					r.drawPixel(i, k);
-				}
-			}
-		}*/
 	}
 
 	@Override

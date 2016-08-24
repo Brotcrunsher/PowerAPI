@@ -152,16 +152,10 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 	}
 
 	@Override
-	public void windowActivated(WindowEvent e) {
-		// TODO
-
-	}
+	public void windowActivated(WindowEvent e) {}
 
 	@Override
-	public void windowClosed(WindowEvent e) {
-		// TODO
-
-	}
+	public void windowClosed(WindowEvent e) {}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
@@ -169,27 +163,20 @@ public class WindowSwing extends JFrame implements Window, KeyListener, MouseMot
 	}
 
 	@Override
-	public void windowDeactivated(WindowEvent e) {
-		// TODO
-
-	}
+	public void windowDeactivated(WindowEvent e) {}
 
 	@Override
-	public void windowDeiconified(WindowEvent e) {
-		// TODO
-
-	}
+	public void windowDeiconified(WindowEvent e) {}
 
 	@Override
-	public void windowIconified(WindowEvent e) {
-		// TODO
-
-	}
+	public void windowIconified(WindowEvent e) {}
 
 	@Override
-	public void windowOpened(WindowEvent e) {
-		// TODO
+	public void windowOpened(WindowEvent e) {}
 
+	@Override
+	public Image getGrayscaleImage(float[][] arr) {
+		return new ImageSwing(arr);
 	}
 
 }

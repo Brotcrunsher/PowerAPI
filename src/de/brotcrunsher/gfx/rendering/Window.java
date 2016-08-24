@@ -13,6 +13,7 @@ public interface Window {
 	public KeyMapping generateKeyMapping();
 	public MouseMapping generateMouseMapping();
 	public Image getImage(String path) throws IOException;
+	public Image getGrayscaleImage(float[][] arr);
 	public Font getFont(float size);
 	public Font getFont(float size, String path);
 	public default void postRender(){

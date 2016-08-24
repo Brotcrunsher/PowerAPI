@@ -35,7 +35,7 @@ public class RandomVectorOnUnitCircleTest implements Game{
 		r.drawOval(0, 0, 500, 500);
 		r.setColor(Color.AWT_GREEN);
 		RNG.randomVector2OnUnitCircle(result);
-		result.addToThis(1, 1);
+		result.addThis(1, 1);
 		result.multThis(250);
 		r.fillOval(result, 2, 2);
 	}

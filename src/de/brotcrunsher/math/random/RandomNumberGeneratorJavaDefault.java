@@ -13,6 +13,11 @@ public class RandomNumberGeneratorJavaDefault implements RandomNumberGenerator {
 		rand = new Random(seed);
 	}
 	
+	public RandomNumberGeneratorJavaDefault(Random rand){
+		if(rand == null) throw new NullPointerException();
+		this.rand = rand;
+	}
+	
 	@Override
 	public boolean nextBoolean() {
 		return rand.nextBoolean();

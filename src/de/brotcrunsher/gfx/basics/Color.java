@@ -1,6 +1,7 @@
 package de.brotcrunsher.gfx.basics;
 
 import de.brotcrunsher.math.linear.Vector2;
+import de.brotcrunsher.math.linear.Vector3;
 
 public class Color {
 	public static final Color WHITE     = new Color(1   , 1   , 1, 1);
@@ -33,6 +34,7 @@ public class Color {
 	private float g;
 	private float b;
 	private float a;
+	
 	
 	
 	public Color(){
@@ -68,6 +70,19 @@ public class Color {
 	public Color(float r, Vector2 gb){
 		//TESTED
 		this(r, gb.getX(), gb.getY());
+	}
+	
+	public Color(Vector3 rgb){
+		//TODO TEST
+		this(rgb.getX(), rgb.getY(), rgb.getZ(), 1);
+	}
+	
+	public Color(Vector3 rgb, float a){
+		this(rgb.getX(), rgb.getY(), rgb.getZ(), a);
+	}
+	
+	public Color(float r, Vector3 gba){
+		this(r, gba.getX(), gba.getY(), gba.getZ());
 	}
 	
 	public Color(Vector2 rg, float b, float a){
@@ -195,9 +210,22 @@ public class Color {
 		//TESTED
 		return "(" + r + ", " + g + ", " + b + ", " + a + ")";
 	}
-
+	
+	private java.awt.Color awtColor = null;
+	private float awtR;
+	private float awtG;
+	private float awtB;
+	private float awtA;
+	
 	public java.awt.Color awtColor() {
 		//TODO TEST
-		return new java.awt.Color((int)(r * 255), (int)(g * 255), (int)(b * 255), (int)(a * 255));
+		if(awtColor == null || awtR != r || awtG != g || awtB != b || awtA != a){
+			awtColor = new java.awt.Color((int)(r * 255), (int)(g * 255), (int)(b * 255), (int)(a * 255));
+			awtR = r;
+			awtG = g;
+			awtB = b;
+			awtA = a;
+		}
+		return awtColor;
 	}
 }

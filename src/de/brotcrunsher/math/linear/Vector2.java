@@ -486,28 +486,28 @@ public class Vector2 {
 		return y;
 	}
 
-	public Vector2 addToThisX(float val){
+	public Vector2 addXThis(float val){
 		//TESTED
 		this.x += val;
 		return this;
 	}
 
-	public Vector2 addToThisY(float val){
+	public Vector2 addYThis(float val){
 		//TESTED
 		this.y += val;
 		return this;
 	}
 
-	public Vector2 addToThis(float x, float y){
+	public Vector2 addThis(float x, float y){
 		//TESTED
 		this.x += x;
 		this.y += y;
 		return this;
 	}
 
-	public Vector2 addToThis(Vector2 other){
+	public Vector2 addThis(Vector2 other){
 		//TESTED
-		addToThis(other.getX(), other.getY());
+		addThis(other.getX(), other.getY());
 		return this;
 	}
 
@@ -542,28 +542,28 @@ public class Vector2 {
 		return result;
 	}
 
-	public Vector2 subFromThisX(float val){
+	public Vector2 subXThis(float val){
 		//TESTED
 		this.x -= val;
 		return this;
 	}
 
-	public Vector2 subFromThisY(float val){
+	public Vector2 subYThis(float val){
 		//TESTED
 		this.y -= val;
 		return this;
 	}
 
-	public Vector2 subFromThis(float x, float y){
+	public Vector2 subThis(float x, float y){
 		//TESTED
 		this.x -= x;
 		this.y -= y;
 		return this;
 	}
 
-	public Vector2 subFromThis(Vector2 other){
+	public Vector2 subThis(Vector2 other){
 		//TESTED
-		subFromThis(other.getX(), other.getY());
+		subThis(other.getX(), other.getY());
 		return this;
 	}
 
@@ -598,7 +598,7 @@ public class Vector2 {
 		return result;
 	}
 
-	public Vector2 divThisX(float val){
+	public Vector2 divXThis(float val){
 		//TESTED
 		x /= val;
 		return this;
@@ -612,7 +612,7 @@ public class Vector2 {
 		return result;
 	}
 
-	public Vector2 divThisY(float val){
+	public Vector2 divYThis(float val){
 		//TESTED
 		y /= val;
 		return this;
@@ -678,7 +678,7 @@ public class Vector2 {
 		return result;
 	}
 
-	public Vector2 multThisX(float val){
+	public Vector2 multXThis(float val){
 		//TESTED
 		this.x *= val;
 		return this;
@@ -692,7 +692,7 @@ public class Vector2 {
 		return result;
 	}
 
-	public Vector2 multThisY(float val){
+	public Vector2 multYThis(float val){
 		//TESTED
 		this.y *= val;
 		return this;

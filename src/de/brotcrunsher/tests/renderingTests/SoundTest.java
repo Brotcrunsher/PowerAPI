@@ -32,21 +32,21 @@ public class SoundTest implements Game{
 		float speed = 1000;
 		sourceSpeed.set(0, 0);
 		if(Keyboard.isKeyDown(Key.w)){
-			sourceSpeed.addToThisY(-speed);
+			sourceSpeed.addYThis(-speed);
 		}
 		if(Keyboard.isKeyDown(Key.s)){
-			sourceSpeed.addToThisY(speed);
+			sourceSpeed.addYThis(speed);
 		}
 		if(Keyboard.isKeyDown(Key.a)){
-			sourceSpeed.addToThisX(-speed);
+			sourceSpeed.addXThis(-speed);
 		}
 		if(Keyboard.isKeyDown(Key.d)){
-			sourceSpeed.addToThisX(speed);
+			sourceSpeed.addXThis(speed);
 		}
 		
 		sourceSpeed.multThis(timeSinceLastFrame);
 		
-		sourcePos.addToThis(sourceSpeed);
+		sourcePos.addThis(sourceSpeed);
 
 		soundPlayer.setPosition(sourcePos);
 		soundPlayer.setSpeed(sourceSpeed);

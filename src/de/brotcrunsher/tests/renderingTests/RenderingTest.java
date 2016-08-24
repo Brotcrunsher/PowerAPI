@@ -29,6 +29,7 @@ public class RenderingTest implements Game{
 	public void initialize(Window w) {
 		try {
 			img = w.getImage("/gfx/TestImage.png");
+			System.out.println(img);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -37,16 +38,16 @@ public class RenderingTest implements Game{
 	@Override
 	public void update(float timeSinceLastFrame) {
 		if(Keyboard.isKeyDown(Key.w)){
-			camera.addToThisY(-timeSinceLastFrame * 100);
+			camera.addYThis(-timeSinceLastFrame * 100);
 		}
 		if(Keyboard.isKeyDown(Key.s)){
-			camera.addToThisY(timeSinceLastFrame * 100);
+			camera.addYThis(timeSinceLastFrame * 100);
 		}
 		if(Keyboard.isKeyDown(Key.a)){
-			camera.addToThisX(-timeSinceLastFrame * 100);
+			camera.addXThis(-timeSinceLastFrame * 100);
 		}
 		if(Keyboard.isKeyDown(Key.d)){
-			camera.addToThisX(timeSinceLastFrame * 100);
+			camera.addXThis(timeSinceLastFrame * 100);
 		}
 		
 		Mouse.getPos(mousePos);
@@ -81,7 +82,7 @@ public class RenderingTest implements Game{
 		r.setLineWidth(10);
 		r.drawLine(450, 550, 350, 250);
 		//System.out.println(TimeManager.getFrameNumber() + " : " +  TimeManager.getAverageFrameTime());
-		r.drawImage(img, 700, 300);
+		//r.drawImage(img, 700, 300);
 		
 		r.setColor(Color.AWT_RED);
 		r.setLineWidth(1);

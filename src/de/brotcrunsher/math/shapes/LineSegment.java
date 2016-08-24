@@ -36,7 +36,7 @@ public class LineSegment extends Shape{
 		}
 		
 		result.set(stop);
-		result.subFromThis(pos);
+		result.subThis(pos);
 		
 		return result;
 	}

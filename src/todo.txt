@@ -11,6 +11,7 @@ Pics
 Test everything
 Add tests for nullable results
 GameStates
+IMPORTANT: What if input Object is result Object?!
 
 OpenGL support
 JavaFX support

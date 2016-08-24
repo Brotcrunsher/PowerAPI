@@ -178,12 +178,12 @@ public class Ellipse extends Shape{
 	protected Vector2 getClosestPointTo_(Vector2 result, float x, float y) {
 		result.set(x, y);
 		
-		result.subFromThis(this.pos);
+		result.subThis(this.pos);
 		
 		float r = getRadiusTo(x, y);
 		
 		result.setLengthThis(r);
-		result.addToThis(this.pos);
+		result.addThis(this.pos);
 		
 		return result;
 	}
@@ -197,7 +197,7 @@ public class Ellipse extends Shape{
 		//TODO TEST
 		Vector2 thisCenterToXY = workingVector1.get();
 		thisCenterToXY.set(x, y);
-		thisCenterToXY.subFromThis(this.pos);
+		thisCenterToXY.subThis(this.pos);
 		
 		float angle = thisCenterToXY.headingAngle();
 		

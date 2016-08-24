@@ -48,7 +48,7 @@ public abstract class Interpolation2D {
 		}
 		
 		result.set(workingVector2);
-		result.subFromThis(workingVector1);
+		result.subThis(workingVector1);
 		
 		result.normalizeThis();
 		return result;

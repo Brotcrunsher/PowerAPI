@@ -7,6 +7,7 @@ import de.brotcrunsher.gfx.rendering.swing.WindowSwing;
 import de.brotcrunsher.input.Keyboard;
 import de.brotcrunsher.input.Mouse;
 import de.brotcrunsher.snd.SoundSystem;
+import de.brotcrunsher.system.GCNotification;
 
 public class GameStarter {
 	private static int gameScreenWidth = 1024;
@@ -57,7 +58,8 @@ public class GameStarter {
 
 		while(GameStarter.running){
 			TimeManager.update();
-
+			GCNotification.tick();
+			
 			state.update(TimeManager.getTimeSinceLastFrame());
 			Renderer renderer = window.prepareRendering();
 			state.draw(renderer);
@@ -94,6 +96,14 @@ public class GameStarter {
 	public static int getScreenHeight(){
 		return gameScreenHeight;
 	}
+	
+	public static void setScreenWidth(int screenWidth){
+		GameStarter.gameScreenWidth = screenWidth;
+	}
+	public static void setScreenHeight(int screenHeight){
+		GameStarter.gameScreenHeight = screenHeight;
+	}
+	
 
 	public static String getWindowName(){
 		return windowName;

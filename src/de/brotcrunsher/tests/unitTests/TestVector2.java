@@ -30,24 +30,24 @@ public class TestVector2 {
 		
 		v0 = new Vector2(100, 200);
 		v1 = new Vector2(20, 40);
-		v0.addToThis(v1);
+		v0.addThis(v1);
 		assertEquals(v0.getX(), 120, 0);
 		assertEquals(v0.getY(), 240, 0);
 		assertEquals(v1.getX(), 20, 0);
 		assertEquals(v1.getY(), 40, 0);
 		
 		v0 = new Vector2(100, 200);
-		v0.addToThis(20, 40);
+		v0.addThis(20, 40);
 		assertEquals(v0.getX(), 120, 0);
 		assertEquals(v0.getY(), 240, 0);
 		
 		v0 = new Vector2(100, 200);
-		v0.addToThisX(20);
+		v0.addXThis(20);
 		assertEquals(v0.getX(), 120, 0);
 		assertEquals(v0.getY(), 200, 0);
 		
 		v0 = new Vector2(100, 200);
-		v0.addToThisY(40);
+		v0.addYThis(40);
 		assertEquals(v0.getX(), 100, 0);
 		assertEquals(v0.getY(), 240, 0);
 		
@@ -747,23 +747,23 @@ public class TestVector2 {
 		assertEquals(v1.getY(), 40, 0);
 		
 		v0 = new Vector2(10, 20);
-		v0.subFromThisX(2);
+		v0.subXThis(2);
 		assertEquals(v0.getX(), 8, 0);
 		assertEquals(v0.getY(), 20, 0);
 		
 		v0 = new Vector2(10, 20);
-		v0.subFromThisY(2);
+		v0.subYThis(2);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 18, 0);
 		
 		v0 = new Vector2(10, 20);
-		v0.subFromThis(2, 3);
+		v0.subThis(2, 3);
 		assertEquals(v0.getX(), 8, 0);
 		assertEquals(v0.getY(), 17, 0);
 		
 		v0 = new Vector2(10, 20);
 		v1 = new Vector2(2, 3);
-		v0.subFromThis(v1);
+		v0.subThis(v1);
 		assertEquals(v0.getX(), 8, 0);
 		assertEquals(v0.getY(), 17, 0);
 		assertEquals(v1.getX(), 2, 0);
@@ -801,12 +801,12 @@ public class TestVector2 {
 		assertEquals(v2.getY(), 17, 0);
 		
 		v0 = new Vector2(10, 20);
-		v0.divThisX(2);
+		v0.divXThis(2);
 		assertEquals(v0.getX(), 5, 0);
 		assertEquals(v0.getY(), 20, 0);
 		
 		v0 = new Vector2(10, 20);
-		v0.divThisY(5);
+		v0.divYThis(5);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 4, 0);
 		
@@ -867,12 +867,12 @@ public class TestVector2 {
 		assertEquals(v2.getY(), 4, 0);
 		
 		v0 = new Vector2(10, 20);
-		v0.multThisX(3);
+		v0.multXThis(3);
 		assertEquals(v0.getX(), 30, 0);
 		assertEquals(v0.getY(), 20, 0);
 		
 		v0 = new Vector2(10, 20);
-		v0.multThisY(2);
+		v0.multYThis(2);
 		assertEquals(v0.getX(), 10, 0);
 		assertEquals(v0.getY(), 40, 0);
 		

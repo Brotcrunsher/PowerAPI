@@ -35,7 +35,7 @@ public class RandomVector2InsideUnitSquareTest implements Game{
 		r.setColor(Color.AWT_BLACK);
 		Vector2 rand = RNG.randomVector2InsideUnitSquare();
 		rand.multThis(500);
-		rand.addToThis(100, 100);
+		rand.addThis(100, 100);
 		r.fillRect(rand, 1, 1);
 	}
 

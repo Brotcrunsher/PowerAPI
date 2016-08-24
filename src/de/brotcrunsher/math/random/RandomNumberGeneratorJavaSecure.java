@@ -2,6 +2,7 @@ package de.brotcrunsher.math.random;
 
 import java.security.Provider;
 import java.security.SecureRandom;
+import java.util.Random;
 
 public class RandomNumberGeneratorJavaSecure implements RandomNumberGenerator{
 	private SecureRandom rand;
@@ -12,6 +13,11 @@ public class RandomNumberGeneratorJavaSecure implements RandomNumberGenerator{
 	
 	public RandomNumberGeneratorJavaSecure(byte[] seed){
 		rand = new SecureRandom(seed);
+	}
+	
+	public RandomNumberGeneratorJavaSecure(SecureRandom rand){
+		if(rand == null) throw new NullPointerException();
+		this.rand = rand;
 	}
 	
 	public byte[] generateSeed(int numBytes){

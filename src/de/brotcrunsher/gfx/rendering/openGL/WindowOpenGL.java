@@ -116,4 +116,10 @@ public class WindowOpenGL implements Window{
 		return null;
 	}
 
+	@Override
+	public Image getGrayscaleImage(float[][] arr) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

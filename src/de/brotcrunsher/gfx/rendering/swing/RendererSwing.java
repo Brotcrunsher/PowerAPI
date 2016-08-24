@@ -32,6 +32,11 @@ public class RendererSwing extends Renderer{
 	public void setColor(float r, float g, float b, float a) {
 		this.g.setColor(new Color((int)(r * 255), (int)(g * 255), (int)(b * 255), (int)(a * 255)));
 	}
+	
+	@Override
+	public void setColor(de.brotcrunsher.gfx.basics.Color color) {
+		this.g.setColor(color.awtColor());
+	}
 
 	@Override
 	public void setLineWidth(float width) {

@@ -70,6 +70,10 @@ public class FMath {
 		}
 	}
 	
+	public static int repeat(int t, int border){
+		return mod(t, border);
+	}
+	
 	public static boolean isInRange(float val, float min, float max){
 		//TODO TEST
 		if(val < min) return false;
