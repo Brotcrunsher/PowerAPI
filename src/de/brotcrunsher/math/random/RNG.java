@@ -7,30 +7,34 @@ import de.brotcrunsher.math.linear.Vector2;
 public class RNG {
 	public static RandomNumberGenerator randomDefault = new RandomNumberGeneratorJavaDefault();
 	
-	public static void randomVector2InsideUnitCircle(Vector2 result, RandomNumberGenerator r){
+	public static Vector2 randomVector2InsideUnitCircle(Vector2 result, RandomNumberGenerator r){
+		if(result == null){
+			result = new Vector2();
+		}
+		
 		while(true){
 			float x = r.nextFloat() * 2 - 1;
 			float y = r.nextFloat() * 2 - 1;
 			if(x * x + y * y <= 1){
 				result.setX(x);
 				result.setY(y);
-				return;
+				return result;
 			}
 		}
 	}
-	public static void randomVector2InsideUnitCircle(Vector2 result){
+	public static Vector2 randomVector2InsideUnitCircle(Vector2 result){
 		//TESTED
-		randomVector2InsideUnitCircle(result, randomDefault);
+		return randomVector2InsideUnitCircle(result, randomDefault);
 	}
 	
-	public static void randomVector2OnUnitCircle(Vector2 result){
+	public static Vector2 randomVector2OnUnitCircle(Vector2 result){
 		//TESTED
-		randomVector2OnUnitCircle(result, randomDefault);
+		return randomVector2OnUnitCircle(result, randomDefault);
 	}
 	
-	public static void randomVector2OnUnitCircle(Vector2 result, RandomNumberGenerator r){
+	public static Vector2 randomVector2OnUnitCircle(Vector2 result, RandomNumberGenerator r){
 		//TODO TEST
-		Vector2.newOnCircle(result, r.nextFloat() * FMath.PI * 2);
+		return Vector2.newOnCircle(result, r.nextFloat() * FMath.PI * 2);
 	}
 	
 	public static Vector2 randomVector2InsideUnitSquare(RandomNumberGenerator r){
@@ -43,26 +47,34 @@ public class RNG {
 		return randomVector2InsideUnitSquare(randomDefault);
 	}
 	
-	public static Vector2 randomVector2OnUnitSquare(RandomNumberGenerator r){
+	public static Vector2 randomVector2OnUnitSquare(Vector2 result, RandomNumberGenerator r){
 		//TODO TEST
+		if(result == null){
+			result = new Vector2();
+		}
 		float randomVal = r.nextFloat();
 		switch(r.nextInt(4)){
 		case 0:
-			return new Vector2(randomVal, 0);
+			result.set(randomVal, 0);
+			break;
 		case 1:
-			return new Vector2(0, randomVal);
+			result.set(0, randomVal);
+			break;
 		case 2:
-			return new Vector2(randomVal, 1);
+			result.set(randomVal, 1);
+			break;
 		case 3:
-			return new Vector2(1, randomVal);
+			result.set(1, randomVal);
+			break;
 		default:
 			throw new IllegalArgumentException(); //Can only happen if the given Random isn't properly implemented.
 		}
+		return result;
 	}
 	
-	public static Vector2 randomVector2OnUnitSquare(){
+	public static Vector2 randomVector2OnUnitSquare(Vector2 result){
 		//TESTED
-		return randomVector2OnUnitSquare(randomDefault);
+		return randomVector2OnUnitSquare(result, randomDefault);
 	}
 	
 	

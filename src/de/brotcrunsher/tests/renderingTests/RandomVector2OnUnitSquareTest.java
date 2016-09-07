@@ -33,7 +33,7 @@ public class RandomVector2OnUnitSquareTest implements Game{
 		r.setColor(Color.AWT_GREEN);
 		//r.drawRect(100, 100, 500, 500);
 		r.setColor(Color.AWT_BLACK);
-		Vector2 rand = RNG.randomVector2OnUnitSquare();
+		Vector2 rand = RNG.randomVector2OnUnitSquare(null);
 		rand.multThis(500);
 		rand.addThis(100, 100);
 		r.fillRect(rand, 1, 1);
